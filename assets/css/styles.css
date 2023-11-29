@@ -1,0 +1,91 @@
+html,
+body {
+    height: 100%;
+}
+
+.page {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    background: radial-gradient(circle, rgba(15,133,171,1) 46%, rgba(9,4,107,1) 82%);
+}
+
+nav li{
+    font-weight: bold;
+}
+
+/* Hero */
+.hero {
+    height: 100%;
+    padding-top: 15rem;
+    background-image: url(../images/uploads/background.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.overlay {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    
+    .bar-size {
+        width: 60%;
+    }
+}
+
+
+hr.divider{
+    height: 0.3rem;
+    max-width: 4rem;
+    margin: 1.5rem auto;
+    background-color: white;
+    opacity: 0.75;
+}
+
+/*Section break*/
+.break {
+    padding: 4rem;
+    background-size: cover;
+    background-color: black;
+}
+
+
+/* Team */
+.team-member {
+    margin-bottom: 3rem;
+    text-align: center;
+    margin-top: 5rem;
+}
+.team-member img {
+    width: 14rem;
+    height: 14rem;
+    border: 0.5rem solid black
+}
+.team-member h4, .team-member .h4 {
+    margin-top: 2rem;
+    margin-bottom: 0;
+}
+
+/* Form */
+.form input{
+  padding: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-message input{
+  min-height: 14rem;
+}
