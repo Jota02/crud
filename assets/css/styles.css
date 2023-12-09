@@ -1,6 +1,8 @@
 html,
 body {
+    scroll-behavior: smooth;
     height: 100%;
+    scroll-padding: var(--scroll-padding, 3.45rem);
 }
 
 .page {
@@ -58,7 +60,7 @@ hr.divider{
 
 /*Section break*/
 .break {
-    padding: 4rem;
+    padding: 1rem;
     background-size: cover;
     background-color: black;
 }
