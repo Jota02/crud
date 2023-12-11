@@ -1,5 +1,5 @@
-<footer class="p-3 bg-dark text-white mt-4">
-  <article>IPVC ESTG - Engenharia Informática &copy; - 2023-2024</article>
+<footer class="p-2 bg-dark text-white">
+  <article class="m-0 text-center">IPVC ESTG - Engenharia Informática &copy; - HomeCinema 2023-2024</article>
 </footer>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

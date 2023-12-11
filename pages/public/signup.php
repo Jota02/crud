@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../infra/middlewares/middleware-not-authenticated.ph
 $title = '- Sign Up';
 include_once __DIR__ . '../../../templates/header.php'; ?>
 
-<main>
+<main class = "text-center">
   <section>
     <?php
     if (isset($_SESSION['success'])) {
@@ -47,6 +47,8 @@ include_once __DIR__ . '../../../templates/header.php'; ?>
   </form>
   <a href="/crud/"><button class="w-100 btn btn-lg btn-info">Back</button></a>
 </main>
-<?php
-include_once __DIR__ . '../../../templates/footer.php'; ?>
-?>
+<div class= "fixed-bottom">
+    <?php
+      include_once __DIR__ . '../../../templates/footer.php';
+    ?>
+</div>
