@@ -1,9 +1,8 @@
-html,
-body {
-    min-height: 100vh;
+html,body {
     height: 100%;
     scroll-behavior: smooth;
     scroll-padding: var(--scroll-padding, 3.45rem);
+    background: radial-gradient(circle, rgba(15,133,171,1) 46%, rgba(9,4,107,1) 82%);
 }
 
 .page {
@@ -91,4 +90,17 @@ hr.divider{
 
 .form-message input{
   min-height: 14rem;
+}
+
+
+/* Login e Registar */
+
+.login_registar form h1{
+    padding: 1rem;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.login_registar button{
+    cursor: pointer; /* Add a pointer on hover */
 }
