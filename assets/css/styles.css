@@ -95,12 +95,18 @@ hr.divider{
 
 /* Login e Registar */
 
-.login_registar form h1{
-    padding: 1rem;
-    font-size: 2.5rem;
-    font-weight: bold;
-}
+.login_registar{
 
-.login_registar button{
-    cursor: pointer; /* Add a pointer on hover */
+    justify-content: center;
+    text-align: center;
+
+    form h1{
+        padding: 1rem;
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+
+    button{
+        cursor: pointer;
+    }
 }

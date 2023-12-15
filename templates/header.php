@@ -13,4 +13,3 @@
 
 </head>
 <body id="page-top">
-  <div class="container py-5">

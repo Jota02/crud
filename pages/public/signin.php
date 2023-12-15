@@ -4,7 +4,8 @@ include_once __DIR__ . '../../../templates/header.php';
 
 $title = ' - Sign In';
 ?>
-<main class = "text-center login_registar">
+
+<main class = "login_registar">
   <section>
     <?php
     if (isset($_SESSION['errors'])) {
@@ -36,8 +37,7 @@ $title = ' - Sign In';
   </form>
   <a href="/crud"><button class="w-100 btn btn-lg btn-dark">Back</button></a>
 </main>
-<div class= "fixed-bottom">
-    <?php
-      include_once __DIR__ . '../../../templates/footer.php';
-    ?>
-</div>
+
+<?php
+  include_once __DIR__ . '../../../templates/footer.php';
+?>
