@@ -4,8 +4,7 @@ include_once __DIR__ . '../../../templates/header.php';
 
 $title = ' - Sign In';
 ?>
-
-<main class = "login_registar">
+<main class = "text-center">
   <section>
     <?php
     if (isset($_SESSION['errors'])) {
