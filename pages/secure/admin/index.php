@@ -7,12 +7,12 @@ $users = getAll();
 $title = ' - Admin management';
 ?>
 
-<div class="pt-1 ">
-  <div class="p-5 mb-2 bg-dark text-white">
-    <h1>Users</h1>
-  </div>
-
   <main class="bg-light">
+    <div class="pt-1 ">
+      <div class="p-5 mb-2 bg-dark text-white">
+        <h1>Users</h1>
+      </div>
+    </div>
     <section class="py-4">
       <div class="d-flex justify-content">
         <a href="/crud/pages/secure/"><button class="btn btn-secondary px-5 me-2">Back</button></a>
@@ -106,6 +106,5 @@ $title = ' - Admin management';
       </div>
     </section>
   </main>
-</div>
 <?php
 include_once __DIR__ . '/../../../templates/footer.php'; ?>
