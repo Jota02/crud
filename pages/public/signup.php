@@ -47,6 +47,7 @@ include_once __DIR__ . '../../../templates/header.php'; ?>
   </form>
   <a href="/crud/"><button class="w-100 btn btn-lg btn-info">Back</button></a>
 </main>
+
 <div class= "fixed-bottom">
     <?php
       include_once __DIR__ . '../../../templates/footer.php';

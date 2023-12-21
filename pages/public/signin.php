@@ -37,6 +37,8 @@ $title = ' - Sign In';
   <a href="/crud"><button class="w-100 btn btn-lg btn-info">Back</button></a>
 </main>
 
-<?php
-  include_once __DIR__ . '../../../templates/footer.php';
-?>
+<div class= "fixed-bottom">
+    <?php
+      include_once __DIR__ . '../../../templates/footer.php';
+    ?>
+</div>

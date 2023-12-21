@@ -11,5 +11,6 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <script src="../../assets/js/scripts.js"></script>
 
-    </head>
-    <body class="d-flex flex-column h-100">
+</head>
+<body id="page-top">
+    <div class="container py-5">
