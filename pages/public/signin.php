@@ -5,9 +5,9 @@ include_once __DIR__ . '../../../templates/header.php';
 $title = ' - Sign In';
 ?>
 
-  <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="account-page-styles page" style="min-height: 100vh;">
     <div class="container py-5">  
-        <div class="account-form-wrapper text-white">
+        <main class="account-form-wrapper text-white">
           <h1 class="mb-3 fw-normal text-center">Sign In</h1>
           <form action="/crud/controllers/auth/signin.php" method="post">
             <div class="account-form-style">
@@ -42,7 +42,7 @@ $title = ' - Sign In';
               }
             ?>
           </section>
-        </div>
+            </main>
     </div>
   </div>
 

@@ -3,11 +3,6 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
 #require_once __DIR__ . '/setupdatabase.php';
 ?>
 
-<!-- <a href="/crud/pages/public/signin.php"><button class="btn btn-success btn-lg px-5 me-2">Sign
-                                In</button></a>
-                        <a href="/crud/pages/public/signup.php"><button class="btn btn-info btn-lg px-4">Sign
-                                Up</button></a> -->
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -60,9 +55,9 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
             <img src="./assets/images/uploads/logo.png" class="img-fluid" alt="logo">
             <div class="d-flex justify-content-center align-items-center flex-column content">
                 <div class="input-group bar-size">
-                    <input type="text" class="form-control " placeholder="Search a movie or serie..." aria-describedby="basic-addon2">
+                    <input type="text" class="form-control " placeholder="Search for a movie or serie..." aria-describedby="basic-addon2">
                     <span class="input-group-text bi-search" id="basic-addon2"></span>
-                </div>  
+                </div> 
             </div>
             <hr>    
             <div class="text-white" style="padding-bottom: 10rem;">

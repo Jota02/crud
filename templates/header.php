@@ -12,4 +12,4 @@
         <script src="../../assets/js/scripts.js"></script>
 
 </head>
-<body id="page-top">
+<body>
