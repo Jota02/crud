@@ -1,4 +1,4 @@
-<footer class="p-2 bg-dark text-white">
+<footer class="p-2 bg-dark text-white custom-footer">
   <article class="m-0 text-center">IPVC ESTG - Engenharia Informática &copy; - HomeCinema 2023-2024</article>
 </footer>
     </div>

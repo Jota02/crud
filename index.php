@@ -52,7 +52,7 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
     <header class="hero">
         <div class="overlay"></div>
         <div class="container text-center align-content-center content">
-            <img src="./assets/images/uploads/logo.png" class="img-fluid" alt="logo">
+            <img src="./assets/images/uploads/logo.png" class="img-fluid" alt="homecinema">
             <div class="d-flex justify-content-center align-items-center flex-column content">
                 <div class="input-group bar-size">
                     <input type="text" class="form-control " placeholder="Search for a movie or serie..." aria-describedby="basic-addon2">
