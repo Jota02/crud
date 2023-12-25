@@ -7,14 +7,13 @@ $title = ' - Change password';
 $user = user();
 ?>
 
-<div class="p-5 mb-2 bg-dark text-white">
-  <h1>Change Password</h1>
-</div>
-<main>
+
+<main class="account-page-styles page cover2" style="min-height: 100vh;">
+
   <section class="py-4">
-    <a href="/crud/pages/secure/user/profile.php"><button type="button" class="btn btn-secondary px-5">Back</button></a>
-  </section>
-  <section>
+    <div class="p-5 mb-2 text-white text-center">
+      <h1>Change Password</h1>
+    </div>
     <?php
     if (isset($_SESSION['success'])) {
       echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
@@ -31,8 +30,6 @@ $user = user();
       unset($_SESSION['errors']);
     }
     ?>
-  </section>
-  <section>
     <form action="/crud/controllers/admin/user.php" method="post" class="form-control py-3">
       <div class="input-group mb-3">
         <span class="input-group-text">Name</span>
@@ -47,8 +44,15 @@ $user = user();
         <span class="input-group-text">Confirm Password</span>
         <input type="password" class="form-control" name="confirm_password" maxlength="255" required>
       </div>
-      <div class="d-grid col-4 mx-auto">
-        <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="user" value="password">Change</button>
+      <div class="container">
+        <div class="row">
+          <div class="d-grid col-4 mx-auto" >
+            <a href="/crud/pages/secure/user/profile.php"><button type="button" class="w-100 btn btn-lg btn-secondary mb-2">Back</button></a>
+          </div>
+          <div class="d-grid col-4 mx-auto">
+            <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="user" value="password">Change</button>
+          </div>
+        </div>
       </div>
     </form>
   </section>

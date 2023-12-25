@@ -247,3 +247,8 @@ header.custom-navbar{
     position: relative;
 }
 
+/*Main Perfil Page*/
+.cover2{
+    background: radial-gradient(circle, rgba(15,133,171,1) 46%, rgba(9,4,107,1) 82%);
+}
+

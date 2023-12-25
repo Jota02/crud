@@ -42,7 +42,7 @@ $title = '- App';
             <i class="bi bi-calendar-event-fill"></i>
             <span class="side-menu-title">Calendar</span>
         </a>
-        <a href="#home" class="side-menu-link">
+        <a href="/crud/pages/secure/user/profile.php" class="side-menu-link">
             <i class="bi bi-person-circle"></i>
             <span class="side-menu-title">Account</span>
         </a>
