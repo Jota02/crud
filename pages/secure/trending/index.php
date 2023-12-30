@@ -1,8 +1,8 @@
 <?php
-require_once __DIR__ . '../../../infra/middlewares/middleware-user.php';
-@require_once __DIR__ . '/../../helpers/session.php';
+require_once __DIR__ . '/../../../infra/middlewares/middleware-administrator.php';
+@require_once __DIR__ . '/../../../helpers/session.php';
 
-include_once __DIR__ . '../../../templates/header.php';
+include_once __DIR__ . '/../../../templates/header.php';
 
 $user = user();
 $title = '- App';
@@ -26,11 +26,11 @@ $title = '- App';
     </div>
 
     <div class="side-menu">
-        <a href="/crud/pages/secure/index.php" class="side-menu-link side-menu-active">
+        <a href="/crud/pages/secure/index.php" class="side-menu-link">
             <i class="bi bi-house-door-fill"></i>
             <span class="side-menu-title">Home</span>
         </a>
-        <a href="/crud/pages/secure/trending/index.php" class="side-menu-link">
+        <a href="/crud/pages/secure/trending/index.php" class="side-menu-link side-menu-active">
             <i class="bi bi-lightning-charge-fill"></i>
             <span class="side-menu-title">Trending</span>
         </a>
@@ -61,17 +61,38 @@ $title = '- App';
 </header>
 
 <!--content-->
-<div class="d-flex justify-content-center align-items-center home-cover" style="min-height: 100vh;">
-    <div class="container-fluid py-5 mx-5 welcome">
-        <h1 class="display-5 fw-bold">Hello
-            <?= $user['name'] ?? null ?>!
-        </h1>
-        <p class="fs-4">What are we watching today?</p>
+<div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout d-grid justify-content-center">
+    <div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+        <div class="carousel-item active img-carousel">
+            <img src="../../../assets/images/uploads/movies/covers/dk.jpg" class="d-block" alt="batman">
+        </div>
+        <div class="carousel-item img-carousel">
+            <img src="../../../assets/images/uploads/movies/covers/dune.jpg" class="d-block" alt="dune">
+        </div>
+        <div class="carousel-item img-carousel">
+            <img src="../../../assets/images/uploads/movies/covers/sw_9.jpg" class="d-block" alt="scream">
+        </div>
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+    </div>
+</div>
+        
+        
+
 </div>
 
 
+    
+
 
 <?php
-include_once __DIR__ . '../../../templates/footer.php';
+include_once __DIR__ . '/../../../templates/footer.php';
 ?>
