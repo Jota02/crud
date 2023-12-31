@@ -9,7 +9,7 @@ $title = '- App';
 ?>
 
 <header class="custom-navbar">
-    <div class="nav custom-container mt-1 mb-1 mx-3 align-items-center">
+    <div class="nav custom-container mt-0 mb-1 mx-3 align-items-center fixed-top" style="background-color: black;width: 100%;">
         <a href="/crud/pages/secure/index.php" class="logo">
             <img src="/crud/assets/images/uploads/logo.png" alt="HomeCinema" class="img-fluid" style="max-width: 3rem; height: auto;">
             <span class="text-danger">Home</span><span class="text-primary">CINEMA</span>
@@ -20,7 +20,7 @@ $title = '- App';
             <i class="bi bi-search"></i>
         </div>  
 
-        <a href="#" class="estg">
+        <a href="#" class="estg" style="padding-right: 2rem">
             <img src="/crud/assets/images/uploads/logo-estg.png" alt="ESTG" class="img-fluid" style="max-width: 3rem; height: auto;">
         </a>
     </div>
@@ -61,17 +61,25 @@ $title = '- App';
 </header>
 
 <!--content-->
-<div class="d-flex justify-content-center align-items-center home-cover" style="min-height: 100vh;">
-    <div class="container-fluid py-5 mx-5 welcome">
-        <h1 class="display-5 fw-bold">Hello
-            <?= $user['name'] ?? null ?>!
-        </h1>
-        <p class="fs-4">What are we watching today?</p>
+
+
+<div class="account-page-styles home-cover" style="min-height: 100vh;">
+    <div class="container py-3">  
+        <main class="account-form-wrapper text-white">
+            <div class="container-fluid py-5 mx-5 welcome">
+                <h1 class="display-5 fw-bold">Hello
+                    <?= $user['name'] ?? null ?>!
+                </h1>
+                <p class="fs-4">What are we watching today?</p>
+            </div>
+
+
+          <div class="fixed-bottom">
+            <?php
+              include_once __DIR__ . '../../../templates/footer.php';
+            ?>
+          </div>
+        </main>
+      </div>
     </div>
 </div>
-
-
-
-<?php
-include_once __DIR__ . '../../../templates/footer.php';
-?>
