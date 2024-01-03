@@ -2,74 +2,93 @@
 #EASY DATABASE SETUP
 require __DIR__ . '/infra/db/connection.php';
 
-#DROP TABLE
-$pdo->exec('DROP TABLE IF EXISTS users;');
-
-echo 'table users deleted!' . PHP_EOL;
-
 #CREATE TABLE
+// $pdo->exec(
+//     'CREATE TABLE users (
+//     id INTEGER PRIMARY KEY AUTO_INCREMENT, 
+//     name varchar(50)	, 
+//     lastname varchar(50)	, 
+//     phoneNumber varchar(50)	, 
+//     email varchar(50)	 NOT NULL, 
+//     foto blob	 NULL, 
+//     administrator bit, 
+//     password varchar(200)	
+//     );
+//     '
+// );
+
 $pdo->exec(
-    'CREATE TABLE users (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT, 
-    name varchar(50)	, 
-    lastname varchar(50)	, 
-    phoneNumber varchar(50)	, 
-    email varchar(50)	 NOT NULL, 
-    foto varchar(50)	 NULL, 
-    administrator bit, 
-    password varchar(200)	);'
+    'CREATE TABLE categories (
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
+        category varchar(50)
+    );
+    '
 );
 
-echo 'Tabela users created!' . PHP_EOL;
+$pdo->exec(
+    'CREATE TABLE type (
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
+        category varchar(50)
+    );
+    '
+);
 
-#DEFAULT USER TO ADD
-$user = [
-    'name' => 'Marcelo',
-    'lastname' => 'Antunes Fernandes',
-    'phoneNumber' => '987654321',
-    'email' => 'fernandesmarcelo@estg.ipvc.pt',
-    'foto' => null,
-    'administrator' => true,
-    'password' => '123456'
-];
+$pdo->exec(
+    'CREATE TABLE shows (
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
+        id_category INTEGER,
+        id_type INTEGER,
+        title varchar(50),
+        description varchar(250),
+        seasons INTEGER,
+        rating float,
+        release_date date,
+        trailer varchar(250),
+        poster blob,
+        cover blob NULL,
+        FOREIGN KEY (id_category) REFERENCES categories(id),
+        FOREIGN KEY (id_type) REFERENCES type(id)
+        );
+    '
+);
 
-#HASH PWD
-$user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
+$pdo->exec(
+    'CREATE TABLE user_reviews (
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
+        id_user INTEGER,
+        id_show INTEGER,
+        comment varchar(250),
+        rating float,
+        attachments blob,
+        review_date date,
+        FOREIGN KEY (id_user) REFERENCES users(id),
+        FOREIGN KEY (id_show) REFERENCES shows(id)
+    );
+    '
+);
 
-#INSERT USER
-$sqlCreate = "INSERT INTO 
-    users (
-        name, 
-        lastname, 
-        phoneNumber, 
-        email, 
-        foto, 
-        administrator, 
-        password) 
-    VALUES (
-        :name, 
-        :lastname, 
-        :phoneNumber, 
-        :email, 
-        :foto, 
-        :administrator, 
-        :password
-    )";
 
-#PREPARE QUERY
-$PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
 
-#EXECUTE
-$success = $PDOStatement->execute([
-    ':name' => $user['name'],
-    ':lastname' => $user['lastname'],
-    ':phoneNumber' => $user['phoneNumber'],
-    ':email' => $user['email'],
-    ':foto' => $user['foto'],
-    ':administrator' => $user['administrator'],
-    ':password' => $user['password']
-]);
+$pdo->exec(
+    'CREATE TABLE shared_content (
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
+        shared_id INTEGER,
+        show_id INTEGER,
+        FOREIGN KEY (shared_id) REFERENCES users(id),
+        FOREIGN KEY (show_id) REFERENCES shows(id)
+    );
+    '
+);
 
-echo 'Default user created!';
-
+$pdo->exec(
+    'CREATE TABLE share_list (
+        id INTEGER PRIMARY KEY AUTO_INCREMENT,
+        sender_id INTEGER,
+        destination_id INTEGER,
+        shared_date date,
+        FOREIGN KEY (sender_id) REFERENCES users(id),
+        FOREIGN KEY (destination_id) REFERENCES users(id)
+    );
+    '
+);
 ?>

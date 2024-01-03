@@ -62,7 +62,7 @@ $title = '- App';
 <!--navbar end-->
 
 <!--content start-->
-<div class="container padding">
+<div class="container padding" style="min-height: 100vh">
     <!--carousel start-->
     <div id="mainCarousel" class="carousel slide container-fluid">
         <div class="carousel-inner carrousel-inner-width container-fluid">
