@@ -62,68 +62,68 @@ $title = '- App';
 <!--navbar end-->
 
 <!--content start-->
-<div class="container-xxl bd-gutter my-md-4 bd-layout d-grid padding">
+<div class="container padding">
     <!--carousel start-->
     <div id="mainCarousel" class="carousel slide container-fluid">
-    <div class="carousel-inner carrousel-inner-width container-fluid">
-        <div class="carousel-item active img-carousel">
-            <img src="../../../assets/images/uploads/movies/covers/dk.jpg" class="d-block" alt="batman">
-            <div class="carousel-caption d-none d-md-flex info-position">
-                <h1>The Dark Knight Rises</h1>
-                <a href="#" class="show-btn">
-                    <i class="bi bi-play-circle-fill"></i>
-                    <span>Trailer</span>
-                </a>
-                <a href="#" class="show-btn">
-                    <i class="bi bi-plus-circle-fill"></i>
-                    <span>Add to Library</span>
-                </a>
+        <div class="carousel-inner carrousel-inner-width container-fluid">
+            <div class="carousel-item active">
+                <img src="../../../assets/images/uploads/movies/covers/dk.jpg" class="d-block img-fluid" alt="batman">
+                <div class="carousel-caption d-none d-md-flex info-position">
+                    <h1>The Dark Knight Rises</h1>
+                    <a href="#" class="show-btn">
+                        <i class="bi bi-play-circle-fill"></i>
+                        <span>Trailer</span>
+                    </a>
+                    <a href="#" class="show-btn">
+                        <i class="bi bi-plus-circle-fill"></i>
+                        <span>Add to Library</span>
+                    </a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="../../../assets/images/uploads/series/covers/himym.jpg" class="d-block img-fluid" alt="arcane">
+                <div class="carousel-caption d-none d-md-flex info-position" style="color: white;">
+                    <h1>How I Met Your Mother</h1>
+                    <a href="#" class="show-btn">
+                        <i class="bi bi-play-circle-fill"></i>
+                        <span>Trailer</span>
+                    </a>
+                    <a href="#" class="show-btn">
+                        <i class="bi bi-plus-circle-fill"></i>
+                        <span>Add to Library</span>
+                    </a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="../../../assets/images/uploads/movies/covers/dune.jpg" class="d-block img-fluid" alt="dune">
+                <div class="carousel-caption d-none d-md-flex info-position">
+                    <h1>Dune</h1>
+                    <a href="#" class="show-btn">
+                        <i class="bi bi-play-circle-fill"></i>
+                        <span>Trailer</span>
+                    </a>
+                    <a href="#" class="show-btn">
+                        <i class="bi bi-plus-circle-fill"></i>
+                        <span>Add to Library</span>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="carousel-item img-carousel">
-            <img src="../../../assets/images/uploads/series/covers/himym.jpg" class="d-block" alt="arcane">
-            <div class="carousel-caption d-none d-md-flex info-position" style="color: white;">
-                <h1>How I Met Your Mother</h1>
-                <a href="#" class="show-btn">
-                    <i class="bi bi-play-circle-fill"></i>
-                    <span>Trailer</span>
-                </a>
-                <a href="#" class="show-btn">
-                    <i class="bi bi-plus-circle-fill"></i>
-                    <span>Add to Library</span>
-                </a>
-            </div>
-        </div>
-        <div class="carousel-item img-carousel">
-            <img src="../../../assets/images/uploads/movies/covers/dune.jpg" class="d-block" alt="dune">
-            <div class="carousel-caption d-none d-md-flex info-position">
-                <h1>Dune</h1>
-                <a href="#" class="show-btn">
-                    <i class="bi bi-play-circle-fill"></i>
-                    <span>Trailer</span>
-                </a>
-                <a href="#" class="show-btn">
-                    <i class="bi bi-plus-circle-fill"></i>
-                    <span>Add to Library</span>
-                </a>
-            </div>
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
     <!--carousel end-->
 
     <!--movies header start-->
     <div class="heading">
         <h4 class="heading-title">Trending Movies</h4>
-        <button class="btn btn-link arrow-btn" onclick="showMovieCarousel()">
+        <button class="btn btn-link arrow-btn" onclick="showTrendingCarousel()">
             <i class="bi bi-chevron-down show-btn"></i> 
         </button>
     </div>

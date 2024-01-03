@@ -7,7 +7,7 @@ document.documentElement.style.setProperty(
   navigationHeight + "px"
 );
 
-function showMovieCarousel() {
+function showTrendingCarousel() {
   // Get the movie carousel container element
   var movieCarouselContainer = document.getElementById("movieCarousel");
   
