@@ -81,7 +81,7 @@ $title = '- App';
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="../../../assets/images/uploads/series/covers/himym.jpg" class="d-block img-fluid" alt="arcane">
+                <img src="..\..\..\assets\images\uploads\series\covers\himym.jpg" class="d-block img-fluid" alt="arcane">
                 <div class="carousel-caption d-none d-md-flex info-position" style="color: white;">
                     <h1>How I Met Your Mother</h1>
                     <a href="#" class="show-btn">

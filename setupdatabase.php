@@ -20,7 +20,7 @@ require __DIR__ . '/infra/db/connection.php';
 $pdo->exec(
     'CREATE TABLE categories (
         id INTEGER PRIMARY KEY AUTO_INCREMENT,
-        category varchar(50)
+        category_name varchar(50)
     );
     '
 );
@@ -28,7 +28,7 @@ $pdo->exec(
 $pdo->exec(
     'CREATE TABLE type (
         id INTEGER PRIMARY KEY AUTO_INCREMENT,
-        category varchar(50)
+        show_type varchar(50)
     );
     '
 );
@@ -36,20 +36,30 @@ $pdo->exec(
 $pdo->exec(
     'CREATE TABLE shows (
         id INTEGER PRIMARY KEY AUTO_INCREMENT,
-        id_category INTEGER,
         id_type INTEGER,
-        title varchar(50),
+        title varchar(250),
         description varchar(250),
         seasons INTEGER,
         rating float,
-        release_date date,
+        age varchar(50),
+        release_year year,
+        end_year year,
         trailer varchar(250),
-        poster blob,
-        cover blob NULL,
-        FOREIGN KEY (id_category) REFERENCES categories(id),
+        poster_path varchar(250),
+        cover_path varchar(250),
         FOREIGN KEY (id_type) REFERENCES type(id)
         );
     '
+);
+
+$pdo->exec(
+    'CREATE TABLE show_categories (
+        show_id INTEGER,
+        category_id INTEGER,
+        PRIMARY KEY (show_id, category_id),
+        FOREIGN KEY (show_id) REFERENCES shows(id),
+        FOREIGN KEY (category_id) REFERENCES categories(id)
+    );'
 );
 
 $pdo->exec(
