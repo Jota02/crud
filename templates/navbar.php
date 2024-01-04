@@ -16,12 +16,7 @@ function is_active($url) {
             <img src="/crud/assets/images/uploads/logo.png" alt="HomeCinema" class="img-fluid" style="max-width: 3rem; height: auto;">
             <span class="text-danger">Home</span><span class="text-primary">CINEMA</span>
         </a>
-
-        <div class="search-bar">
-            <input type="search" placeholder="Search for show..." class="form-control" id="search-input" maxlength="255" name="">
-            <i class="bi bi-search"></i>
-        </div>  
-
+        
         <a href="#" class="estg">
             <img src="/crud/assets/images/uploads/logo-estg.png" alt="ESTG" class="img-fluid" style="max-width: 3rem; height: auto;">
         </a>

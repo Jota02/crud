@@ -159,32 +159,6 @@ hr.divider{
     margin: 0 auto 0 0;
 }
 
-.search-bar{
-    max-width: 240px;
-    height: 50%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    column-gap: 0.7rem;
-    padding: 8px 15px;
-    
-    .bi{
-        color: var(--main-color);
-        font-size: 1.1rem;
-    }
-    .bi:hover{
-        color: var(--hover-color);
-    }
-
-    #search-input{
-        border: none;
-        outline: none;
-        color: var(--text-color);
-        background: white;
-    }
-
-}
-
 .side-menu {
     position: fixed;
     height: 100vh;
@@ -241,7 +215,7 @@ hr.divider{
     border: .25rem solid #0d6efd; 
 }
 
-/*Trending Page*/
+/*Discover Page*/
 .padding{
     padding-top: 4.926rem;
 }
@@ -259,7 +233,7 @@ hr.divider{
     align-items: flex-start;
 }
 
-.show-btn{
+.outlines{
     color: var(--text-color);
     text-shadow:    -1px -1px 0 #000,  
                     1px -1px 0 #000,
@@ -267,8 +241,36 @@ hr.divider{
                     1px 1px 0 #000;
 }
 
+.bi-cover-size{
+    font-size: 1.3rem;
+}
+
 .trending{
     margin-top: 2.5rem;
+}
+
+.search-bar{
+    display: flex;
+    align-items: center;
+    max-width: 40rem;
+    column-gap: 0.7rem;
+    padding: 8px 15px;
+    
+    .bi{
+        color: var(--main-color);
+        font-size: 1.1rem;
+    }
+    .bi:hover{
+        color: var(--hover-color);
+    }
+
+    #search-input{
+        border: none;
+        outline: none;
+        color: var(--text-color);
+        background: white;
+    }
+
 }
 
 .heading{
@@ -278,8 +280,11 @@ hr.divider{
     background: var(--container-color);
     padding: .5rem 0.875rem;
     border: .05rem solid var(--main-color);
-    margin-top: 7rem;
     position: relative;
+
+    .bi{
+        font-size: 1.8rem;
+    }
 }
 
 .heading-title{
@@ -288,7 +293,7 @@ hr.divider{
     color: var(--text-color);
 }
 
-.movies-placeholder{
+.shows-placeholder{
     margin-top: 2.5rem;
     border: .05rem solid var(--main-color);
     position: relative;
@@ -332,7 +337,12 @@ hr.divider{
 
   .button-container {
     display: flex; 
-    gap: 0.5rem; 
+    gap: 0.5rem;
+
+    .bi{
+        font-size: 1.3rem;
+    }
+
 }
   
 

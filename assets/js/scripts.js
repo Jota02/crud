@@ -7,16 +7,26 @@ document.documentElement.style.setProperty(
   navigationHeight + "px"
 );
 
-function showTrendingCarousel() {
-  // Get the movie carousel container element
+function showMovieCarousel() {
   var movieCarouselContainer = document.getElementById("movieCarousel");
   
-  // Toggle the display style to show/hide the movie carousel
   if (movieCarouselContainer.style.display === "none" || movieCarouselContainer.style.display === "") {
     movieCarouselContainer.style.display = "block";
-    // Initialize or refresh the carousel if needed (e.g., using Bootstrap's JavaScript API)
-    new bootstrap.Carousel(movieCarouselContainer); // Initialize the carousel
+    
+    new bootstrap.Carousel(movieCarouselContainer); 
   } else {
     movieCarouselContainer.style.display = "none";
+  }
+}
+
+function showSerieCarousel() {
+  var serieCarouselContainer = document.getElementById("serieCarousel");
+  
+  if (serieCarouselContainer.style.display === "none" || serieCarouselContainer.style.display === "") {
+    serieCarouselContainer.style.display = "block";
+    
+    new bootstrap.Carousel(serieCarouselContainer); 
+  } else {
+    serieCarouselContainer.style.display = "none";
   }
 }
