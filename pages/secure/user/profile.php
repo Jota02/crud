@@ -5,59 +5,9 @@ include_once __DIR__ . '../../../../templates/header.php';
 
 $title = ' - Profile';
 $user = user();
+
+include_once __DIR__ . '/../../../templates/navbar.php';
 ?>
-<header class="custom-navbar">
-    <div class="nav custom-container mt-0 mb-1 mx-3 align-items-center fixed-top" style="background-color: black;width: 100%;">
-        <a href="/crud/pages/secure/index.php" class="logo">
-            <img src="/crud/assets/images/uploads/logo.png" alt="HomeCinema" class="img-fluid" style="max-width: 3rem; height: auto;">
-            <span class="text-danger">Home</span><span class="text-primary">CINEMA</span>
-        </a>
-
-        <div class="search-bar">
-            <input type="search" placeholder="Search for show..." class="form-control" id="search-input" maxlength="255" name="">
-            <i class="bi bi-search"></i>
-        </div>  
-
-        <a href="#" class="estg" style="padding-right: 2rem">
-            <img src="/crud/assets/images/uploads/logo-estg.png" alt="ESTG" class="img-fluid" style="max-width: 3rem; height: auto;">
-        </a>
-    </div>
-
-    <div class="side-menu">
-        <a href="/crud/pages/secure/index.php" class="side-menu-link side-menu-active">
-            <i class="bi bi-house-door-fill"></i>
-            <span class="side-menu-title">Home</span>
-        </a>
-        <a href="/crud/pages/secure/trending/index.php" class="side-menu-link">
-            <i class="bi bi-lightning-charge-fill"></i>
-            <span class="side-menu-title">Trending</span>
-        </a>
-        <a href="#home" class="side-menu-link">
-            <i class="bi bi-tags-fill"></i>
-            <span class="side-menu-title">Categories</span>
-        </a>
-        <a href="#home" class="side-menu-link">
-            <i class="bi bi-calendar-event-fill"></i>
-            <span class="side-menu-title">Calendar</span>
-        </a>
-        <a href="/crud/pages/secure/user/profile.php" class="side-menu-link">
-            <i class="bi bi-person-circle"></i>
-            <span class="side-menu-title">Account</span>
-        </a>
-        <?php
-        if (isAuthenticated() && $user['administrator']) {
-            echo '<a href="/crud/pages/secure/admin/" class="side-menu-link"><i class="bi bi-at"></i><span class="side-menu-title">Admin</span></a>';
-        }
-        ?>
-        <form action="/crud/controllers/auth/signin.php" method="post">
-            <button class="side-menu-link" type="submit" name="user" value="logout">
-                <i class="bi bi-power"></i>
-                <span class="side-menu-title">Logout</span>
-            </button>
-        </form>
-    </div>
-</header>
-
 <!--content-->
 
   <div class="account-page-styles home-cover" style="min-height: 100vh;">
@@ -112,10 +62,22 @@ $user = user();
                   <div class="container" style="margin-top: 2rem; margin-bottom: 0%">
                     <div class="row">
                       <div class="d-grid col-4 mx-auto" >
-                      <a href="/crud/pages/secure/user/password.php"><button type="button" class="w-100 btn btn-lg mb-2" style="background-color: #E9C958">Change Password</button></a>
+                        <a href="/crud/pages/secure/user/password.php">
+                          <button type="button" class="w-100 btn btn-lg btn-warning mb-2 text-white">Change Password</button>
+                        </a>
                       </div>
                       <div class="d-grid col-4 mx-auto">
-                        <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="user" value="profile">Change</button>
+                        <?php
+                          if (isAuthenticated() && $user['administrator']) {
+                              echo '<a href="/crud/pages/secure/admin/">
+                                      <button type="button" class="w-100 btn btn-lg btn-info mb-2 text-white">Admin</button>
+                                    </a>';
+                          }
+                        ?>
+                      </div>
+                      
+                      <div class="d-grid col-4 mx-auto">
+                        <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="user" value="profile">Edit Profile</button>
                       </div>
                     </div>
                   </div>
