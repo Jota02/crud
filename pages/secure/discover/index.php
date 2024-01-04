@@ -16,7 +16,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
     <div id="mainCarousel" class="carousel slide container-fluid">
         <div class="carousel-inner carrousel-inner-width container-fluid">
             <div class="carousel-item active">
-                <img src="../../../assets/images/uploads/movies/covers/dk.jpg" class="d-block img-fluid" alt="batman">
+                <img src="../../../assets/images/uploads/movies/covers/dkr.jpg" class="d-block img-fluid" alt="batman">
                 <div class="carousel-caption d-none d-md-flex info-position">
                     <h1>The Dark Knight Rises</h1>
                     <a href="#" class="show-btn">
@@ -30,7 +30,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="..\..\..\assets\images\uploads\series\covers\himym.jpg" class="d-block img-fluid" alt="arcane">
+                <img src="..\..\..\assets\\images\\uploads\\series\\covers\\himym.jpg" class="d-block img-fluid" alt="himym">
                 <div class="carousel-caption d-none d-md-flex info-position" style="color: white;">
                     <h1>How I Met Your Mother</h1>
                     <a href="#" class="show-btn">
