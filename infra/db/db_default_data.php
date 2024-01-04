@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/infra/db/connection.php';
+require __DIR__ . '/connection.php';
 
 // Insert default categories
 $pdo->exec(
@@ -27,7 +27,7 @@ $pdo->exec(
     (2, 'serie');
 ");
 
-
+// Insert default shows
 $pdo->exec(
     "INSERT INTO shows (id, id_type, title, description, seasons, rating, age, release_year, end_year, trailer, poster_path, cover_path) 
     VALUES
