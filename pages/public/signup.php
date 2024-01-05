@@ -26,7 +26,7 @@ include_once __DIR__ . '../../../templates/header.php'; ?>
               </div>
               <div class="mb-3">
                 <label for="password-confirmation" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="password-confirmation" maxlength="255" name="password-confirmation">
+                <input type="password" class="form-control" id="password-confirmation" maxlength="255" name="confirm_password">
               </div>
               <button class="w-100 btn btn-lg btn-outline-dark btn-success mb-2 text-white" type="submit" name="user" value="signUp">Sign Up</button>
             </div>

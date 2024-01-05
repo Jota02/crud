@@ -66,18 +66,17 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                           <button type="button" class="w-100 btn btn-lg btn-warning mb-2 text-white">Change Password</button>
                         </a>
                       </div>
-                      <div class="d-grid col-4 mx-auto">
-                        <?php
-                          if (isAuthenticated() && $user['administrator']) {
-                              echo '<a href="/crud/pages/secure/admin/">
+                      <?php
+                        if (isAuthenticated() && $user['administrator']) {
+                            echo '<div class="d-grid col-4 mx-auto">
+                                    <a href="/crud/pages/secure/admin/">
                                       <button type="button" class="w-100 btn btn-lg btn-info mb-2 text-white">Admin</button>
-                                    </a>';
-                          }
-                        ?>
-                      </div>
-                      
+                                    </a>
+                                  </div>';
+                        }
+                      ?>
                       <div class="d-grid col-4 mx-auto">
-                        <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="user" value="profile">Edit Profile</button>
+                        <button class="w-100 btn btn-lg btn-success mb-2 text-white" type="submit" name="user" value="profile">Edit Profile</button>
                       </div>
                     </div>
                   </div>

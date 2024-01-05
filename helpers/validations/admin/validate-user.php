@@ -22,7 +22,9 @@ function validatedUser($req)
         $errors['email'] = 'The Email field cannot be empty and must have the email format, for example: nome@example.com.';
     }
 
-    if (getByEmail($req['email'])) {
+
+    $userByEmail = getByEmail($req['email']);
+    if ($userByEmail && $userByEmail['id'] != $_SESSION['id']) {
         $errors['email'] = 'Email already registered in our system.';
         return ['invalid' => $errors];
     }

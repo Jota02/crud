@@ -100,11 +100,11 @@ include_once __DIR__ . '/../../../templates/navbar.php';
               </table>
               <div class="container" style="margin-top: 2rem; margin-bottom: 0%">
                 <div class="row">
+                  <div class="d-grid col-4 mx-auto" >
+                      <a href="/crud/pages/secure/user/profile.php"><button type="button" class="w-100 btn btn-lg btn-secondary mb-2">Back</button></a>
+                  </div>
                   <div class="d-grid col-4 mx-auto">
                     <a href="./user.php"><button class="w-100 btn btn-lg btn-success mb-2">Create user</button></a>
-                  </div>
-                  <div class="d-grid col-4 mx-auto" >
-                    <a href="/crud/pages/secure/user/profile.php"><button type="button" class="w-100 btn btn-lg btn-secondary mb-2">Back</button></a>
                   </div>
                 </div>
               </div>
