@@ -46,8 +46,7 @@ $title = ' - Sign In';
     </div>
   </div>
 
-<div class= "fixed-bottom">
+
     <?php
       include_once __DIR__ . '../../../templates/footer.php';
     ?>
-</div>

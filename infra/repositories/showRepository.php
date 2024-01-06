@@ -74,7 +74,7 @@ function getAllShows()
 function getShowsTitlePoster($limit, $offset, $show_type) {
     global $pdo;
     
-    $sql = "SELECT title, poster_path FROM shows WHERE id_type= :show_type ORDER BY id LIMIT :limit OFFSET :offset";
+    $sql = "SELECT id, title, poster_path FROM shows WHERE id_type= :show_type ORDER BY id LIMIT :limit OFFSET :offset";
     
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
@@ -96,8 +96,6 @@ function getShowsTitleCovers() {
     
     return $stmt->fetchAll();
 }
-
-
 
 function updateShow($show)
 {

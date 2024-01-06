@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../../../infra/middlewares/middleware-user.php';
 @require_once __DIR__ . '/../../../helpers/session.php';
 include_once __DIR__ . '/../../../templates/header.php';
-require_once __DIR__ . '/../../../infra/repositories/showRepository.php';
+require_once __DIR__  . '/../../../infra/repositories/showRepository.php';
 
 $moviespage1 = getShowsTitlePoster(20, 0, 1);
 $moviespage2 = getShowsTitlePoster(20, 20, 1);
@@ -96,18 +96,21 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                             for ($j = $i; $j < $i + 4 && $j < count($moviespage1); $j++): ?>
                                 <div class="col-md-3 mb-4">
                                     <div class="image-container d-flex">
-                                        <img src="..\..\..\<?php echo $moviespage1[$j]['poster_path']; ?>" alt="<?php echo htmlspecialchars($moviespage1[$j]['title']); ?>" class="img-fluid">
-                                        <div class="show-details">
-                                            <h6><?php echo htmlspecialchars($moviespage1[$j]['title']); ?></h6>
-                                            <div class="button-container">
-                                                <a href="#" class="outlines">
-                                                    <i class="bi bi-play-circle-fill"></i>
-                                                </a>
-                                                <a href="#" class="outlines">
-                                                    <i class="bi bi-plus-circle-fill"></i>
-                                                </a>
-                                            </div>
-                                        </div>
+                                            <img src="..\..\..\<?php echo $moviespage1[$j]['poster_path']; ?>" alt="<?php echo htmlspecialchars($moviespage1[$j]['title']); ?>" class="img-fluid">
+                                            <div class="show-details">
+                                                <h6><?php echo htmlspecialchars($moviespage1[$j]['title']); ?></h6>
+                                                <div class="button-container">
+                                                    <a href="#" class="outlines">
+                                                        <i class="bi bi-play-circle-fill"></i>
+                                                    </a>
+                                                    <a href="#" class="outlines">
+                                                        <i class="bi bi-plus-circle-fill"></i>
+                                                    </a>
+                                                    <a href="./show_details.php?id=<?php echo $moviespage1[$j]['id']; ?>">
+                                                        <i class="bi bi-info-circle-fill"></i>
+                                                    </a>
+                                                </div>
+                                            </div>                                     
                                     </div>
                                 </div>
                             <?php endfor; ?>
