@@ -22,7 +22,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
     <div id="coverCarousel" class="carousel slide container-fluid">
         <div class="carousel-inner carrousel-inner-width container-fluid">
             
-            <?php
+            <?php   
             $counter = 0; // Counter to set the first item as active
             foreach ($covers as $cover) {
                 $active_class = ($counter == 0) ? 'active' : '';
@@ -33,11 +33,11 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                 echo '<h4 class="outlines">' . $cover['title'] . '</h4>';
                 echo '<a href="#" class="outlines">';
                 echo '<i class="bi bi-play-circle-fill bi-cover-size"></i>';
-                echo '<span>Trailer</span>';
+                echo '<span>    Trailer</span>';
                 echo '</a>';
                 echo '<a href="#" class="outlines">';
                 echo '<i class="bi bi-plus-circle-fill bi-cover-size"></i>';
-                echo '<span>Add to Library</span>';
+                echo '<span>    Add to Library</span>';
                 echo '</a>';
                 echo '</div>';
                 echo '</div>';
@@ -140,6 +140,9 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                                 <a href="#" class="outlines">
                                                     <i class="bi bi-plus-circle-fill"></i>
                                                 </a>
+                                                <a href="./show_details.php?id=<?php echo $moviespage2[$j]['id']; ?>">
+                                                    <i class="bi bi-info-circle-fill"></i>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -191,6 +194,9 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                                 <a href="#" class="outlines">
                                                     <i class="bi bi-plus-circle-fill"></i>
                                                 </a>
+                                                <a href="./show_details.php?id=<?php echo $seriespage1[$j]['id']; ?>">
+                                                    <i class="bi bi-info-circle-fill"></i>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -221,6 +227,9 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                                 </a>
                                                 <a href="#" class="outlines">
                                                     <i class="bi bi-plus-circle-fill"></i>
+                                                </a>
+                                                <a href="./show_details.php?id=<?php echo $seriespage2[$j]['id']; ?>">
+                                                    <i class="bi bi-info-circle-fill"></i>
                                                 </a>
                                             </div>
                                         </div>
