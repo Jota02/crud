@@ -28,7 +28,7 @@ if (isset($_GET['user'])) {
         $user = getById($_GET['id']);
         $user['action'] = 'update';
         $params = '?' . http_build_query($user);
-        header('location: /crud/pages/secure/admin/user.php' . $params);
+        header('location: /crud/pages/secure/admin/update.php' . $params);
     }
 
     if ($_GET['user'] == 'delete') {
@@ -75,7 +75,7 @@ function update($req)
         $_SESSION['errors'] = $data['invalid'];
         $_SESSION['action'] = 'update';
         $params = '?' . http_build_query($req);
-        header('location: /crud/pages/secure/admin/user.php' . $params);
+        header('location: /crud/pages/secure/admin/update.php' . $params);
 
         return false;
     }
@@ -86,7 +86,7 @@ function update($req)
         $_SESSION['success'] = 'User successfully changed!';
         $data['action'] = 'update';
         $params = '?' . http_build_query($data);
-        header('location: /crud/pages/secure/admin/user.php' . $params);
+        header('location: /crud/pages/secure/admin/update.php' . $params);
     }
 }
 
