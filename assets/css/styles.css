@@ -18,6 +18,10 @@ li{
     cursor: pointer;
 }
 
+.main{
+   margin-left: 2.75rem; 
+}
+
 html,
 body {
     min-height: 100vh;
@@ -138,9 +142,6 @@ hr.divider{
 /*Navbar*/
 .custom-navbar{
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
     background: var(--body-color);
     z-index: 100;
     opacity: 90%;
@@ -168,8 +169,9 @@ hr.divider{
     flex-direction: column;
     row-gap: 1.5rem;
     margin-right: 0.5rem;
+    padding-left: 0.25rem;
+    z-index: 100;
     background: var(--body-color);
-    z-index: -1;
     justify-content: center;
 
     .side-menu-link {
@@ -297,7 +299,6 @@ hr.divider{
     margin-top: 2.5rem;
     border: .05rem solid var(--main-color);
     position: relative;
-    width: 100%;
 }
   
 .image-container {
@@ -344,9 +345,4 @@ hr.divider{
     }
 
 }
-  
 
-.custom-footer{
-    z-index: 100;
-    position: relative;
-}

@@ -2,21 +2,29 @@
 
 require_once __DIR__ . '/../../infra/repositories/showRepository.php';
 
+
+if (isset($_GET['submitShowDetails'])) {
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        viewShowById($id);
+    }
+}
+
 function viewShowById($id)
 {
-    $show = getShowById($id);
-    
-    if ($show) {
-        // Redirect to a page to display the show details
-        $params = '?' . http_build_query($show);
-        header('Location: /path_to_show_page.php' . $params);  // Adjust the path to your show page
-        exit;
-    } else {
-        // Handle the case when the show is not found
-        $_SESSION['errors'] = ['Show not found!'];
-        header('Location: /path_to_error_page.php');  // Adjust the path to your error page
-        exit;
-    }
+        $show = getShowById($id);
+        
+        if ($show) {
+
+            $params = '?' . http_build_query($show);
+            header('Location: /crud/pages/secure/discover/show_details.php' . $params);
+            exit;
+        } else {
+            // Handle the case when the show is not found
+            $_SESSION['errors'] = ['Show not found!'];
+            header('Location: /crud/pages/secure/dicover/index.php');  // Adjust the path to your error page
+            exit;
+        }
 }
 
 
