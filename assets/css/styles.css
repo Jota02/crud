@@ -157,50 +157,8 @@ hr.divider{
     font-size: 1rem;
     color: var(--text-color);
     font-weight: 600;
-    margin: 0 auto 0 0;
 }
 
-.side-menu {
-    position: fixed;
-    height: 100vh;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    row-gap: 1.5rem;
-    margin-right: 0.5rem;
-    padding-left: 0.25rem;
-    z-index: 100;
-    background: var(--body-color);
-    justify-content: center;
-
-    .side-menu-link {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: var(--main-color);
-    }
-
-    .side-menu-link:hover,
-    .side-menu-active {
-        color: var(--hover-color);
-        transition: 0.3s all linear;
-        transform: scale(1.1);
-    }
-
-    .bi{
-        font-size: 1.6rem;
-    }
-
-    .side-menu-title{
-        font-size: 0.7rem;
-    }
-
-    button{
-        background-color: var(--body-color);
-        border: none;
-    }
-}
 
 
 /*Main Home Page*/
@@ -346,3 +304,16 @@ hr.divider{
 
 }
 
+.button-transparent {
+    background: none;
+    border: none;
+}
+
+.main-margin{
+    margin-top: 10rem;
+}
+
+.rating-icon{
+    font-size: 2rem;
+    color: rgb(233, 233, 115);
+}

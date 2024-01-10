@@ -15,10 +15,8 @@ $title = '- App';
 
 include_once __DIR__ . '/../../../templates/navbar.php';
 ?>
-
 <!--content start-->
-<div class="main mb-5">
-    <div class="d-flex flex-column align-items-center">
+    <div class="d-flex flex-column align-items-center main-margin">
         <!--carousel start-->
         <div id="coverCarousel" class="carousel slide container-fluid">
             <div class="carousel-inner carrousel-inner-width container-fluid">
@@ -29,7 +27,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                     $active_class = ($counter == 0) ? 'active' : '';
                     
                     echo '<div class="carousel-item ' . $active_class . '">';
-                    echo '<img src="../../../' . str_replace("\\", "/", $cover['cover_path']) . '" class="d-block img-fluid" alt="' . $cover['title'] . '">';
+                    echo '<img src="../../../' . str_replace("\\", "/", $cover['cover_path']) . '" class="img-fluid" alt="' . $cover['title'] . '">';
                     echo '<div class="carousel-caption d-none d-md-flex info-position">';
                     echo '<h4 class="outlines">' . $cover['title'] . '</h4>';
                     echo '<a href="#" class="outlines">';
@@ -90,16 +88,16 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                     <div class="container my-5 pt-2 shows-placeholder w-100">
                         <?php
                         // Loop through shows and group them into rows of 4
-                        for ($i = 0; $i < count($seriespage1); $i += 4): ?>
+                        for ($i = 0; $i < count($moviespage1); $i += 4): ?>
                             <div class="row">
                                 <?php
                                 // Loop for each row of 4 shows
-                                for ($j = $i; $j < $i + 4 && $j < count($seriespage1); $j++): ?>
+                                for ($j = $i; $j < $i + 4 && $j < count($moviespage1); $j++): ?>
                                     <div class="col-md-3 mb-4">
                                         <div class="image-container d-flex">
-                                            <img src="..\..\..\<?php echo $seriespage1[$j]['poster_path']; ?>" alt="<?php echo htmlspecialchars($seriespage1[$j]['title']); ?>" class="img-fluid">
+                                            <img src="..\..\..\<?php echo $moviespage1[$j]['poster_path']; ?>" alt="<?php echo htmlspecialchars($moviespage1[$j]['title']); ?>" class="img-fluid">
                                             <div class="show-details">
-                                                <h6><?php echo htmlspecialchars($seriespage1[$j]['title']); ?></h6>
+                                                <h6><?php echo htmlspecialchars($moviespage1[$j]['title']); ?></h6>
                                                 <div class="button-container">
                                                     <a href="#" class="outlines">
                                                         <i class="bi bi-play-circle-fill"></i>
@@ -107,11 +105,14 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                                     <a href="#" class="outlines">
                                                         <i class="bi bi-plus-circle-fill"></i>
                                                     </a>
-                                                    <a href="./show_details.php?id=<?php echo $seriespage1[$j]['id']; ?>">
-                                                        <i class="bi bi-info-circle-fill"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
+                                                    <form action="/crud/controllers/shows/shows.php" method="get">
+                                                        <input type="hidden" name="id" value="<?php echo $moviespage1[$j]['id']; ?>">                                        
+                                                        <button type="submit" name="submitMovieDetails" class="outlines button-transparent">
+                                                            <i class="bi bi-info-circle-fill"></i>
+                                                        </button>
+                                                    </form> 
+                                                </div>  
+                                          </div>
                                         </div>
                                     </div>
                                 <?php endfor; ?>
@@ -124,16 +125,16 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                     <div class="container my-5 pt-2 shows-placeholder">
                         <?php
                         // Loop through shows and group them into rows of 4
-                        for ($i = 0; $i < count($seriespage2); $i += 4): ?>
+                        for ($i = 0; $i < count($moviespage2); $i += 4): ?>
                             <div class="row">
                                 <?php
                                 // Loop for each row of 4 shows
-                                for ($j = $i; $j < $i + 4 && $j < count($seriespage2); $j++): ?>
+                                for ($j = $i; $j < $i + 4 && $j < count($moviespage2); $j++): ?>
                                     <div class="col-md-3 mb-4">
                                         <div class="image-container d-flex">
-                                            <img src="..\..\..\<?php echo $seriespage2[$j]['poster_path']; ?>" alt="<?php echo htmlspecialchars($seriespage2[$j]['title']); ?>" class="img-fluid">
+                                            <img src="..\..\..\<?php echo $moviespage2[$j]['poster_path']; ?>" alt="<?php echo htmlspecialchars($moviespage2[$j]['title']); ?>" class="img-fluid">
                                             <div class="show-details">
-                                                <h6><?php echo htmlspecialchars($seriespage2[$j]['title']); ?></h6>
+                                                <h6><?php echo htmlspecialchars($moviespage2[$j]['title']); ?></h6>
                                                 <div class="button-container">
                                                     <a href="#" class="outlines">
                                                         <i class="bi bi-play-circle-fill"></i>
@@ -141,9 +142,12 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                                     <a href="#" class="outlines">
                                                         <i class="bi bi-plus-circle-fill"></i>
                                                     </a>
-                                                    <a href="./show_details.php?id=<?php echo $seriespage2[$j]['id']; ?>">
-                                                        <i class="bi bi-info-circle-fill"></i>
-                                                    </a>
+                                                    <form action="/crud/controllers/shows/shows.php" method="get">
+                                                        <input type="hidden" name="id" value="<?php echo $moviespage2[$j]['id']; ?>">                                        
+                                                        <button type="submit" name="submitMovieDetails" class="outlines button-transparent">
+                                                            <i class="bi bi-info-circle-fill"></i>
+                                                        </button>
+                                                    </form> 
                                                 </div>
                                             </div>
                                         </div>
@@ -195,9 +199,12 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                                     <a href="#" class="outlines">
                                                         <i class="bi bi-plus-circle-fill"></i>
                                                     </a>
-                                                    <a href="./show_details.php?id=<?php echo $seriespage1[$j]['id']; ?>">
-                                                        <i class="bi bi-info-circle-fill"></i>
-                                                    </a>
+                                                    <form action="/crud/controllers/shows/shows.php" method="get">
+                                                        <input type="hidden" name="id" value="<?php echo $seriespage1[$j]['id']; ?>">                                        
+                                                        <button type="submit" name="submitSerieDetails" class="outlines button-transparent">
+                                                            <i class="bi bi-info-circle-fill"></i>
+                                                        </button>
+                                                    </form> 
                                                 </div>
                                             </div>
                                         </div>
@@ -229,9 +236,12 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                                     <a href="#" class="outlines">
                                                         <i class="bi bi-plus-circle-fill"></i>
                                                     </a>
-                                                    <a href="./show_details.php?id=<?php echo $seriespage2[$j]['id']; ?>">
-                                                        <i class="bi bi-info-circle-fill"></i>
-                                                    </a>
+                                                    <form action="/crud/controllers/shows/shows.php" method="get">
+                                                        <input type="hidden" name="id" value="<?php echo $seriespage2[$j]['id']; ?>">                                        
+                                                        <button type="submit" name="submitSerieDetails" class="outlines button-transparent">
+                                                            <i class="bi bi-info-circle-fill"></i>
+                                                        </button>
+                                                    </form> 
                                                 </div>
                                             </div>
                                         </div>
@@ -245,7 +255,6 @@ include_once __DIR__ . '/../../../templates/navbar.php';
         </div>
         <!--series carousel end-->      
     </div>
-</div>
 
 
     

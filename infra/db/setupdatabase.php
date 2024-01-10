@@ -102,17 +102,17 @@ require __DIR__ . '/connection.php';
 //     '
 // );
 
-$pdo->exec(
-    'CREATE TABLE user_shows (
-        id INTEGER PRIMARY KEY AUTO_INCREMENT,
-        user_id INTEGER,
-        show_id INTEGER,
-        saved_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES users(id),
-        FOREIGN KEY (show_id) REFERENCES shows(id)
-    );
-    '
-);
+// $pdo->exec(
+//     'CREATE TABLE user_shows (
+//         id INTEGER PRIMARY KEY AUTO_INCREMENT,
+//         user_id INTEGER,
+//         show_id INTEGER,
+//         saved_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+//         FOREIGN KEY (user_id) REFERENCES users(id),
+//         FOREIGN KEY (show_id) REFERENCES shows(id)
+//     );
+//     '
+// );
 
-include __DIR__ . '/db_default_data.php';
-?>
+ include __DIR__ . '/db_default_data.php';
+ ?>

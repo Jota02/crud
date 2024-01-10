@@ -71,6 +71,43 @@ function getAllShows()
     return $shows;
 }
 
+function getShowCategoriesById($id){
+    $sql = '
+        SELECT 
+            GROUP_CONCAT(DISTINCT categories.category_name ORDER BY categories.category_name ASC) AS show_categories
+        FROM 
+            shows
+        LEFT JOIN 
+            show_categories ON shows.id = show_categories.show_id
+        LEFT JOIN 
+            categories ON show_categories.category_id = categories.id
+        WHERE 
+            shows.id = ?
+    ';
+
+    $stmt = $GLOBALS['pdo']->prepare($sql);
+    $stmt->bindValue(1, $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $result = $stmt->fetch();
+
+    return isset($result['show_categories']) ? $result['show_categories'] : null;
+}
+
+function getShowTypeById($id){
+    $sql = ' SELECT type.show_type FROM shows JOIN type ON shows.id_type = type.id WHERE shows.id = ?;';
+
+    $stmt = $GLOBALS['pdo']->prepare($sql);
+    $stmt->bindValue(1, $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $result = $stmt->fetch();
+
+    return isset($result['show_type']) ? $result['show_type'] : null;
+}
+
+
+
 function getShowsTitlePoster($limit, $offset, $show_type) {
     global $pdo;
     
