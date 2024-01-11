@@ -159,6 +159,10 @@ hr.divider{
     font-weight: 600;
 }
 
+.navbar-button-color {
+    background: var(--container-color);
+}
+
 
 
 /*Main Home Page*/
@@ -334,12 +338,14 @@ hr.divider{
 
 .search-results {
     --bs-list-group-bg: var(--container-color)!important;
+    background-color: var(--container-color);
     border: .05rem solid var(--main-color) !important;
 
     img{
         max-width: 5rem;
     }
 }
+
 
   
 

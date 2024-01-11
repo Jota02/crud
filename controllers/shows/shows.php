@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../../infra/repositories/showRepository.php';
 
 
-if (isset($_GET['submitShowDetails'])) {
+if (isset($_GET['getShowDetails'])) {
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         showDetails($id);
@@ -21,7 +21,34 @@ if (isset($_GET['submitSearch'])) {
         }
     }
 }
+if (isset($_POST['submitReview'])) {
+    $review = array(
+        'id_user' => $_POST['id_user'],
+        'id_show' => $_POST['id_show'],
+        'comment' => $_POST['comment'],
+        'rating' => $_POST['rating'],
+        'attachments' => $_FILES['attachments']
+    );
+        if (!empty($review)) {
+            crReview($review); 
+        }else{
+            header('Location: /crud/pages/secure/my_shows/index.php');
+        }
+}
 
+function crReview($review){
+    $success = createReview($review);
+
+    if ($success) {
+        $_SESSION['success'] = 'Review created successfully!';
+        showDetails($review['id_show']);
+    }else {
+        $_SESSION['errors'] = ['Error creating the review!'];
+        header('Location: /crud/pages/secure/index.php');
+        exit;
+    }
+
+}
 
 
 function showDetails($id)
@@ -34,15 +61,10 @@ function showDetails($id)
         $show['categories'] = $categories;
         $show['type'] = $type;
         $params = '?' . http_build_query($show);
-
-        if ($type === "movie") {
-            header('Location: /crud/pages/secure/discover/movie_details.php' . $params);
-        }
-         elseif ($type === "serie") {
-            header('Location: /crud/pages/secure/discover/series_details.php' . $params);
-         }
         
+        header('Location: /crud/pages/secure/discover/show_details.php' . $params);
         exit;
+
     } else {
         $_SESSION['errors'] = ['Show not found!'];
         header('Location: /crud/pages/secure/discover/index.php');

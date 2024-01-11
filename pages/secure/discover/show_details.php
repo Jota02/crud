@@ -1,5 +1,4 @@
 <?php
-// Include necessary files and start sessions if needed
 include_once __DIR__ . '/../../../templates/header.php';
 @require_once __DIR__ . '/../../../helpers/session.php';
 require_once __DIR__ . '/../../../controllers/shows/shows.php'; 
@@ -32,6 +31,8 @@ $show = getShowById(isset($_REQUEST['id']) ? $_REQUEST['id'] : 0);
 
 $title = isset($show['title']) ? $show['title'] : 'undefined';
 $release_year = isset($show['release_year']) ? $show['release_year'] : 0000;
+$end_year = isset($show['end_year']) ? $show['end_year'] : '?';
+$seasons = isset($show['seasons']) ? $show['seasons'] : 0;
 $age = isset($show['age']) ? $show['age'] : 0000;
 $ageColorClass = isset($ageColors[$age]) ? $ageColors[$age] : 'text-white';
 $type = isset($_REQUEST['type']) ? $_REQUEST['type'] : '?';
@@ -40,6 +41,7 @@ $description =  isset($show['description']) ? $show['description'] : 'undefined'
 $trailer = isset($show['trailer']) ? $show['trailer'] : null;
 $rating = isset($show['rating']) ? $show['rating'] : 0;
 $reviews = getUserReviews(isset($_REQUEST['id']) ? $_REQUEST['id'] : 0);
+$user = user();
 
 $ratingValue = floatval($rating);
 if ($ratingValue > 6.9) {
@@ -60,14 +62,19 @@ include_once __DIR__ . '/../../../templates/navbar.php';
         <div class="text-white">
             <h1><?= $title ?></h1>
             <div class="d-flex flex-row">
-                <h6 class="text-uppercase">
+                <h6>
                     <?= $release_year ?> 
+                    <?php if ($type == 'serie'): ?>
+                        | <?= $end_year ?> 
+                        - 
+                        Seasons: <?= $seasons ?>
+                    <?php endif; ?>
                     - 
                     <span class="<?= $ageColorClass ?>">
                         <?= $age ?>
                     </span>
                     -
-                    <?= $type ?>
+                    <span class="text-uppercase"><?= $type ?></span>
                 </h6>
             </div>
         </div>
@@ -108,7 +115,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
         <div class="heading mt-5">
             <h3 class=" ms-3 text-white text-center">Reviews</h3>
         </div>
-        <div class="show-list my-4">
+        <div class="my-4">
             <div class="list-group">
                 <?php foreach ($reviews as $review):    
                     $ratingValue = floatval($review['rating']);
@@ -130,6 +137,35 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                     </div>
                 <?php endforeach; ?>
             </div>
+            
+            <div class="heading mt-5">
+                <h3 class=" ms-3 text-white text-center">Tell us what you think about this show!</h3>
+            </div>
+            <form action="/crud/controllers/shows/shows.php" method="post" enctype="multipart/form-data" class="search-results rounded-bottom-1 text-white px-4 d-flex flex-column">
+                <input type="hidden" name="id_user" value="<?= $user['id'] ?>">
+                <input type="hidden" name="id_show" value="<?= isset($_REQUEST['id']) ? $_REQUEST['id'] : 0 ?>">
+                
+                <div class="form-group w-100 mt-2">
+                    <label for="comment">Comment:</label>
+                    <input type="text" class="form-control" id="comment" name="comment" maxlength="150" required></textarea>
+                </div>
+                
+                <div class="d-flex flex-row w-100">
+                    <div class="form-group w-75 me-5">
+                        <label for="rating">Rating:</label>
+                        <input type="number" step="0.1" class="form-control" id="rating" name="rating" min="1" max="10" required>
+                    </div>
+                    
+                    <div class="form-group w-75 ms-5">
+                        <label for="attachments">Attachments:</label>
+                        <input type="file" class="form-control" id="attachments" name="attachments">
+                    </div>
+                </div>
+                
+                <div class="d-flex my-2 flex-row-reverse">
+                    <button type="submit" name="submitReview" class="btn btn-info">Submit Review</button>
+                </div>               
+            </form>
         </div>
     </div>
 </div>

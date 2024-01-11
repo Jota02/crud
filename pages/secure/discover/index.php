@@ -18,7 +18,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
 <!--content start-->
     <div class="d-flex flex-column align-items-center main-margin">
         <!--carousel start-->
-        <div id="coverCarousel" class="carousel slide">
+        <div id="coverCarousel" class="carousel">
             <div class="carousel-inner">   
             <?php
                 $counter = 0;
@@ -26,12 +26,12 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                     $active_class = ($counter == 0) ? 'active' : '';
             ?>        
                 <div class="carousel-item <?= $active_class ?>">
-                    <img src="../../../<?= $cover['cover_path'] ?>" class="" alt="<?= $cover['title'] ?>">
-                    <div class="carousel-caption d-none d-md-flex info-position">
+                    <img src="../../../<?= $cover['cover_path'] ?>" class="img-fluid" alt="<?= $cover['title'] ?>">
+                    <div class="carousel-caption d-flex info-position">
                         <h4 class="outlines"><?= $cover['title'] ?></h4>
                         <form action="/crud/controllers/shows/shows.php" method="get">
                             <input type="hidden" name="id" value="<?= $cover['id'] ?>">                                        
-                            <button type="submit" name="submitShowDetails" class="outlines button-transparent p-0">
+                            <button type="submit" name="getShowDetails" class="outlines button-transparent p-0">
                                 <i class="bi bi-info-circle-fill bi-cover-size"></i>
                                 <span>Info</span>
                             </button>
@@ -112,7 +112,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                                     </a>
                                                     <form action="/crud/controllers/shows/shows.php" method="get">
                                                         <input type="hidden" name="id" value="<?php echo $moviespage1[$j]['id']; ?>">                                        
-                                                        <button type="submit" name="submitShowDetails" class="outlines button-transparent">
+                                                        <button type="submit" name="getShowDetails" class="outlines button-transparent">
                                                             <i class="bi bi-info-circle-fill"></i>
                                                         </button>
                                                     </form> 
@@ -149,7 +149,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                                     </a>
                                                     <form action="/crud/controllers/shows/shows.php" method="get">
                                                         <input type="hidden" name="id" value="<?php echo $moviespage2[$j]['id']; ?>">                                        
-                                                        <button type="submit" name="submitShowDetails" class="outlines button-transparent">
+                                                        <button type="submit" name="getShowDetails" class="outlines button-transparent">
                                                             <i class="bi bi-info-circle-fill"></i>
                                                         </button>
                                                     </form> 
@@ -205,7 +205,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                                     </a>
                                                     <form action="/crud/controllers/shows/shows.php" method="get">
                                                         <input type="hidden" name="id" value="<?php echo $seriespage1[$j]['id']; ?>">                                        
-                                                        <button type="submit" name="submitShowDetails" class="outlines button-transparent">
+                                                        <button type="submit" name="getShowDetails" class="outlines button-transparent">
                                                             <i class="bi bi-info-circle-fill"></i>
                                                         </button>
                                                     </form> 
@@ -242,7 +242,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                                     </a>
                                                     <form action="/crud/controllers/shows/shows.php" method="get">
                                                         <input type="hidden" name="id" value="<?php echo $seriespage2[$j]['id']; ?>">                                        
-                                                        <button type="submit" name="submitShowDetails" class="outlines button-transparent">
+                                                        <button type="submit" name="getShowDetails" class="outlines button-transparent">
                                                             <i class="bi bi-info-circle-fill"></i>
                                                         </button>
                                                     </form> 

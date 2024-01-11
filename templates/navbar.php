@@ -5,11 +5,11 @@ $current_url = $_SERVER['REQUEST_URI'];
 // Function to check if the current page URL matches the given URL
 function is_active($url) {
     global $current_url;
-    return strpos($current_url, $url) !== false ? 'text-blue' : 'text-white';
+    return strpos($current_url, $url) !== false ? 'text-info' : 'text-white';
 }
 ?>
 
-<header class="px-3 py-2 text-bg-dark fixed-top">
+<header class="px-3 py-2 bg-dark fixed-top">
     <div class="d-flex align-items-center justify-content-between">
         
         <a href="/crud/pages/secure/index.php" class="logo">
@@ -18,39 +18,78 @@ function is_active($url) {
         </a>
 
         <ul class="nav d-flex align-items-center justify-content-center my-2 my-md-0">
-        <li>
-            <a href="/crud/pages/secure/index.php" class="nav-link active d-flex flex-column align-items-center <?php echo is_active('/crud/pages/secure/index.php'); ?>">
-                <i class="bi bi-house-door-fill"></i>
-                <span>Home</span>
-            </a>
-        </li>
-        <li>
-            <a href="/crud/pages/secure/discover/index.php" class="nav-link d-flex flex-column align-items-center <?php echo is_active('/crud/pages/secure/discover/index.php'); ?>">
-                <i class="bi bi-search"></i>
-                <span>Discover</span>
-            </a>
-        </li>
-        <li>
-            <a href="/crud/pages/secure/my_shows/index.php" class="nav-link d-flex flex-column align-items-center <?php echo is_active('/crud/pages/secure/my_shows/index.php'); ?>">
-                <i class="bi bi-tv-fill"></i>
-                <span>My Shows</span>
-            </a>
-        </li>
-        <li>
-            <a href="/crud/pages/secure/user/profile.php" class="nav-link d-flex flex-column align-items-center <?php echo is_active('/crud/pages/secure/user/profile.php'); ?>">
-                <i class="bi bi-person-circle"></i>
-                <span>Account</span>
-            </a>
-        </li>
-        <li>
-            <form action="/crud/controllers/auth/signin.php" method="post">
-                <button class="nav-link d-flex flex-column align-items-center text-white" type="submit" name="user" value="logout">
-                    <i class="bi bi-power"></i>
-                    <span>Logout</span>
-                </button>
-            </form>
-        </li>
+            <li class="d-none d-sm-none d-md-block">
+                <a href="/crud/pages/secure/index.php" class="nav-link d-flex flex-column align-items-center <?php echo is_active('/crud/pages/secure/index.php'); ?>">
+                    <i class="bi bi-house-door-fill"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="d-none d-sm-none d-md-block">
+                <a href="/crud/pages/secure/discover/index.php" class="nav-link d-flex flex-column align-items-center <?php echo is_active('/crud/pages/secure/discover/index.php'); ?>">
+                    <i class="bi bi-search"></i>
+                    <span>Discover</span>
+                </a>
+            </li>
+            <li class="d-none d-sm-none d-md-block">
+                <a href="/crud/pages/secure/my_shows/index.php" class="nav-link d-flex flex-column align-items-center <?php echo is_active('/crud/pages/secure/my_shows/index.php'); ?>">
+                    <i class="bi bi-tv-fill"></i>
+                    <span>My Shows</span>
+                </a>
+            </li>
+            <li class="d-none d-sm-none d-md-block">
+                <a href="/crud/pages/secure/user/profile.php" class="nav-link d-flex flex-column align-items-center <?php echo is_active('/crud/pages/secure/user/profile.php'); ?>">
+                    <i class="bi bi-person-circle"></i>
+                    <span>Account</span>
+                </a>
+            </li>
+            <li class="d-none d-sm-none d-md-block">
+                <form action="/crud/controllers/auth/signin.php" method="post">
+                    <button class="nav-link d-flex flex-column align-items-center text-white" type="submit" name="user" value="logout">
+                        <i class="bi bi-power"></i>
+                        <span>Logout</span>
+                    </button>
+                </form>
+            </li>
         </ul>
+        <div class="dropdown d-md-none">
+            <button class="btn btn-outline-light navbar-button-color" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-list outlines"></i>
+            </button>
+            <ul class="dropdown-menu bg-dark" >
+                    <li>
+                        <a href="/crud/pages/secure/index.php" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('/crud/pages/secure/index.php'); ?>">
+                            <i class="bi bi-house-door-fill"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/crud/pages/secure/discover/index.php" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('/crud/pages/secure/discover/index.php'); ?>">
+                            <i class="bi bi-search"></i>
+                            <span>Discover</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/crud/pages/secure/my_shows/index.php" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('/crud/pages/secure/my_shows/index.php'); ?>">
+                            <i class="bi bi-tv-fill"></i>
+                            <span>My Shows</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/crud/pages/secure/user/profile.php" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('/crud/pages/secure/user/profile.php'); ?>">
+                            <i class="bi bi-person-circle"></i>
+                            <span>Account</span>
+                        </a>
+                    </li>
+                    <li>
+                        <form action="/crud/controllers/auth/signin.php" method="post">
+                            <button class="nav-link d-flex flex-column align-items-center text-white dropdown-item" type="submit" name="user" value="logout">
+                                <i class="bi bi-power"></i>
+                                <span>Logout</span>
+                            </button>
+                        </form>
+                    </li>
+            </ul>
+            </div>
     </div>
 </header>
 

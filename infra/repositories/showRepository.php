@@ -53,6 +53,39 @@ function createShow($show)
     return $success;
 }
 
+function createReview($review){
+    $sqlCreate = "INSERT INTO 
+    user_reviews (
+        id_user, 
+        id_show, 
+        comment, 
+        rating, 
+        attachments
+        ) 
+    VALUES (
+        :id_user, 
+        :id_show, 
+        :comment, 
+        :rating, 
+        :attachments
+    )";
+
+    $PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
+
+    $success = $PDOStatement->execute([
+        ':id_user' => $review['id_user'],
+        ':id_show' => $review['id_show'],
+        ':comment' => $review['comment'],
+        ':rating' => $review['rating'],
+        ':attachments' => $review['attachments']
+    ]);
+
+    if ($success) {
+        $review['id'] = $GLOBALS['pdo']->lastInsertId();
+    }
+    return $success;
+}
+
 function getShowById($id)
 {
     $stmt = $GLOBALS['pdo']->prepare('SELECT * FROM shows WHERE id = ?');
