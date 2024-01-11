@@ -333,6 +333,7 @@ require __DIR__ . '/connection.php';
 //     VALUES
 //     (1, 1, 1, 'Loved it! Great Music!', 8.3, NULL),
 //     (2, 1, 41, 'Its the guys from League of Legends!! :o', 7.4, NULL),
-//     (3, 1, 27, 'I dont understand whats the hype about...', 3.6, NULL); 
+//     (3, 1, 27, 'I dont understand whats the hype about...', 3.6, NULL),
+//     (4, 2, 41, 'GREAT SHOW! CANT WAIT FOR SEASON 2!!!', 9, NULL);
 //     ");
 ?>

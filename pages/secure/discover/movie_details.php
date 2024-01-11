@@ -39,6 +39,7 @@ $poster_path = isset($show['poster_path']) ? $show['poster_path'] : null;
 $description =  isset($show['description']) ? $show['description'] : 'undefined';
 $trailer = isset($show['trailer']) ? $show['trailer'] : null;
 $rating = isset($show['rating']) ? $show['rating'] : 0;
+$reviews = getUserReviews(isset($_REQUEST['id']) ? $_REQUEST['id'] : 0);
 
 $ratingValue = floatval($rating);
 if ($ratingValue > 6.9) {
@@ -102,6 +103,32 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                         }
                     ?>    
                 </div>
+            </div>
+        </div>
+        <div class="heading mt-5">
+            <h3 class=" ms-3 text-white text-center">Reviews</h3>
+        </div>
+        <div class="show-list my-4">
+            <div class="list-group">
+                <?php foreach ($reviews as $review):    
+                    $ratingValue = floatval($review['rating']);
+                    if ($ratingValue > 6.9) {
+                        $ratingColorClass = 'text-success';
+                    } elseif ($ratingValue < 5.0) {
+                        $ratingColorClass = 'text-danger';
+                    } else {
+                        $ratingColorClass = 'text-warning';
+                    }    
+                ?>  
+                    <div class="list-group-item list-group-item-dark search-results text-white">
+                        <h5 class="m-0">Username: <?= $review['userName'] ?></h5>                                       
+                        <p class="m-0 fs-6">><?= $review['comment'] ?></p>
+                        <div class="d-flex flex-row align-items-center">
+                            <i class="bi bi-star-fill" style="color: yellow;"></i>
+                            <p class="m-0 fs-6"><span class="<?= $ratingColorClass ?>"><?= $review['rating'] ?></span>/10</p> 
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>

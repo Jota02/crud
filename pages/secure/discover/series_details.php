@@ -32,7 +32,7 @@ $show = getShowById(isset($_REQUEST['id']) ? $_REQUEST['id'] : 0);
 
 $title = isset($show['title']) ? $show['title'] : 'undefined';
 $release_year = isset($show['release_year']) ? $show['release_year'] : 0000;
-$end_year = isset($show['end_year']) ? $show['end_year'] : 0000;
+$end_year = isset($show['end_year']) ? $show['end_year'] : '?';
 $seasons = isset($show['seasons']) ? $show['seasons'] : 0;
 $age = isset($show['age']) ? $show['age'] : 0000;
 $ageColorClass = isset($ageColors[$age]) ? $ageColors[$age] : 'text-white';
@@ -41,6 +41,7 @@ $poster_path = isset($show['poster_path']) ? $show['poster_path'] : null;
 $description =  isset($show['description']) ? $show['description'] : 'undefined';
 $trailer = isset($show['trailer']) ? $show['trailer'] : null;
 $rating = isset($show['rating']) ? $show['rating'] : 0;
+$reviews = getUserReviews(isset($_REQUEST['id']) ? $_REQUEST['id'] : 0);
 
 $ratingValue = floatval($rating);
 if ($ratingValue > 6.9) {
@@ -75,7 +76,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
             </div>
         </div>
         <div class="d-flex flex-row">
-        <div class="d-flex flex-column">
+            <div class="d-flex flex-column">
                 <img src="\crud\<?= $poster_path ?>" class="img-fluid rounded" alt="serie_poster"/>     
                 <div class="d-flex align-items-center justify-content-center mt-5">
                     <i class="bi bi-star-fill rating-icon"></i>
@@ -87,15 +88,12 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                     <h3 class="text-justify">Summary</h3>
                     <p class="text-justify fs-5"><?= $description ?></p>
                 </div>
-                <?php 
-                    if($trailer){
-                        echo'<div class="d-flex justify-content-center h-100 mb-3">';
-                        echo'<div class="ratio ratio-21x9">';
-                        echo'<iframe class="h-100" src="'. $trailer .'" allowfullscreen></iframe>';
-                        echo'</div>';
-                        echo'</div>';
-                    }
-                ?>
+                <div class="d-flex justify-content-center h-100 mb-3 align-items-center">
+                    <div class="spinner-border text-danger position-absolute " role="status"></div>
+                    <div class="ratio ratio-21x9">
+                        <iframe class="h-100 iframe-content" src="<?= $trailer ?>" allowfullscreen></iframe>
+                    </div>
+                </div>
                 <div class="d-flex align-items-center justify-content-around">
                     <?php
                         if (isset($_REQUEST['categories'])) {
@@ -109,6 +107,32 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                         }
                     ?>    
                 </div>
+            </div>
+        </div>
+        <div class="heading mt-5">
+            <h3 class=" ms-3 text-white text-center">Reviews</h3>
+        </div>
+        <div class="show-list my-4">
+            <div class="list-group">
+                <?php foreach ($reviews as $review):    
+                    $ratingValue = floatval($review['rating']);
+                    if ($ratingValue > 6.9) {
+                        $ratingColorClass = 'text-success';
+                    } elseif ($ratingValue < 5.0) {
+                        $ratingColorClass = 'text-danger';
+                    } else {
+                        $ratingColorClass = 'text-warning';
+                    }    
+                ?>  
+                    <div class="list-group-item list-group-item-dark search-results text-white">
+                        <h5 class="m-0">Username: <?= $review['userName'] ?></h5>                                       
+                        <p class="m-0 fs-6">><?= $review['comment'] ?></p>
+                        <div class="d-flex flex-row align-items-center">
+                            <i class="bi bi-star-fill" style="color: yellow;"></i>
+                            <p class="m-0 fs-6"><span class="<?= $ratingColorClass ?>"><?= $review['rating'] ?></span>/10</p> 
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
