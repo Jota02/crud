@@ -4,7 +4,6 @@ include_once __DIR__ . '/../../../templates/header.php';
 @require_once __DIR__ . '/../../../helpers/session.php';
 require_once __DIR__ . '/../../../controllers/shows/shows.php'; 
 
-$title = ' - Movie Details';
 $categoryColors = [
     'Action' => 'bg-danger',
     'Adventure' => 'text-bg-warning',
@@ -53,8 +52,8 @@ include_once __DIR__ . '/../../../templates/navbar.php';
 
 
 <!-- Content -->
-<div class="container">
-    <div class="d-flex flex-column main-margin justify-content-center">
+<div class="container" style="min-height: 100vh">
+    <div class="d-flex flex-column main-margin">
         <div class="text-white">
             <h1><?= $title ?></h1>
             <div class="d-flex flex-row">
@@ -69,12 +68,24 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                 </h6>
             </div>
         </div>
-        <div class="d-flex flex-row text-white justify-content-center">
-            <img src="\crud\<?= $poster_path ?>" class="img-fluid rounded" alt="movie_poster"/>
-            <div class="d-flex flex-column ms-5 justify-content-around">
-                <div class="container-fluid">
+        <div class="d-flex flex-row">
+            <div class="d-flex flex-column justify-content-around">
+            <img src="\crud\<?= $poster_path ?>" class="img-fluid rounded" alt="movie_poster"/>     
+                <div class="d-flex align-items-center justify-content-center">
+                    <i class="bi bi-star-fill rating-icon"></i>
+                    <h3><span class="<?= $ratingColorClass ?>"><?= $rating ?></span>/10</h3>
+                </div>
+            </div>
+            <div class="d-flex flex-column ms-5 w-75 justify-content-around">
+                <div class="container-fluid text-white">
                     <h3 class="text-justify">Summary</h3>
                     <p class="text-justify fs-5"><?= $description ?></p>
+                </div>
+                <div class="d-flex justify-content-center h-100 mb-3 align-items-center">
+                    <div class="spinner-border text-danger position-absolute " role="status"></div>
+                    <div class="ratio ratio-21x9">
+                        <iframe class="h-100 iframe-content" src="<?= $trailer ?>" allowfullscreen></iframe>
+                    </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-around">
                     <?php
@@ -89,17 +100,11 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                         }
                     ?>    
                 </div>
-                <div class="d-flex align-items-center justify-content-center">
-                    <i class="bi bi-star-fill rating-icon"></i>
-                    <h3><span class="<?= $ratingColorClass ?>"><?= $rating ?></span>/10</h3>
-                </div>
             </div>
         </div>
     </div>
-    <div class="d-flex">
-            <iframe src="<?= $trailer ?>" allowfullscreen></iframe>
-    </div>
 </div>
+
 
 <?php
 include_once __DIR__ . '../../../../templates/footer.php';

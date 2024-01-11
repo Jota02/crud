@@ -20,14 +20,10 @@ include_once __DIR__ . '../../../templates/navbar.php';
                 </h1>
                 <p class="fs-4">What are we watching today?</p>
             </div>
-
-
-          <div class="fixed-bottom">
-            <?php
-              include_once __DIR__ . '../../../templates/footer.php';
-            ?>
-          </div>
         </main>
-      </div>
     </div>
 </div>
+
+<?php
+  include_once __DIR__ . '../../../templates/footer.php';
+?>

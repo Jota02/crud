@@ -18,40 +18,39 @@ include_once __DIR__ . '/../../../templates/navbar.php';
 <!--content start-->
     <div class="d-flex flex-column align-items-center main-margin">
         <!--carousel start-->
-        <div id="coverCarousel" class="carousel slide container-fluid">
-            <div class="carousel-inner carrousel-inner-width container-fluid">
-                
-                <?php   
-                $counter = 0; // Counter to set the first item as active
-                foreach ($covers as $cover) {
+        <div id="coverCarousel" class="carousel slide">
+            <div class="carousel-inner">   
+            <?php
+                $counter = 0;
+                foreach ($covers as $cover): 
                     $active_class = ($counter == 0) ? 'active' : '';
-                    
-                    echo '<div class="carousel-item ' . $active_class . '">';
-                    echo '<img src="../../../' . str_replace("\\", "/", $cover['cover_path']) . '" class="img-fluid" alt="' . $cover['title'] . '">';
-                    echo '<div class="carousel-caption d-none d-md-flex info-position">';
-                    echo '<h4 class="outlines">' . $cover['title'] . '</h4>';
-                    echo '<a href="#" class="outlines">';
-                    echo '<i class="bi bi-play-circle-fill bi-cover-size"></i>';
-                    echo '<span>    Trailer</span>';
-                    echo '</a>';
-                    echo '<a href="#" class="outlines">';
-                    echo '<i class="bi bi-plus-circle-fill bi-cover-size"></i>';
-                    echo '<span>    Add to Library</span>';
-                    echo '</a>';
-                    echo '</div>';
-                    echo '</div>';
-                    
-                    $counter++; // Increment counter
-                }
-                ?>
-                
+            ?>        
+                <div class="carousel-item <?= $active_class ?>">
+                    <img src="../../../<?= $cover['cover_path'] ?>" class="" alt="<?= $cover['title'] ?>">
+                    <div class="carousel-caption d-none d-md-flex info-position">
+                        <h4 class="outlines"><?= $cover['title'] ?></h4>
+                        <form action="/crud/controllers/shows/shows.php" method="get">
+                            <input type="hidden" name="id" value="<?= $cover['id'] ?>">                                        
+                            <button type="submit" name="submitShowDetails" class="outlines button-transparent p-0">
+                                <i class="bi bi-info-circle-fill bi-cover-size"></i>
+                                <span>Info</span>
+                            </button>
+                        </form> 
+                        <a href="#" class="outlines">
+                            <i class="bi bi-plus-circle-fill bi-cover-size"></i>
+                            <span>Add to Library</span>
+                        </a>
+                    </div>
+                </div>
+            <?php
+                $counter++;
+                endforeach; 
+            ?>
             </div>
-            
             <button class="carousel-control-prev" type="button" data-bs-target="#coverCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            
             <button class="carousel-control-next" type="button" data-bs-target="#coverCarousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
@@ -61,10 +60,16 @@ include_once __DIR__ . '/../../../templates/navbar.php';
         <!--carousel end-->
 
         <!-- search bar start  -->
-        <div class="search-bar w-75 mt-5 py-5">
-                <input type="search" placeholder="Search for show..." class="form-control" id="search-input" maxlength="255" name="">
-                <i class="bi bi-search"></i>
-            </div>  
+        <div class="d-flex mt-5 py-5 justify-content-center search-bar w-75">
+            <form action="/crud/controllers/shows/shows.php" method="get" class="d-flex w-100 justify-content-center">
+                <div class="input-group search-bar-size w-100">
+                    <input type="text" name="searchInput" class="form-control" placeholder="Search for shows..." maxlength="255">
+                    <button type="submit" name="submitSearch" class="btn btn-default">
+                        <i class="bi bi-search search-icon"></i>
+                    </button>
+                </div>
+            </form>
+        </div>  
         <!-- search bar end -->
         
         <!--movies header start-->
@@ -85,7 +90,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
             <div class="carousel-inner">
             <!-- 1st Page -->
                 <div class="carousel-item active">
-                    <div class="container my-5 pt-2 shows-placeholder w-100">
+                    <div class="container mb-5 pt-2 shows-placeholder w-100">
                         <?php
                         // Loop through shows and group them into rows of 4
                         for ($i = 0; $i < count($moviespage1); $i += 4): ?>
@@ -107,7 +112,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                                     </a>
                                                     <form action="/crud/controllers/shows/shows.php" method="get">
                                                         <input type="hidden" name="id" value="<?php echo $moviespage1[$j]['id']; ?>">                                        
-                                                        <button type="submit" name="submitMovieDetails" class="outlines button-transparent">
+                                                        <button type="submit" name="submitShowDetails" class="outlines button-transparent">
                                                             <i class="bi bi-info-circle-fill"></i>
                                                         </button>
                                                     </form> 
@@ -122,7 +127,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                 </div>
             <!-- 2nd Page -->
                 <div class="carousel-item">
-                    <div class="container my-5 pt-2 shows-placeholder">
+                    <div class="container mb-5 pt-2 shows-placeholder">
                         <?php
                         // Loop through shows and group them into rows of 4
                         for ($i = 0; $i < count($moviespage2); $i += 4): ?>
@@ -144,7 +149,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                                     </a>
                                                     <form action="/crud/controllers/shows/shows.php" method="get">
                                                         <input type="hidden" name="id" value="<?php echo $moviespage2[$j]['id']; ?>">                                        
-                                                        <button type="submit" name="submitMovieDetails" class="outlines button-transparent">
+                                                        <button type="submit" name="submitShowDetails" class="outlines button-transparent">
                                                             <i class="bi bi-info-circle-fill"></i>
                                                         </button>
                                                     </form> 
@@ -169,7 +174,6 @@ include_once __DIR__ . '/../../../templates/navbar.php';
             </button>
         </div>
         <!--series header end-->
-
         <!--series carousel start-->
         <div id="serieCarousel" class="carousel slide w-75" data-bs-ride="carousel" style="display: none;">
             <div class="carousel-indicators">
@@ -179,7 +183,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
             <div class="carousel-inner">
             <!-- 1st Page -->
                 <div class="carousel-item active">
-                    <div class="container my-5 pt-2 shows-placeholder w-100">
+                    <div class="container mb-5 pt-2 shows-placeholder w-100">
                         <?php
                         // Loop through shows and group them into rows of 4
                         for ($i = 0; $i < count($seriespage1); $i += 4): ?>
@@ -201,7 +205,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                                     </a>
                                                     <form action="/crud/controllers/shows/shows.php" method="get">
                                                         <input type="hidden" name="id" value="<?php echo $seriespage1[$j]['id']; ?>">                                        
-                                                        <button type="submit" name="submitSerieDetails" class="outlines button-transparent">
+                                                        <button type="submit" name="submitShowDetails" class="outlines button-transparent">
                                                             <i class="bi bi-info-circle-fill"></i>
                                                         </button>
                                                     </form> 
@@ -216,7 +220,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                 </div>
             <!-- 2nd Page -->
                 <div class="carousel-item">
-                    <div class="container my-5 pt-2 shows-placeholder">
+                    <div class="container mb-5 pt-2 shows-placeholder">
                         <?php
                         // Loop through shows and group them into rows of 4
                         for ($i = 0; $i < count($seriespage2); $i += 4): ?>
@@ -238,7 +242,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                                     </a>
                                                     <form action="/crud/controllers/shows/shows.php" method="get">
                                                         <input type="hidden" name="id" value="<?php echo $seriespage2[$j]['id']; ?>">                                        
-                                                        <button type="submit" name="submitSerieDetails" class="outlines button-transparent">
+                                                        <button type="submit" name="submitShowDetails" class="outlines button-transparent">
                                                             <i class="bi bi-info-circle-fill"></i>
                                                         </button>
                                                     </form> 
@@ -256,10 +260,10 @@ include_once __DIR__ . '/../../../templates/navbar.php';
         <!--series carousel end-->      
     </div>
 
+    <div class="mt-5"></div>
+
 
     
-<script src="https://cdn.jsdelivr.net/npm/swiper@11.0.5/swiper-bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11.0.5/swiper-bundle.min.js" integrity="sha256-aULwhztqcQjhipg7QZKtRpARqBMTF/iBYdbwkXBY2iI=" crossorigin="anonymous"></script>
 <?php
 include_once __DIR__ . '/../../../templates/footer.php';
 ?>

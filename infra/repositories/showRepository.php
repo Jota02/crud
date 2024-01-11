@@ -61,15 +61,19 @@ function getShowById($id)
     return $stmt->fetch();
 }
 
-function getAllShows()
+function getSearchedShows($searchInput)
 {
-    $stmt = $GLOBALS['pdo']->query('SELECT * FROM shows;');
-    $shows = [];
-    while ($show = $stmt->fetch()) {
-        $shows[] = $show;
-    }
-    return $shows;
+    $sql = 'SELECT id, title, release_year, poster_path, rating FROM shows WHERE title LIKE :searchInput';
+
+    $stmt = $GLOBALS['pdo']->prepare($sql);
+    $searchTermWithWildcards = '%' . $searchInput . '%';
+    $stmt->bindParam(':searchInput', $searchTermWithWildcards, PDO::PARAM_STR);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $result;
 }
+
 
 function getShowCategoriesById($id){
     $sql = '
@@ -126,7 +130,7 @@ function getShowsTitlePoster($limit, $offset, $show_type) {
 function getShowsTitleCovers() {
     global $pdo;
     
-    $sql = "SELECT title, cover_path FROM shows WHERE cover_path IS NOT NULL;";
+    $sql = "SELECT id, title, cover_path FROM shows WHERE cover_path IS NOT NULL;";
     
     $stmt = $pdo->prepare($sql);  
     $stmt->execute();

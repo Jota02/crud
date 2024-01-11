@@ -212,10 +212,12 @@ hr.divider{
 .search-bar{
     display: flex;
     align-items: center;
-    max-width: 40rem;
     column-gap: 0.7rem;
     padding: 8px 15px;
     
+    .search-bar-size{
+        max-width: 30rem;
+    }
     .bi{
         color: var(--main-color);
         font-size: 1.1rem;
@@ -310,10 +312,34 @@ hr.divider{
 }
 
 .main-margin{
-    margin-top: 10rem;
+    margin-top: 7rem;
 }
 
 .rating-icon{
     font-size: 2rem;
     color: rgb(233, 233, 115);
 }
+
+.vertical-divider{
+    background: var(--main-color);
+    border-radius: 1px;
+    content: "";
+    width: 0.2rem;
+}
+
+.search-icon {
+    color: var(--main-color);
+    font-size: 1.6rem;
+}
+
+.search-results {
+    --bs-list-group-bg: var(--container-color)!important;
+    border: .05rem solid var(--main-color) !important;
+
+    img{
+        max-width: 5rem;
+    }
+}
+
+  
+
