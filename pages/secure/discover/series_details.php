@@ -28,17 +28,19 @@ $ageColors = [
     'M/18' => 'text-danger',
 ];
 
-$title = isset($_REQUEST['title']) ? $_REQUEST['title'] : 'undefined';
-$release_year = isset($_REQUEST['release_year']) ? $_REQUEST['release_year'] : '?';
-$end_year = isset($_REQUEST['end_year']) ? $_REQUEST['end_year'] : '?';
-$age = isset($_REQUEST['age']) ? $_REQUEST['age'] : 0;
+$show = getShowById(isset($_REQUEST['id']) ? $_REQUEST['id'] : 0);
+
+$title = isset($show['title']) ? $show['title'] : 'undefined';
+$release_year = isset($show['release_year']) ? $show['release_year'] : 0000;
+$end_year = isset($show['end_year']) ? $show['end_year'] : 0000;
+$seasons = isset($show['seasons']) ? $show['seasons'] : 0;
+$age = isset($show['age']) ? $show['age'] : 0000;
 $ageColorClass = isset($ageColors[$age]) ? $ageColors[$age] : 'text-white';
 $type = isset($_REQUEST['type']) ? $_REQUEST['type'] : '?';
-$seasons = isset($_REQUEST['seasons']) ? $_REQUEST['seasons'] : 0;
-$poster_path = isset($_REQUEST['poster_path']) ? $_REQUEST['poster_path'] : null;
-$description = isset($_REQUEST['description']) ? $_REQUEST['description'] : ' ';
-$trailer = isset($_REQUEST['trailer']) ? $_REQUEST['trailer'] : null;
-$rating = isset($_REQUEST['rating']) ? $_REQUEST['rating'] : 0;
+$poster_path = isset($show['poster_path']) ? $show['poster_path'] : null;
+$description =  isset($show['description']) ? $show['description'] : 'undefined';
+$trailer = isset($show['trailer']) ? $show['trailer'] : null;
+$rating = isset($show['rating']) ? $show['rating'] : 0;
 
 $ratingValue = floatval($rating);
 if ($ratingValue > 6.9) {
@@ -73,11 +75,11 @@ include_once __DIR__ . '/../../../templates/navbar.php';
             </div>
         </div>
         <div class="d-flex flex-row">
-            <div class="d-flex flex-column justify-content-around">
-            <img src="\crud\<?= $poster_path ?>" class="img-fluid rounded" alt="movie_poster"/>     
-                <div class="d-flex align-items-center justify-content-center text-white">
+        <div class="d-flex flex-column">
+                <img src="\crud\<?= $poster_path ?>" class="img-fluid rounded" alt="serie_poster"/>     
+                <div class="d-flex align-items-center justify-content-center mt-5">
                     <i class="bi bi-star-fill rating-icon"></i>
-                    <h3><span class="<?= $ratingColorClass ?>"><?= $rating ?></span>/10</h3>
+                    <h3 class="text-white"><span class="<?= $ratingColorClass ?>"><?= $rating ?></span>/10</h3>
                 </div>
             </div>
             <div class="d-flex flex-column ms-5 w-75 justify-content-around">

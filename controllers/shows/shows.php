@@ -26,7 +26,7 @@ if (isset($_GET['submitSearch'])) {
 
 function showDetails($id)
 {
-    $show = getShowById($id);
+    $show['id'] = $id;
 
     if ($show) {
         $categories = getShowCategoriesById($id);

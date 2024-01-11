@@ -63,7 +63,7 @@ function getShowById($id)
 
 function getSearchedShows($searchInput)
 {
-    $sql = 'SELECT id, title, release_year, poster_path, rating FROM shows WHERE title LIKE :searchInput';
+    $sql = 'SELECT id FROM shows WHERE title LIKE :searchInput';
 
     $stmt = $GLOBALS['pdo']->prepare($sql);
     $searchTermWithWildcards = '%' . $searchInput . '%';

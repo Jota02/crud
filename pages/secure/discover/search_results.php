@@ -26,17 +26,19 @@ include_once __DIR__ . '/../../../templates/navbar.php';
         </div>
         <div class="show-list mt-4">
             <div class="list-group">
-                <?php foreach ($searchResults as $result): ?>
+                <?php foreach ($searchResults as $result): 
+                        $show = getShowById($result['id'])    
+                ?>
                     <form action="/crud/controllers/shows/shows.php" method="get">
-                        <input type="hidden" name="id" value="<?= htmlspecialchars($result['id']) ?>">
+                        <input type="hidden" name="id" value="<?= htmlspecialchars($show['id']) ?>">
                         <button type="submit" name="submitShowDetails" class="button-transparent p-0 w-100">     
                             <div class="list-group-item list-group-item-action list-group-item-dark search-results">
                                 <div class="d-flex flex-row align-items-center text-white">
-                                    <img src="\crud\<?= htmlspecialchars($result['poster_path'])?>" class="rounded border"  alt="movie_poster"/>
+                                    <img src="\crud\<?= htmlspecialchars($show['poster_path'])?>" class="rounded border"  alt="movie_poster"/>
                                     <div class="d-flex flex-column ms-3 align-items-start">                                           
-                                        <h4 class="text-white"><?= htmlspecialchars($result['title']) ?></h4>
-                                        <p class="m-0 fs-5"><?= htmlspecialchars($result['release_year'])?></p>
-                                        <p class="m-0 fs-5"><?= htmlspecialchars($result['rating']) ?>/10</p> 
+                                        <h4 class="text-white"><?= htmlspecialchars($show['title']) ?></h4>
+                                        <p class="m-0 fs-5"><?= htmlspecialchars($show['release_year'])?></p>
+                                        <p class="m-0 fs-5"><?= htmlspecialchars($show['rating']) ?>/10</p> 
                                     </div>   
                                 </div>
                             </div>
