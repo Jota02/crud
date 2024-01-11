@@ -30,3 +30,19 @@ function showSerieCarousel() {
     serieCarouselContainer.style.display = "none";
   }
 }
+
+
+// Adicione um evento de clique ao botão
+document.getElementById('toggleButton').addEventListener('click', function () {
+    // Obtenha o elemento do ícone
+    var icon = document.getElementById('toggleIcon');
+
+    // Verifique a classe atual do ícone e altere para a classe desejada
+    if (icon.classList.contains('bi-plus-circle-fill')) {
+        icon.classList.remove('bi-plus-circle-fill');
+        icon.classList.add('bi-check-circle-fill');
+    } else {
+        icon.classList.remove('bi-check-circle-fill');
+        icon.classList.add('bi-plus-circle-fill');
+    }
+});
