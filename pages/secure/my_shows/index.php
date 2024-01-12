@@ -20,9 +20,6 @@ $myShows = getMyShows($user['id']);
     <!--movies header start-->
         <div class="heading mt-5 w-75">
             <h4 class="heading-title">My Movies</h4>
-            <button class="btn btn-link" onclick="showMovieCarousel()">
-                <i class="bi bi-plus-circle outlines"></i> 
-            </button>
         </div>
         <!--movies header end-->
 
@@ -75,46 +72,45 @@ $myShows = getMyShows($user['id']);
         <!--series header start-->
         <div class="heading mt-5 w-75">
             <h4 class="heading-title">My Series</h4>
-            <button class="btn btn-link" onclick="showSerieCarousel()">
-                <i class="bi bi-plus-circle outlines"></i> 
-            </button>
         </div>
         <!--series header end-->
         <!--series carousel start-->
-        <div id="serieCarousel" class="carousel slide w-75" data-bs-ride="carousel" style="display: none;">
+        <div id="movieCarousel" class="carousel slide w-75" data-bs-ride="carousel">
             <div class="carousel-inner">
-            <!-- 1st Page -->
+                <!-- 1st Page -->
                 <div class="carousel-item active">
                     <div class="container mb-5 pt-2 shows-placeholder w-100">
                         <?php
                         // Loop through shows and group them into rows of 4
-                        for ($i = 0; $i < count($seriespage1); $i += 4): ?>
+                        for ($i = 0; $i < count($myShows); $i += 4): ?>
                             <div class="row">
                                 <?php
                                 // Loop for each row of 4 shows
-                                for ($j = $i; $j < $i + 4 && $j < count($seriespage1); $j++): ?>
-                                    <div class="col-md-3 mb-4">
-                                        <div class="image-container d-flex">
-                                            <img src="..\..\..\<?php echo $seriespage1[$j]['poster_path']; ?>" alt="<?php echo htmlspecialchars($seriespage1[$j]['title']); ?>" class="img-fluid">
-                                            <div class="show-details">
-                                                <h6><?php echo htmlspecialchars($seriespage1[$j]['title']); ?></h6>
-                                                <div class="button-container">
-                                                    <a href="#" class="outlines">
-                                                        <i class="bi bi-play-circle-fill"></i>
-                                                    </a>
-                                                    <a href="#" class="outlines">
-                                                        <i class="bi bi-plus-circle-fill"></i>
-                                                    </a>
-                                                    <form action="/crud/controllers/shows/shows.php" method="get">
-                                                        <input type="hidden" name="id" value="<?php echo $seriespage1[$j]['id']; ?>">                                        
-                                                        <button type="submit" name="submitShowDetails" class="outlines button-transparent">
-                                                            <i class="bi bi-info-circle-fill"></i>
-                                                        </button>
-                                                    </form> 
+                                for ($j = $i; $j < $i + 4 && $j < count($myShows); $j++): 
+                                    if ($myShows[$j]['id_type'] == 2): ?>
+                                        <div class="col-md-3 mb-4">
+                                            <div class="image-container d-flex">
+                                                <img src="..\..\..\<?php echo $myShows[$j]['poster_path']; ?>" alt="<?php echo htmlspecialchars($myShows[$j]['title']); ?>" class="img-fluid">
+                                                <div class="show-details">
+                                                    <h6><?php echo htmlspecialchars($myShows[$j]['title']); ?></h6>
+                                                    <div class="button-container">
+                                                        <a href="#" class="outlines">
+                                                            <i class="bi bi-play-circle-fill"></i>
+                                                        </a>
+                                                        <a href="#" id="toggleButton" class="outlines">
+                                                            <i id="toggleIcon" class="bi bi-plus-circle-fill"></i>
+                                                        </a>
+                                                        <form action="/crud/controllers/shows/shows.php" method="get">
+                                                            <input type="hidden" name="id" value="<?php echo $myShows[$j]['show_id']; ?>">                                        
+                                                            <button type="submit" name="getShowDetails" class="outlines button-transparent">
+                                                                <i class="bi bi-info-circle-fill"></i>
+                                                            </button>
+                                                        </form> 
+                                                    </div>  
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    <?php endif; ?>
                                 <?php endfor; ?>
                             </div>
                         <?php endfor; ?>

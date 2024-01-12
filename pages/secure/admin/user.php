@@ -10,7 +10,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
 
 <!--content-->
 <div class="account-page-styles home-cover" style="min-height: 100vh;">
-    <div class="container py-3">  
+    <div class="container py-3 main-margin">  
       <main class="account-form-wrapper text-white">
         <div class="account-form-style">
           <section>
@@ -84,12 +84,10 @@ include_once __DIR__ . '/../../../templates/navbar.php';
             </form>
           </section>
         </div>
-          <div class="fixed-bottom">
-            <?php
-              require_once __DIR__ . '/../../../templates/footer.php';
-            ?>
-          </div>
       </main>
     </div>
 </div>
+<?php
+  require_once __DIR__ . '/../../../templates/footer.php';
+?>
       

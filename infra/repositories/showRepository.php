@@ -200,7 +200,7 @@ function getUserReviews($id){
 
 function getShowsTitlePoster($limit, $offset, $show_type) {
     
-    $sql = 'SELECT id, title, poster_path FROM shows WHERE id_type= :show_type ORDER BY id LIMIT :limit OFFSET :offset';
+    $sql = 'SELECT id, title, poster_path FROM shows WHERE id_type= :show_type ORDER BY rating DESC LIMIT :limit OFFSET :offset';
     
     $stmt = $GLOBALS['pdo']->prepare($sql);
     $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
