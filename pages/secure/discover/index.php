@@ -35,11 +35,15 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                 <i class="bi bi-info-circle-fill bi-cover-size"></i>
                                 <span>Info</span>
                             </button>
+                        </form>
+                        <form action="/crud/controllers/shows/shows.php" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
+                            <input type="hidden" name="show_id" value="<?= $cover['id'] ?>">                                         
+                            <button type="submit" name="addShow" class="outlines button-transparent p-0">
+                                <i class="bi bi-plus-circle-fill bi-cover-size"></i>
+                                <span>Add to Library</span>
+                            </button>
                         </form> 
-                        <a href="#" class="outlines">
-                            <i class="bi bi-plus-circle-fill bi-cover-size"></i>
-                            <span>Add to Library</span>
-                        </a>
                     </div>
                 </div>
             <?php

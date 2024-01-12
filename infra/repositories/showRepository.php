@@ -53,7 +53,7 @@ function createShow($show)
     return $success;
 }
 
-function createReview($review){
+function insertUserReview($review){
     $sqlCreate = "INSERT INTO 
     user_reviews (
         id_user, 
@@ -86,6 +86,35 @@ function createReview($review){
     return $success;
 }
 
+function insertUserShow($show){
+
+    if (userShowExist($show['user_id'], $show['show_id'])) {
+        return false;
+    }
+
+    $sqlCreate = "INSERT INTO 
+    user_shows (
+        user_id, 
+        show_id
+        ) 
+    VALUES (
+        :user_id, 
+        :show_id
+    )";
+
+    $PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
+
+    $success = $PDOStatement->execute([
+        ':user_id' => $show['user_id'],
+        ':show_id' => $show['show_id']
+    ]);
+
+    if ($success) {
+        $show['id'] = $GLOBALS['pdo']->lastInsertId();
+    }
+    return $success;
+}
+
 function getShowById($id)
 {
     $stmt = $GLOBALS['pdo']->prepare('SELECT * FROM shows WHERE id = ?');
@@ -107,6 +136,26 @@ function getSearchedShows($searchInput)
     return $result;
 }
 
+function getMyShows($userId){
+    $sql = 'SELECT s.id AS show_id, s.id_type, s.title, s.poster_path FROM user_shows us JOIN shows s ON us.show_id = s.id WHERE us.user_id = ?';
+
+    $stmt = $GLOBALS['pdo']->prepare($sql);
+    $stmt->bindValue(1, $userId, PDO::PARAM_INT);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $result;
+}
+
+function userShowExist($userId, $showId) {
+    $sql = 'SELECT COUNT(*) FROM user_shows WHERE user_id = :userId AND show_id = :showId';
+
+    $stmt = $GLOBALS['pdo']->prepare($sql);
+    $stmt->execute([':userId' => $userId, ':showId' => $showId]);
+    
+    return $stmt->fetchColumn() > 0;
+}
+
 
 function getShowCategoriesById($id){
     $sql = 'SELECT GROUP_CONCAT(DISTINCT categories.category_name ORDER BY categories.category_name ASC) AS show_categories
@@ -118,7 +167,6 @@ function getShowCategoriesById($id){
     $stmt = $GLOBALS['pdo']->prepare($sql);
     $stmt->bindValue(1, $id, PDO::PARAM_INT);
     $stmt->execute();
-
     $result = $stmt->fetch();
 
     return isset($result['show_categories']) ? $result['show_categories'] : null;
@@ -130,7 +178,6 @@ function getShowTypeById($id){
     $stmt = $GLOBALS['pdo']->prepare($sql);
     $stmt->bindValue(1, $id, PDO::PARAM_INT);
     $stmt->execute();
-
     $result = $stmt->fetch();
 
     return isset($result['show_type']) ? $result['show_type'] : null;
@@ -146,18 +193,16 @@ function getUserReviews($id){
     $stmt = $GLOBALS['pdo']->prepare($sql);
     $stmt->bindValue(1, $id, PDO::PARAM_INT);
     $stmt->execute();
-
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     return $result;
 }
 
 function getShowsTitlePoster($limit, $offset, $show_type) {
-    global $pdo;
     
-    $sql = "SELECT id, title, poster_path FROM shows WHERE id_type= :show_type ORDER BY id LIMIT :limit OFFSET :offset";
+    $sql = 'SELECT id, title, poster_path FROM shows WHERE id_type= :show_type ORDER BY id LIMIT :limit OFFSET :offset';
     
-    $stmt = $pdo->prepare($sql);
+    $stmt = $GLOBALS['pdo']->prepare($sql);
     $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
     $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
     $stmt->bindParam(':show_type', $show_type, PDO::PARAM_INT);
@@ -167,12 +212,22 @@ function getShowsTitlePoster($limit, $offset, $show_type) {
     return $stmt->fetchAll();
 }
 
+function getShowPoster($id) {
+    $sql = 'SELECT id, title, poster_path FROM shows WHERE id= ?';
+
+    $stmt = $GLOBALS['pdo']->prepare($sql);
+    $stmt->bindValue(1, $id, PDO::PARAM_INT);
+    $stmt->execute();
+    $result = $stmt->fetch();
+
+    return $result;
+}
+
 function getShowsTitleCovers() {
-    global $pdo;
     
-    $sql = "SELECT id, title, cover_path FROM shows WHERE cover_path IS NOT NULL;";
+    $sql = 'SELECT id, title, cover_path FROM shows WHERE cover_path IS NOT NULL';
     
-    $stmt = $pdo->prepare($sql);  
+    $stmt = $GLOBALS['pdo']->prepare($sql);;  
     $stmt->execute();
     
     return $stmt->fetchAll();

@@ -6,7 +6,7 @@ require_once __DIR__ . '/../../infra/repositories/showRepository.php';
 if (isset($_GET['getShowDetails'])) {
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
-        showDetails($id);
+        getDetails($id);
     }
 }
 if (isset($_GET['submitSearch'])) { 
@@ -14,7 +14,7 @@ if (isset($_GET['submitSearch'])) {
         $searchInput = trim($_GET['searchInput']);
 
         if (!empty($searchInput)) {
-            searchShows($searchInput); 
+            getShows($searchInput); 
         }
         else{
             header('Location: /crud/pages/secure/discover/index.php');
@@ -30,18 +30,29 @@ if (isset($_POST['submitReview'])) {
         'attachments' => $_FILES['attachments']
     );
         if (!empty($review)) {
-            crReview($review); 
+            createReview($review); 
         }else{
             header('Location: /crud/pages/secure/my_shows/index.php');
         }
 }
+if (isset($_POST['addShow'])) {
+    $show = array(
+        'user_id' => $_POST['user_id'],
+        'show_id' => $_POST['show_id']
+    );
+        if (!empty($show)) {
+            createUserShow($show); 
+        }else{
+            header('Location: /crud/pages/secure/index.php');
+        }
+}
 
-function crReview($review){
-    $success = createReview($review);
+function createReview($review){
+    $success = insertUserReview($review);
 
     if ($success) {
         $_SESSION['success'] = 'Review created successfully!';
-        showDetails($review['id_show']);
+        getDetails($review['id_show']);
     }else {
         $_SESSION['errors'] = ['Error creating the review!'];
         header('Location: /crud/pages/secure/index.php');
@@ -50,8 +61,20 @@ function crReview($review){
 
 }
 
+function createUserShow($show){
+    $success = insertUserShow($show);
 
-function showDetails($id)
+    if ($success) {
+        $_SESSION['success'] = 'Show added to your library successfully!';
+        header('Location: /crud/pages/secure/discover/index.php');
+    }else {
+        $_SESSION['errors'] = ['Error adding the show!'];
+        header('Location: /crud/pages/secure/index.php');
+        exit;
+    }
+}
+
+function getDetails($id)
 {
     $show['id'] = $id;
 
@@ -61,7 +84,7 @@ function showDetails($id)
         $show['categories'] = $categories;
         $show['type'] = $type;
         $params = '?' . http_build_query($show);
-        
+
         header('Location: /crud/pages/secure/discover/show_details.php' . $params);
         exit;
 
@@ -72,7 +95,7 @@ function showDetails($id)
     }
 }
 
-function searchShows($searchInput)
+function getShows($searchInput)
 {
     $searchResults = getSearchedShows($searchInput);
     
