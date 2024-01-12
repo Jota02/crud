@@ -10,18 +10,6 @@ include_once __DIR__ . '/../../../templates/navbar.php';
 ?>
 <!--content-->
 
-<div class="container main-margin" style="min-height: 100vh;">
-  <div class="row">
-    <h1 class="mb-3 fw-normal text-center text-white">Profile</h1>
-  </div>
-  <div class="row">
-    <div class="col-4">
-      <img src="<?= $user['foto'] ?>" class="img-fluid" alt="Foto_Perfil">
-    </div>
-  </div>
-  
-</div>
-
 <div class="account-page-styles home-cover" style="min-height: 100vh;">
   <div class="container py-3 main-margin">  
     <main class="account-form-wrapper text-white">
