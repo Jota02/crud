@@ -32,7 +32,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
             <h1 class="text-white m-0">Search -> "<?= $searchInput ?>"</h1>    
         </div>
         <div class="heading">
-            <h3 class=" ms-3 text-white text-center">Shows</h3>
+            <h3 class=" ms-3 text-white text-center">Search Results</h3>
         </div>
         <div class="show-list mt-3 mb-5">
             <div class="list-group">
@@ -40,15 +40,15 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                         $show = getShowById($result['id'])    
                 ?>
                     <form action="/crud/controllers/shows/shows.php" method="get">
-                        <input type="hidden" name="id" value="<?= htmlspecialchars($show['id']) ?>">
+                        <input type="hidden" name="id" value="<?= $show['id'] ?>">
                         <button type="submit" name="getShowDetails" class="button-transparent p-0 w-100">     
                             <div class="list-group-item list-group-item-action list-group-item-dark search-results">
                                 <div class="d-flex flex-row align-items-center text-white">
-                                    <img src="\crud\<?= htmlspecialchars($show['poster_path'])?>" class="rounded border"  alt="movie_poster"/>
+                                    <img src="\crud\<?= $show['poster_path'] ?>" class="rounded border"  alt="movie_poster"/>
                                     <div class="d-flex flex-column ms-3 align-items-start">                                           
-                                        <h4 class="text-white"><?= htmlspecialchars($show['title']) ?></h4>
-                                        <p class="m-0 fs-5"><?= htmlspecialchars($show['release_year'])?></p>
-                                        <p class="m-0 fs-5"><?= htmlspecialchars($show['rating']) ?>/10</p> 
+                                        <h4 class="text-white"><?= $show['title'] ?></h4>
+                                        <p class="m-0 fs-5"><?= $show['release_year'] ?></p>
+                                        <p class="m-0 fs-5"><?= $show['rating'] ?>/10</p> 
                                     </div>   
                                 </div>
                             </div>

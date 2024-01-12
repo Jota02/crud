@@ -137,7 +137,11 @@ function getSearchedShows($searchInput)
 }
 
 function getMyShows($userId){
-    $sql = 'SELECT us.id, s.id AS show_id, s.id_type, s.title, s.poster_path FROM user_shows us JOIN shows s ON us.show_id = s.id WHERE us.user_id = ?';
+    $sql = 'SELECT s.id AS show_id, s.id_type, s.title, s.poster_path 
+            FROM user_shows us 
+            JOIN shows s ON us.show_id = s.id 
+            WHERE us.user_id = ? 
+            ORDER BY us.saved_date DESC';
 
     $stmt = $GLOBALS['pdo']->prepare($sql);
     $stmt->bindValue(1, $userId, PDO::PARAM_INT);
@@ -151,9 +155,11 @@ function userShowExist($userId, $showId) {
     $sql = 'SELECT COUNT(*) FROM user_shows WHERE user_id = :userId AND show_id = :showId';
 
     $stmt = $GLOBALS['pdo']->prepare($sql);
-    $stmt->execute([':userId' => $userId, ':showId' => $showId]);
+    $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+    $stmt->bindParam(':showId', $showId, PDO::PARAM_INT);
+    $result = $stmt->fetchColumn() > 0;
     
-    return $stmt->fetchColumn() > 0;
+    return $result;
 }
 
 
@@ -277,7 +283,7 @@ function deleteShow($id)
 
 function deleteMyShow($id)
 {
-    $stmt = $GLOBALS['pdo']->prepare('DELETE FROM user_shows WHERE id = ?;');
+    $stmt = $GLOBALS['pdo']->prepare('DELETE FROM user_shows WHERE show_id = ?;');
     $stmt->bindValue(1, $id, PDO::PARAM_INT);
     return $stmt->execute();
 }

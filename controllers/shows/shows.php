@@ -62,7 +62,7 @@ function createReview($review){
         getDetails($review['id_show']);
     }else {
         $_SESSION['errors'] = ['Error creating the review!'];
-        header('Location: /crud/pages/secure/index.php');
+        getDetails($review['id_show']);
         exit;
     }
 
@@ -128,7 +128,7 @@ function removeMyShow($id){
         header('Location: /crud/pages/secure/my_shows/index.php');
     }else {
         $_SESSION['errors'] = ['Error adding the show!'];
-        header('Location: /crud/pages/secure/discover/index.php');
+        header('Location: /crud/pages/secure/my_shows/index.php');
         exit;
     }
 }

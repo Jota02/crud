@@ -11,6 +11,9 @@ $seriespage2 = getShowsTitlePoster(20, 20, 2);
 $covers = getShowsTitleCovers();
 
 $user = user();
+$myShows = getMyShows($user['id']);
+
+$user = user();
 $title = '- App';
 
 include_once __DIR__ . '/../../../templates/navbar.php';
@@ -36,14 +39,25 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                 <span>Info</span>
                             </button>
                         </form>
+                        <?php 
+                            $showInLibrary = false; 
+                            foreach ($myShows as $show): 
+                                if ($show['show_id'] == $cover['id']) {
+                                    $showInLibrary = true;
+                                    break;
+                                }
+                            endforeach;
+                        ?>
                         <form action="/crud/controllers/shows/shows.php" method="post" enctype="multipart/form-data">
-                            <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
-                            <input type="hidden" name="show_id" value="<?= $cover['id'] ?>">                                         
-                            <button type="submit" name="addShow" class="outlines button-transparent p-0">
-                                <i class="bi bi-plus-circle-fill bi-cover-size"></i>
-                                <span>Add to Library</span>
+                            <?php if (!$showInLibrary): ?>
+                                <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
+                            <?php endif; ?>
+                            <input type="hidden" name="show_id" value="<?= $cover['id'] ?>">
+                            <button type="submit" name="<?= $showInLibrary ? 'removeMyShow' : 'addShow' ?>" class="outlines button-transparent p-0">
+                                <i class="<?= $showInLibrary ? 'bi bi-dash-circle-fill' : 'bi bi-plus-circle-fill bi-cover-size' ?> bi-cover-size"></i>
+                                <span><?= $showInLibrary ? 'Remove from Library' : 'Add to Library' ?></span>
                             </button>
-                        </form> 
+                        </form>
                     </div>
                 </div>
             <?php
@@ -94,7 +108,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
             <div class="carousel-inner">
             <!-- 1st Page -->
                 <div class="carousel-item active">
-                    <div class="container mb-5 pt-2 shows-placeholder w-100">
+                    <div class="container mb-5 pt-4 shows-placeholder w-100">
                         <?php
                         // Loop through shows and group them into rows of 4
                         for ($i = 0; $i < count($moviespage1); $i += 4): ?>
@@ -108,13 +122,22 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                             <div class="show-details">
                                                 <h6><?= $moviespage1[$j]['title'] ?></h6>
                                                 <div class="button-container">
+                                                    <?php $showInLibrary = false; 
+                                                        foreach ($myShows as $show): 
+                                                            if ($show['show_id'] == $moviespage1[$j]['id']) {
+                                                                $showInLibrary = true;
+                                                                break;
+                                                            }
+                                                    endforeach;?>
                                                     <form action="/crud/controllers/shows/shows.php" method="post" enctype="multipart/form-data">
-                                                        <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
-                                                        <input type="hidden" name="show_id" value="<?= $moviespage1[$j]['id'] ?>">                                         
-                                                        <button type="submit" name="addShow" class="outlines button-transparent p-0">
-                                                            <i class="bi bi-plus-circle-fill"></i>
+                                                        <?php if (!$showInLibrary): ?>
+                                                            <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
+                                                        <?php endif; ?>
+                                                        <input type="hidden" name="show_id" value="<?= $moviespage1[$j]['id'] ?>">
+                                                        <button type="submit" name="<?= $showInLibrary ? 'removeMyShow' : 'addShow' ?>" class="outlines button-transparent p-0">
+                                                            <i class="<?= $showInLibrary ? 'bi bi-dash-circle-fill' : 'bi bi-plus-circle-fill bi-cover-size' ?> bi-cover-size"></i>
                                                         </button>
-                                                    </form> 
+                                                    </form>
                                                     <form action="/crud/controllers/shows/shows.php" method="get">
                                                         <input type="hidden" name="id" value="<?= $moviespage1[$j]['id'] ?>">                                        
                                                         <button type="submit" name="getShowDetails" class="outlines button-transparent">
@@ -132,7 +155,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                 </div>
             <!-- 2nd Page -->
                 <div class="carousel-item">
-                    <div class="container mb-5 pt-2 shows-placeholder">
+                    <div class="container mb-5 pt-4 shows-placeholder">
                         <?php
                         // Loop through shows and group them into rows of 4
                         for ($i = 0; $i < count($moviespage2); $i += 4): ?>
@@ -146,11 +169,26 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                             <div class="show-details">
                                                 <h6><?= $moviespage2[$j]['title'] ?></h6>
                                                 <div class="button-container">
+                                                    <?php $showInLibrary = false; 
+                                                        foreach ($myShows as $show): 
+                                                            if ($show['show_id'] == $moviespage2[$j]['id']) {
+                                                                $showInLibrary = true;
+                                                                break;
+                                                            }
+                                                    endforeach;?>
                                                     <form action="/crud/controllers/shows/shows.php" method="post" enctype="multipart/form-data">
-                                                        <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
-                                                        <input type="hidden" name="show_id" value="<?= $moviespage2[$j]['id'] ?>">                                         
-                                                        <button type="submit" name="addShow" class="outlines button-transparent p-0">
-                                                            <i class="bi bi-plus-circle-fill"></i>
+                                                        <?php if (!$showInLibrary): ?>
+                                                            <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
+                                                        <?php endif; ?>
+                                                        <input type="hidden" name="show_id" value="<?= $moviespage2[$j]['id'] ?>">
+                                                        <button type="submit" name="<?= $showInLibrary ? 'removeMyShow' : 'addShow' ?>" class="outlines button-transparent p-0">
+                                                            <i class="<?= $showInLibrary ? 'bi bi-dash-circle-fill' : 'bi bi-plus-circle-fill bi-cover-size' ?> bi-cover-size"></i>
+                                                        </button>
+                                                    </form>
+                                                    <form action="/crud/controllers/shows/shows.php" method="get">
+                                                        <input type="hidden" name="id" value="<?= $moviespage2[$j]['id'] ?>">                                        
+                                                        <button type="submit" name="getShowDetails" class="outlines button-transparent">
+                                                            <i class="bi bi-info-circle-fill"></i>
                                                         </button>
                                                     </form> 
                                                     <form action="/crud/controllers/shows/shows.php" method="get">
@@ -189,7 +227,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
             <div class="carousel-inner">
             <!-- 1st Page -->
                 <div class="carousel-item active">
-                    <div class="container mb-5 pt-2 shows-placeholder w-100">
+                    <div class="container mb-5 pt-4 shows-placeholder w-100">
                         <?php
                         // Loop through shows and group them into rows of 4
                         for ($i = 0; $i < count($seriespage1); $i += 4): ?>
@@ -203,11 +241,26 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                             <div class="show-details">
                                                 <h6><?= $seriespage1[$j]['title'] ?></h6>
                                                 <div class="button-container">
+                                                    <?php $showInLibrary = false; 
+                                                        foreach ($myShows as $show): 
+                                                            if ($show['show_id'] == $seriespage1[$j]['id']) {
+                                                                $showInLibrary = true;
+                                                                break;
+                                                            }
+                                                    endforeach;?>
                                                     <form action="/crud/controllers/shows/shows.php" method="post" enctype="multipart/form-data">
-                                                        <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
-                                                        <input type="hidden" name="show_id" value="<?= $seriespage1[$j]['id'] ?>">                                         
-                                                        <button type="submit" name="addShow" class="outlines button-transparent p-0">
-                                                            <i class="bi bi-plus-circle-fill"></i>
+                                                        <?php if (!$showInLibrary): ?>
+                                                            <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
+                                                        <?php endif; ?>
+                                                        <input type="hidden" name="show_id" value="<?= $seriespage1[$j]['id'] ?>">
+                                                        <button type="submit" name="<?= $showInLibrary ? 'removeMyShow' : 'addShow' ?>" class="outlines button-transparent p-0">
+                                                            <i class="<?= $showInLibrary ? 'bi bi-dash-circle-fill' : 'bi bi-plus-circle-fill bi-cover-size' ?> bi-cover-size"></i>
+                                                        </button>
+                                                    </form>
+                                                    <form action="/crud/controllers/shows/shows.php" method="get">
+                                                        <input type="hidden" name="id" value="<?= $seriespage1[$j]['id'] ?>">                                        
+                                                        <button type="submit" name="getShowDetails" class="outlines button-transparent">
+                                                            <i class="bi bi-info-circle-fill"></i>
                                                         </button>
                                                     </form> 
                                                     <form action="/crud/controllers/shows/shows.php" method="get">
@@ -227,7 +280,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                 </div>
             <!-- 2nd Page -->
                 <div class="carousel-item">
-                    <div class="container mb-5 pt-2 shows-placeholder">
+                    <div class="container mb-5 pt-4 shows-placeholder">
                         <?php
                         // Loop through shows and group them into rows of 4
                         for ($i = 0; $i < count($seriespage2); $i += 4): ?>
@@ -241,14 +294,26 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                             <div class="show-details">
                                                 <h6><?= $seriespage2[$j]['title'] ?></h6>
                                                 <div class="button-container">
-                                                    <a href="#" class="outlines">
-                                                        <i class="bi bi-play-circle-fill"></i>
-                                                    </a>
+                                                    <?php $showInLibrary = false; 
+                                                        foreach ($myShows as $show): 
+                                                            if ($show['show_id'] == $seriespage2[$j]['id']) {
+                                                                $showInLibrary = true;
+                                                                break;
+                                                            }
+                                                    endforeach;?>
                                                     <form action="/crud/controllers/shows/shows.php" method="post" enctype="multipart/form-data">
-                                                        <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
-                                                        <input type="hidden" name="show_id" value="<?= $seriespage2[$j]['id'] ?>">                                         
-                                                        <button type="submit" name="addShow" class="outlines button-transparent p-0">
-                                                            <i class="bi bi-plus-circle-fill"></i>
+                                                        <?php if (!$showInLibrary): ?>
+                                                            <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
+                                                        <?php endif; ?>
+                                                        <input type="hidden" name="show_id" value="<?= $seriespage2[$j]['id'] ?>">
+                                                        <button type="submit" name="<?= $showInLibrary ? 'removeMyShow' : 'addShow' ?>" class="outlines button-transparent p-0">
+                                                            <i class="<?= $showInLibrary ? 'bi bi-dash-circle-fill' : 'bi bi-plus-circle-fill bi-cover-size' ?> bi-cover-size"></i>
+                                                        </button>
+                                                    </form>
+                                                    <form action="/crud/controllers/shows/shows.php" method="get">
+                                                        <input type="hidden" name="id" value="<?= $seriespage2[$j]['id'] ?>">                                        
+                                                        <button type="submit" name="getShowDetails" class="outlines button-transparent">
+                                                            <i class="bi bi-info-circle-fill"></i>
                                                         </button>
                                                     </form> 
                                                     <form action="/crud/controllers/shows/shows.php" method="get">
