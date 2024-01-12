@@ -347,5 +347,13 @@ hr.divider{
 }
 
 
+/* Foto Perfil */
+
+.foto_perfil{
+    border-radius: 2rem;
+    height: fit-content;
+}
+
+
   
 
