@@ -39,18 +39,18 @@ $myShows = getMyShows($user['id']);
                                     if ($myShows[$j]['id_type'] == 1): ?>
                                         <div class="col-md-3 mb-4">
                                             <div class="image-container d-flex">
-                                                <img src="..\..\..\<?php echo $myShows[$j]['poster_path']; ?>" alt="<?php echo htmlspecialchars($myShows[$j]['title']); ?>" class="img-fluid">
+                                                <img src="..\..\..\<?= $myShows[$j]['poster_path'] ?>" alt="<?= $myShows[$j]['title'] ?>" class="img-fluid">
                                                 <div class="show-details">
-                                                    <h6><?php echo htmlspecialchars($myShows[$j]['title']); ?></h6>
+                                                    <h6><?= $myShows[$j]['title'] ?></h6>
                                                     <div class="button-container">
-                                                        <a href="#" class="outlines">
-                                                            <i class="bi bi-play-circle-fill"></i>
-                                                        </a>
-                                                        <a href="#" id="toggleButton" class="outlines">
-                                                            <i id="toggleIcon" class="bi bi-plus-circle-fill"></i>
-                                                        </a>
+                                                        <form action="/crud/controllers/shows/shows.php" method="post" enctype="multipart/form-data">
+                                                            <input type="hidden" name="id" value="<?= $myShows[$j]['id'] ?>">                                        
+                                                            <button type="submit" name="removeMyShow" class="outlines button-transparent">
+                                                                <i class="bi bi-dash-circle-fill"></i>
+                                                            </button>
+                                                        </form> 
                                                         <form action="/crud/controllers/shows/shows.php" method="get">
-                                                            <input type="hidden" name="id" value="<?php echo $myShows[$j]['show_id']; ?>">                                        
+                                                            <input type="hidden" name="id" value="<?= $myShows[$j]['show_id'] ?>">                                        
                                                             <button type="submit" name="getShowDetails" class="outlines button-transparent">
                                                                 <i class="bi bi-info-circle-fill"></i>
                                                             </button>
@@ -90,18 +90,18 @@ $myShows = getMyShows($user['id']);
                                     if ($myShows[$j]['id_type'] == 2): ?>
                                         <div class="col-md-3 mb-4">
                                             <div class="image-container d-flex">
-                                                <img src="..\..\..\<?php echo $myShows[$j]['poster_path']; ?>" alt="<?php echo htmlspecialchars($myShows[$j]['title']); ?>" class="img-fluid">
+                                                <img src="..\..\..\<?= $myShows[$j]['poster_path'] ?>" alt="<?= $myShows[$j]['title'] ?>" class="img-fluid">
                                                 <div class="show-details">
-                                                    <h6><?php echo htmlspecialchars($myShows[$j]['title']); ?></h6>
+                                                    <h6><?= $myShows[$j]['title'] ?></h6>
                                                     <div class="button-container">
-                                                        <a href="#" class="outlines">
-                                                            <i class="bi bi-play-circle-fill"></i>
-                                                        </a>
-                                                        <a href="#" id="toggleButton" class="outlines">
-                                                            <i id="toggleIcon" class="bi bi-plus-circle-fill"></i>
-                                                        </a>
+                                                        <form action="/crud/controllers/shows/shows.php" method="post" enctype="multipart/form-data">
+                                                            <input type="hidden" name="id" value="<?= $myShows[$j]['id'] ?>">                                        
+                                                            <button type="submit" name="removeMyShow" class="outlines button-transparent">
+                                                                <i class="bi bi-dash-circle-fill"></i>
+                                                            </button>
+                                                        </form>
                                                         <form action="/crud/controllers/shows/shows.php" method="get">
-                                                            <input type="hidden" name="id" value="<?php echo $myShows[$j]['show_id']; ?>">                                        
+                                                            <input type="hidden" name="id" value="<?= $myShows[$j]['show_id'] ?>">                                        
                                                             <button type="submit" name="getShowDetails" class="outlines button-transparent">
                                                                 <i class="bi bi-info-circle-fill"></i>
                                                             </button>

@@ -46,6 +46,13 @@ if (isset($_POST['addShow'])) {
             header('Location: /crud/pages/secure/index.php');
         }
 }
+if (isset($_POST['removeMyShow'])) {
+    if (isset($_POST['id'])){
+        $id = $_POST['id'];
+        removeMyShow($id);
+    }
+        
+}
 
 function createReview($review){
     $success = insertUserReview($review);
@@ -109,6 +116,19 @@ function getShows($searchInput)
     } else {
         $_SESSION['errors'] = ['No shows found for the search query!'];
         header('Location: /crud/pages/secure/index.php');
+        exit;
+    }
+}
+
+function removeMyShow($id){
+    $success = deleteMyShow($id);
+
+    if ($success) {
+        $_SESSION['success'] = 'Show removed from your library successfully!';
+        header('Location: /crud/pages/secure/my_shows/index.php');
+    }else {
+        $_SESSION['errors'] = ['Error adding the show!'];
+        header('Location: /crud/pages/secure/discover/index.php');
         exit;
     }
 }

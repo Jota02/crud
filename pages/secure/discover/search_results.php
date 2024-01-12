@@ -41,7 +41,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                 ?>
                     <form action="/crud/controllers/shows/shows.php" method="get">
                         <input type="hidden" name="id" value="<?= htmlspecialchars($show['id']) ?>">
-                        <button type="submit" name="submitShowDetails" class="button-transparent p-0 w-100">     
+                        <button type="submit" name="getShowDetails" class="button-transparent p-0 w-100">     
                             <div class="list-group-item list-group-item-action list-group-item-dark search-results">
                                 <div class="d-flex flex-row align-items-center text-white">
                                     <img src="\crud\<?= htmlspecialchars($show['poster_path'])?>" class="rounded border"  alt="movie_poster"/>
