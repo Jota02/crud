@@ -137,7 +137,7 @@ function getSearchedShows($searchInput)
 }
 
 function getMyShows($userId){
-    $sql = 'SELECT s.id AS show_id, s.id_type, s.title, s.poster_path FROM user_shows us JOIN shows s ON us.show_id = s.id WHERE us.user_id = ?';
+    $sql = 'SELECT us.id, s.id AS show_id, s.id_type, s.title, s.poster_path FROM user_shows us JOIN shows s ON us.show_id = s.id WHERE us.user_id = ?';
 
     $stmt = $GLOBALS['pdo']->prepare($sql);
     $stmt->bindValue(1, $userId, PDO::PARAM_INT);
@@ -271,6 +271,13 @@ function updateShow($show)
 function deleteShow($id)
 {
     $stmt = $GLOBALS['pdo']->prepare('DELETE FROM shows WHERE id = ?;');
+    $stmt->bindValue(1, $id, PDO::PARAM_INT);
+    return $stmt->execute();
+}
+
+function deleteMyShow($id)
+{
+    $stmt = $GLOBALS['pdo']->prepare('DELETE FROM user_shows WHERE id = ?;');
     $stmt->bindValue(1, $id, PDO::PARAM_INT);
     return $stmt->execute();
 }

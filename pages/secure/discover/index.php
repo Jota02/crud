@@ -104,18 +104,19 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                 for ($j = $i; $j < $i + 4 && $j < count($moviespage1); $j++): ?>
                                     <div class="col-md-3 mb-4">
                                         <div class="image-container d-flex">
-                                            <img src="..\..\..\<?php echo $moviespage1[$j]['poster_path']; ?>" alt="<?php echo htmlspecialchars($moviespage1[$j]['title']); ?>" class="img-fluid">
+                                            <img src="..\..\..\<?= $moviespage1[$j]['poster_path'] ?>" alt="<?= $moviespage1[$j]['title'] ?>" class="img-fluid">
                                             <div class="show-details">
-                                                <h6><?php echo htmlspecialchars($moviespage1[$j]['title']); ?></h6>
+                                                <h6><?= $moviespage1[$j]['title'] ?></h6>
                                                 <div class="button-container">
-                                                    <a href="#" class="outlines">
-                                                        <i class="bi bi-play-circle-fill"></i>
-                                                    </a>
-                                                    <a href="#" class="outlines">
-                                                        <i class="bi bi-plus-circle-fill"></i>
-                                                    </a>
+                                                    <form action="/crud/controllers/shows/shows.php" method="post" enctype="multipart/form-data">
+                                                        <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
+                                                        <input type="hidden" name="show_id" value="<?= $moviespage1[$j]['id'] ?>">                                         
+                                                        <button type="submit" name="addShow" class="outlines button-transparent p-0">
+                                                            <i class="bi bi-plus-circle-fill"></i>
+                                                        </button>
+                                                    </form> 
                                                     <form action="/crud/controllers/shows/shows.php" method="get">
-                                                        <input type="hidden" name="id" value="<?php echo $moviespage1[$j]['id']; ?>">                                        
+                                                        <input type="hidden" name="id" value="<?= $moviespage1[$j]['id'] ?>">                                        
                                                         <button type="submit" name="getShowDetails" class="outlines button-transparent">
                                                             <i class="bi bi-info-circle-fill"></i>
                                                         </button>
@@ -141,18 +142,19 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                 for ($j = $i; $j < $i + 4 && $j < count($moviespage2); $j++): ?>
                                     <div class="col-md-3 mb-4">
                                         <div class="image-container d-flex">
-                                            <img src="..\..\..\<?php echo $moviespage2[$j]['poster_path']; ?>" alt="<?php echo htmlspecialchars($moviespage2[$j]['title']); ?>" class="img-fluid">
+                                            <img src="..\..\..\<?= $moviespage2[$j]['poster_path'] ?>" alt="<?= $moviespage2[$j]['title'] ?>" class="img-fluid">
                                             <div class="show-details">
-                                                <h6><?php echo htmlspecialchars($moviespage2[$j]['title']); ?></h6>
+                                                <h6><?= $moviespage2[$j]['title'] ?></h6>
                                                 <div class="button-container">
-                                                    <a href="#" class="outlines">
-                                                        <i class="bi bi-play-circle-fill"></i>
-                                                    </a>
-                                                    <a href="#" class="outlines">
-                                                        <i class="bi bi-plus-circle-fill"></i>
-                                                    </a>
+                                                    <form action="/crud/controllers/shows/shows.php" method="post" enctype="multipart/form-data">
+                                                        <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
+                                                        <input type="hidden" name="show_id" value="<?= $moviespage2[$j]['id'] ?>">                                         
+                                                        <button type="submit" name="addShow" class="outlines button-transparent p-0">
+                                                            <i class="bi bi-plus-circle-fill"></i>
+                                                        </button>
+                                                    </form> 
                                                     <form action="/crud/controllers/shows/shows.php" method="get">
-                                                        <input type="hidden" name="id" value="<?php echo $moviespage2[$j]['id']; ?>">                                        
+                                                        <input type="hidden" name="id" value="<?= $moviespage2[$j]['id'] ?>">                                        
                                                         <button type="submit" name="getShowDetails" class="outlines button-transparent">
                                                             <i class="bi bi-info-circle-fill"></i>
                                                         </button>
@@ -197,18 +199,19 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                 for ($j = $i; $j < $i + 4 && $j < count($seriespage1); $j++): ?>
                                     <div class="col-md-3 mb-4">
                                         <div class="image-container d-flex">
-                                            <img src="..\..\..\<?php echo $seriespage1[$j]['poster_path']; ?>" alt="<?php echo htmlspecialchars($seriespage1[$j]['title']); ?>" class="img-fluid">
+                                            <img src="..\..\..\<?= $seriespage1[$j]['poster_path'] ?>" alt="<?= $seriespage1[$j]['title'] ?>" class="img-fluid">
                                             <div class="show-details">
-                                                <h6><?php echo htmlspecialchars($seriespage1[$j]['title']); ?></h6>
+                                                <h6><?= $seriespage1[$j]['title'] ?></h6>
                                                 <div class="button-container">
-                                                    <a href="#" class="outlines">
-                                                        <i class="bi bi-play-circle-fill"></i>
-                                                    </a>
-                                                    <a href="#" class="outlines">
-                                                        <i class="bi bi-plus-circle-fill"></i>
-                                                    </a>
+                                                    <form action="/crud/controllers/shows/shows.php" method="post" enctype="multipart/form-data">
+                                                        <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
+                                                        <input type="hidden" name="show_id" value="<?= $seriespage1[$j]['id'] ?>">                                         
+                                                        <button type="submit" name="addShow" class="outlines button-transparent p-0">
+                                                            <i class="bi bi-plus-circle-fill"></i>
+                                                        </button>
+                                                    </form> 
                                                     <form action="/crud/controllers/shows/shows.php" method="get">
-                                                        <input type="hidden" name="id" value="<?php echo $seriespage1[$j]['id']; ?>">                                        
+                                                        <input type="hidden" name="id" value="<?= $seriespage1[$j]['id'] ?>">                                        
                                                         <button type="submit" name="getShowDetails" class="outlines button-transparent">
                                                             <i class="bi bi-info-circle-fill"></i>
                                                         </button>
@@ -234,18 +237,22 @@ include_once __DIR__ . '/../../../templates/navbar.php';
                                 for ($j = $i; $j < $i + 4 && $j < count($seriespage2); $j++): ?>
                                     <div class="col-md-3 mb-4">
                                         <div class="image-container d-flex">
-                                            <img src="..\..\..\<?php echo $seriespage2[$j]['poster_path']; ?>" alt="<?php echo htmlspecialchars($seriespage2[$j]['title']); ?>" class="img-fluid">
+                                            <img src="..\..\..\<?= $seriespage2[$j]['poster_path'] ?>" alt="<?= $seriespage2[$j]['title'] ?>" class="img-fluid">
                                             <div class="show-details">
-                                                <h6><?php echo htmlspecialchars($seriespage2[$j]['title']); ?></h6>
+                                                <h6><?= $seriespage2[$j]['title'] ?></h6>
                                                 <div class="button-container">
                                                     <a href="#" class="outlines">
                                                         <i class="bi bi-play-circle-fill"></i>
                                                     </a>
-                                                    <a href="#" class="outlines">
-                                                        <i class="bi bi-plus-circle-fill"></i>
-                                                    </a>
+                                                    <form action="/crud/controllers/shows/shows.php" method="post" enctype="multipart/form-data">
+                                                        <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
+                                                        <input type="hidden" name="show_id" value="<?= $seriespage2[$j]['id'] ?>">                                         
+                                                        <button type="submit" name="addShow" class="outlines button-transparent p-0">
+                                                            <i class="bi bi-plus-circle-fill"></i>
+                                                        </button>
+                                                    </form> 
                                                     <form action="/crud/controllers/shows/shows.php" method="get">
-                                                        <input type="hidden" name="id" value="<?php echo $seriespage2[$j]['id']; ?>">                                        
+                                                        <input type="hidden" name="id" value="<?= $seriespage2[$j]['id']; ?>">                                        
                                                         <button type="submit" name="getShowDetails" class="outlines button-transparent">
                                                             <i class="bi bi-info-circle-fill"></i>
                                                         </button>
