@@ -11,7 +11,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
 <!--content-->
 
 <div class="container main-margin" style="min-height: 100vh;">
-  <div class="row ">
+  <div class="row mb-3">
     <h1 class="m-3 fw-normal text-center text-white">Profile</h1>
   </div>
   <?php
@@ -31,16 +31,16 @@ include_once __DIR__ . '/../../../templates/navbar.php';
     }
   ?>
   <div class="row">
-    <div class="col-4 d-flex justify-content-center align-items-center">
+    <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
       <?php if (!empty($user['foto'])): ?>
         <img src="data:image/jpeg;base64,<?= base64_encode($user['foto']) ?>" class="foto_perfil" alt="Foto_Perfil">
       <?php else: ?>
         <!-- Exibição padrão caso não haja imagem -->
-        <img src="/crud/assets/images/uploads/foto_default.png" class="foto_perfil" alt="Foto_Perfil">
+        <img src="/crud/assets/images/uploads/foto_default.jpg" class="foto_perfil" alt="Foto_Perfil">
       <?php endif; ?>
     </div>
-    <div class="col-8">
-      <form enctype="multipart/form-data" action="/crud/controllers/admin/user.php" method="post" class=" py-3">
+    <div class="col-lg-8 col-md-6 col-sm-12">
+      <form enctype="multipart/form-data" action="/crud/controllers/admin/user.php" method="post" class="mt-3 py-3">
 
         <div class="input-group mb-3">
           <span class="input-group-text text-white" style="background-color: rgba(1,1,1,1)" >Name</span>
