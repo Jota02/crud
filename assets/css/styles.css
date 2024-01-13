@@ -253,12 +253,6 @@ hr.divider{
     }
 }
 
-.heading-title{
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: var(--text-color);
-}
-
 .shows-placeholder{
     margin-top: 2.5rem;
     border: .05rem solid var(--main-color);

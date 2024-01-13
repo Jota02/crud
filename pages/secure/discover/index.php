@@ -92,7 +92,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
         
         <!--movies header start-->
         <div class="heading mt-5 w-75">
-            <h4 class="heading-title">Trending Movies</h4>
+            <h3 class="text-white">Trending Movies</h3>
             <button class="btn btn-link" onclick="showMovieCarousel()">
                 <i class="bi bi-plus-circle outlines"></i> 
             </button>
@@ -212,7 +212,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
 
         <!--series header start-->
         <div class="heading mt-5 w-75">
-            <h4 class="heading-title">Trending Series</h4>
+            <h3 class="text-white">Trending Series</h3>
             <button class="btn btn-link" onclick="showSerieCarousel()">
                 <i class="bi bi-plus-circle outlines"></i> 
             </button>

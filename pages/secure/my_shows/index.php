@@ -23,9 +23,6 @@ for ($i=0; $i < count($myShows) ; $i++) {
 ?>
 
 <div class="d-flex flex-column align-items-center main-margin">
-
-
-
     <?php
         if (isset($_SESSION['success']))  {
             echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
@@ -44,7 +41,7 @@ for ($i=0; $i < count($myShows) ; $i++) {
     ?>
     <!--movies header start-->
         <div class="heading mt-5 w-75">
-            <h4 class="heading-title">My Movies</h4>
+            <h3 class="text-white">My Movies</h3>
         </div>
         <!--movies header end-->
         <!--movies div start-->
@@ -66,13 +63,13 @@ for ($i=0; $i < count($myShows) ; $i++) {
                                         <div class="button-container">
                                             <form action="/crud/controllers/shows/shows.php" method="post" enctype="multipart/form-data">
                                                 <input type="hidden" name="id" value="<?= $myMovies[$j]['show_id'] ?>">                                        
-                                                <button type="submit" name="removeMyShow" class="outlines button-transparent">
+                                                <button type="submit" name="removeMyShow" class="outlines button-transparent p-0">
                                                     <i class="bi bi-dash-circle-fill"></i>
                                                 </button>
                                             </form> 
                                             <form action="/crud/controllers/shows/shows.php" method="get">
                                                 <input type="hidden" name="id" value="<?= $myMovies[$j]['show_id'] ?>">                                        
-                                                <button type="submit" name="getShowDetails" class="outlines button-transparent">
+                                                <button type="submit" name="getShowDetails" class="outlines button-transparent p-0">
                                                     <i class="bi bi-info-circle-fill"></i>
                                                 </button>
                                             </form> 
@@ -89,7 +86,7 @@ for ($i=0; $i < count($myShows) ; $i++) {
 
         <!--series header start-->
         <div class="heading mt-5 w-75">
-            <h4 class="heading-title">My Series</h4>
+            <h3 class="text-white">My Series</h3>
         </div>
         <!--series header end-->
         <!--series div start-->
@@ -110,14 +107,14 @@ for ($i=0; $i < count($myShows) ; $i++) {
                                         <h6><?= $mySeries[$j]['title'] ?></h6>
                                         <div class="button-container">
                                             <form action="/crud/controllers/shows/shows.php" method="post" enctype="multipart/form-data">
-                                                <input type="hidden" name="id" value="<?= $mySeries[$j]['id'] ?>">                                        
-                                                <button type="submit" name="removeMyShow" class="outlines button-transparent">
+                                                <input type="hidden" name="id" value="<?= $mySeries[$j]['show_id'] ?>">                                        
+                                                <button type="submit" name="removeMyShow" class="outlines button-transparent p-0">
                                                     <i class="bi bi-dash-circle-fill"></i>
                                                 </button>
                                             </form>
                                             <form action="/crud/controllers/shows/shows.php" method="get">
                                                 <input type="hidden" name="id" value="<?= $mySeries[$j]['show_id'] ?>">                                        
-                                                <button type="submit" name="getShowDetails" class="outlines button-transparent">
+                                                <button type="submit" name="getShowDetails" class="outlines button-transparent p-0">
                                                     <i class="bi bi-info-circle-fill"></i>
                                                 </button>
                                             </form> 
@@ -130,7 +127,10 @@ for ($i=0; $i < count($myShows) ; $i++) {
                 <?php endfor; ?>
             <?php endif; ?>
         </div>
-        <!--series div end-->      
+        <!--series div end-->
+        <div class="heading w-75 mt-5 d-flex justify-content-center">
+            <h3 class="text-white">What's the next <a href="\crud\pages\secure\show_time\index.php" class="text-info">popcorn</a> session?</h3>
+        </div>      
     </div>
 
     <div class="mt-5"></div>

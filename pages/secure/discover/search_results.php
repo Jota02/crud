@@ -34,7 +34,7 @@ include_once __DIR__ . '/../../../templates/navbar.php';
         <div class="heading">
             <h3 class=" ms-3 text-white text-center">Search Results</h3>
         </div>
-        <div class="show-list mt-3 mb-5">
+        <div class="mt-3 mb-5">
             <div class="list-group">
                 <?php foreach ($searchResults as $result): 
                         $show = getShowById($result['id'])    

@@ -50,10 +50,19 @@ if (isset($_POST['removeMyShow'])) {
     if (isset($_POST['id'])){
         $id = $_POST['id'];
         removeMyShow($id);
-    }
-        
+    }     
 }
-
+if (isset($_POST['scheduleShow'])) {
+    $show = array(
+        'calendar_date' => $_POST['calendar_date'],
+        'show_id' => $_POST['show_id']
+    );
+    if (!empty($show)) {
+        scheduleShow($show);
+    }else{
+        header('Location: /crud/pages/secure/index.php');
+    }
+}
 function createReview($review){
     $success = insertUserReview($review);
 
@@ -128,6 +137,19 @@ function removeMyShow($id){
         header('Location: /crud/pages/secure/my_shows/index.php');
     }else {
         $_SESSION['errors'] = ['Error adding the show!'];
+        header('Location: /crud/pages/secure/my_shows/index.php');
+        exit;
+    }
+}
+
+function scheduleShow($show){
+    $success = updateShow($show);
+
+    if ($success) {
+        $_SESSION['success'] = 'Show scheduled successfully!';
+        header('Location: /crud/pages/secure/show_time/index.php');
+    }else {
+        $_SESSION['errors'] = ['Error schedulling the show!'];
         header('Location: /crud/pages/secure/my_shows/index.php');
         exit;
     }

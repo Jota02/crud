@@ -137,11 +137,26 @@ function getSearchedShows($searchInput)
 }
 
 function getMyShows($userId){
-    $sql = 'SELECT s.id AS show_id, s.id_type, s.title, s.poster_path 
+    $sql = 'SELECT s.id AS show_id, s.id_type, s.title, s.poster_path
             FROM user_shows us 
             JOIN shows s ON us.show_id = s.id 
             WHERE us.user_id = ? 
             ORDER BY us.saved_date DESC';
+
+    $stmt = $GLOBALS['pdo']->prepare($sql);
+    $stmt->bindValue(1, $userId, PDO::PARAM_INT);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $result;
+}
+
+function getEvents($userId){
+    $sql = 'SELECT s.title, s.poster_path, us.calendar_date
+            FROM user_shows us 
+            JOIN shows s ON us.show_id = s.id 
+            WHERE us.user_id = ? AND us.calendar_date IS NOT NULL
+            ORDER BY us.calendar_date ASC';
 
     $stmt = $GLOBALS['pdo']->prepare($sql);
     $stmt->bindValue(1, $userId, PDO::PARAM_INT);
@@ -233,7 +248,7 @@ function getShowsTitleCovers() {
     
     $sql = 'SELECT id, title, cover_path FROM shows WHERE cover_path IS NOT NULL';
     
-    $stmt = $GLOBALS['pdo']->prepare($sql);;  
+    $stmt = $GLOBALS['pdo']->prepare($sql);  
     $stmt->execute();
     
     return $stmt->fetchAll();
@@ -241,44 +256,16 @@ function getShowsTitleCovers() {
 
 function updateShow($show)
 {
-    $sqlUpdate = "UPDATE  
-    shows SET
-        id_type = :id_type, 
-        title = :title, 
-        description = :description, 
-        seasons = :seasons, 
-        rating = :rating, 
-        age = :age, 
-        release_year = :release_year,
-        end_year = :end_year,
-        trailer = :trailer,
-        poster_path = :poster_path,
-        cover_path = :cover_path
-    WHERE id = :id;";
+    $sql ='UPDATE user_shows SET calendar_date= :calendar_date WHERE show_id= :id';
 
-    $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
-
-    return $PDOStatement->execute([
-        ':id_type' => $show['id_type'],
-        ':title' => $show['title'],
-        ':description' => $show['description'],
-        ':seasons' => $show['seasons'],
-        ':rating' => $show['rating'],
-        ':age' => $show['age'],
-        ':release_year' => $show['release_year'],
-        ':end_year' => $show['end_year'],
-        ':trailer' => $show['trailer'],
-        ':poster_path' => $show['poster_path'],
-        ':cover_path' => $show['cover_path']
-    ]);
+    $stmt = $GLOBALS['pdo']->prepare($sql);
+    $stmt->bindParam(':calendar_date', $show['calendar_date'], PDO::PARAM_STR);
+    $stmt->bindParam(':id', $show['show_id'], PDO::PARAM_INT);
     
-}
-
-function deleteShow($id)
-{
-    $stmt = $GLOBALS['pdo']->prepare('DELETE FROM shows WHERE id = ?;');
-    $stmt->bindValue(1, $id, PDO::PARAM_INT);
-    return $stmt->execute();
+    $stmt->execute();
+    
+    return $stmt->fetch();
+    
 }
 
 function deleteMyShow($id)

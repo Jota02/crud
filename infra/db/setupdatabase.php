@@ -108,6 +108,7 @@ require __DIR__ . '/connection.php';
 //         user_id INTEGER,
 //         show_id INTEGER,
 //         saved_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+//         calendar_date DATE,
 //         FOREIGN KEY (user_id) REFERENCES users(id),
 //         FOREIGN KEY (show_id) REFERENCES shows(id),
 //         UNIQUE(user_id, show_id) 
