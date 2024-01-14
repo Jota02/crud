@@ -1,13 +1,27 @@
 <?php
 require_once __DIR__ . '/../../infra/middlewares/middleware-not-authenticated.php';
 $title = '- Sign Up';
-include_once __DIR__ . '../../../templates/header.php'; ?>
+?>
+
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="../../assets/images/uploads/logo.png">
+        <title>HomeCinema</title>
+
+        <link rel="stylesheet" type="text/css" href="../../assets/css/styles.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    </head>
+    <body>
 
 <div class="account-page-styles page" style="min-height: 100vh;">
     <div class="container py-5">  
         <div class="account-form-wrapper text-white">
           <h1 class="mb-3 fw-normal text-center">Sign Up</h1>
-          <form action="/crud/controllers/auth/signup.php" method="post">
+          <form action="../../controllers/auth/signup.php" method="post">
             <div class="account-form-style">
               <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
@@ -31,7 +45,7 @@ include_once __DIR__ . '../../../templates/header.php'; ?>
               <button class="w-100 btn btn-lg btn-outline-dark btn-success mb-2 text-white" type="submit" name="user" value="signUp">Sign Up</button>
             </div>
           </form>
-          <a href="/crud">
+          <a href="../../">
                 <button class="w-100 btn btn-lg btn-outline-dark btn-danger mb-2 text-white">Back</button>
           </a>
           <section>

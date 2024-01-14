@@ -12,38 +12,38 @@ function is_active($url) {
 <header class="px-3 py-2 bg-dark fixed-top">
     <div class="d-flex align-items-center justify-content-between">
         
-        <a href="/crud/pages/secure/index.php" class="logo">
-            <img src="/crud/assets/images/uploads/logo.png" alt="HomeCinema" class="img-fluid" style="max-width: 3rem; height: auto;">
+        <a href="../home/" class="logo">
+            <img src="../../../assets/images/uploads/logo.png" alt="HomeCinema" class="img-fluid" style="max-width: 3rem; height: auto;">
             <span class="text-danger">Home</span><span class="text-primary">CINEMA</span>
         </a>
 
         <ul class="nav d-flex align-items-center justify-content-center my-2 my-md-0">
             <li class="d-none d-sm-none d-md-block">
-                <a href="/crud/pages/secure/index.php" class="nav-link d-flex flex-column align-items-center <?php echo is_active('/crud/pages/secure/index.php'); ?>">
+                <a href="../home/" class="nav-link d-flex flex-column align-items-center <?php echo is_active('../home/'); ?>">
                     <i class="bi bi-house-door-fill"></i>
                     <span>Home</span>
                 </a>
             </li>
             <li class="d-none d-sm-none d-md-block">
-                <a href="/crud/pages/secure/discover/index.php" class="nav-link d-flex flex-column align-items-center <?php echo is_active('/crud/pages/secure/discover/index.php'); ?>">
+                <a href="../discover/" class="nav-link d-flex flex-column align-items-center <?php echo is_active('../discover/'); ?>">
                     <i class="bi bi-search"></i>
                     <span>Discover</span>
                 </a>
             </li>
             <li class="d-none d-sm-none d-md-block">
-                <a href="/crud/pages/secure/my_shows/index.php" class="nav-link d-flex flex-column align-items-center <?php echo is_active('/crud/pages/secure/my_shows/index.php'); ?>">
+                <a href="../my_shows/" class="nav-link d-flex flex-column align-items-center <?php echo is_active('../my_shows/'); ?>">
                     <i class="bi bi-tv-fill"></i>
                     <span>My Shows</span>
                 </a>
             </li>
             <li class="d-none d-sm-none d-md-block">
-                <a href="/crud/pages/secure/user/profile.php" class="nav-link d-flex flex-column align-items-center <?php echo is_active('/crud/pages/secure/user/profile.php'); ?>">
+                <a href="../user/profile.php" class="nav-link d-flex flex-column align-items-center <?php echo is_active('../user/profile.php'); ?>">
                     <i class="bi bi-person-circle"></i>
                     <span>Account</span>
                 </a>
             </li>
             <li class="d-none d-sm-none d-md-block">
-                <form action="/crud/controllers/auth/signin.php" method="post">
+                <form action="../../../controllers/auth/signin.php" method="post">
                     <button class="nav-link d-flex flex-column align-items-center text-white" type="submit" name="user" value="logout">
                         <i class="bi bi-power"></i>
                         <span>Logout</span>
@@ -57,31 +57,31 @@ function is_active($url) {
             </button>
             <ul class="dropdown-menu bg-dark" >
                     <li>
-                        <a href="/crud/pages/secure/index.php" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('/crud/pages/secure/index.php'); ?>">
+                        <a href="../home/" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('../home/'); ?>">
                             <i class="bi bi-house-door-fill"></i>
                             <span>Home</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/crud/pages/secure/discover/index.php" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('/crud/pages/secure/discover/index.php'); ?>">
+                        <a href="../discover/" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('../discover/'); ?>">
                             <i class="bi bi-search"></i>
                             <span>Discover</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/crud/pages/secure/my_shows/index.php" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('/crud/pages/secure/my_shows/index.php'); ?>">
+                        <a href="../my_shows/" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('../my_shows/'); ?>">
                             <i class="bi bi-tv-fill"></i>
                             <span>My Shows</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/crud/pages/secure/user/profile.php" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('/crud/pages/secure/user/profile.php'); ?>">
+                        <a href="../user/profile.php" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('../user/profile.php'); ?>">
                             <i class="bi bi-person-circle"></i>
                             <span>Account</span>
                         </a>
                     </li>
                     <li>
-                        <form action="/crud/controllers/auth/signin.php" method="post">
+                        <form action="../../../controllers/auth/signin.php" method="post">
                             <button class="nav-link d-flex flex-column align-items-center text-white dropdown-item" type="submit" name="user" value="logout">
                                 <i class="bi bi-power"></i>
                                 <span>Logout</span>

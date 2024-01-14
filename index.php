@@ -37,10 +37,10 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/crud/pages/public/signin.php">Login</a>
+                        <a class="nav-link" href="./pages/public/signin.php">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/crud/pages/public/signup.php">Sign Up</a>
+                        <a class="nav-link" href="./pages/public/signup.php">Sign Up</a>
                     </li>
                 </ul>
             </div>

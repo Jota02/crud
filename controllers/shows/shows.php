@@ -17,7 +17,7 @@ if (isset($_GET['submitSearch'])) {
             getShows($searchInput); 
         }
         else{
-            header('Location: /crud/pages/secure/discover/index.php');
+            header('Location: ../../pages/secure/discover/index.php');
         }
     }
 }
@@ -32,7 +32,7 @@ if (isset($_POST['submitReview'])) {
         if (!empty($review)) {
             createReview($review); 
         }else{
-            header('Location: /crud/pages/secure/my_shows/index.php');
+            header('Location: ../../pages/secure/my_shows/index.php');
         }
 }
 if (isset($_POST['addShow'])) {
@@ -43,7 +43,7 @@ if (isset($_POST['addShow'])) {
         if (!empty($show)) {
             createUserShow($show); 
         }else{
-            header('Location: /crud/pages/secure/index.php');
+            header('Location: ../../pages/secure/home/index.php');
         }
 }
 if (isset($_POST['removeMyShow'])) {
@@ -60,7 +60,7 @@ if (isset($_POST['scheduleShow'])) {
     if (!empty($show)) {
         scheduleShow($show);
     }else{
-        header('Location: /crud/pages/secure/index.php');
+        header('Location: ../../pages/secure/home/index.php');
     }
 }
 function createReview($review){
@@ -82,10 +82,10 @@ function createUserShow($show){
 
     if ($success) {
         $_SESSION['success'] = 'Show added to your library successfully!';
-        header('Location: /crud/pages/secure/discover/index.php');
+        header('Location: ../../pages/secure/discover/index.php');
     }else {
         $_SESSION['errors'] = ['Error adding the show!'];
-        header('Location: /crud/pages/secure/index.php');
+        header('Location: ../../pages/secure/home/index.php');
         exit;
     }
 }
@@ -101,12 +101,12 @@ function getDetails($id)
         $show['type'] = $type;
         $params = '?' . http_build_query($show);
 
-        header('Location: /crud/pages/secure/discover/show_details.php' . $params);
+        header('Location: ../../pages/secure/discover/show_details.php' . $params);
         exit;
 
     } else {
         $_SESSION['errors'] = ['Show not found!'];
-        header('Location: /crud/pages/secure/discover/index.php');
+        header('Location: ../../pages/secure/discover/index.php');
         exit;
     }
 }
@@ -120,11 +120,11 @@ function getShows($searchInput)
 
         $params = '?searchResults=' . urlencode($searchResultsJson);
         $params .= '&searchInput=' . urlencode($searchInput);
-        header('Location: /crud/pages/secure/discover/search_results.php' . $params);
+        header('Location: ../../pages/secure/discover/search_results.php' . $params);
         exit;
     } else {
         $_SESSION['errors'] = ['No shows found for the search query!'];
-        header('Location: /crud/pages/secure/index.php');
+        header('Location: ../../pages/secure/home/index.php');
         exit;
     }
 }
@@ -134,10 +134,10 @@ function removeMyShow($id){
 
     if ($success) {
         $_SESSION['success'] = 'Show removed from your library successfully!';
-        header('Location: /crud/pages/secure/my_shows/index.php');
+        header('Location: ../../pages/secure/my_shows/index.php');
     }else {
         $_SESSION['errors'] = ['Error adding the show!'];
-        header('Location: /crud/pages/secure/my_shows/index.php');
+        header('Location: ../../pages/secure/my_shows/index.php');
         exit;
     }
 }
@@ -147,10 +147,10 @@ function scheduleShow($show){
 
     if ($success) {
         $_SESSION['success'] = 'Show scheduled successfully!';
-        header('Location: /crud/pages/secure/show_time/index.php');
+        header('Location: ../../pages/secure/show_time/index.php');
     }else {
         $_SESSION['errors'] = ['Error schedulling the show!'];
-        header('Location: /crud/pages/secure/my_shows/index.php');
+        header('Location: ../../pages/secure/my_shows/index.php');
         exit;
     }
 }
