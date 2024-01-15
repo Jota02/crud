@@ -343,10 +343,14 @@ hr.divider{
 /* Foto Perfil */
 
 .foto_perfil{
+    border: 5px solid white;
     border-radius: 2rem;
     height: 20rem;
 }
 
+.btn{
+    height: 3.75rem;
+}
 
   
 
