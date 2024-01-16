@@ -67,6 +67,25 @@ function create($req)
     }
 }
 
+function saveFile($data, $oldImage = null){
+
+    $fileName = $_FILES['foto']['name'];
+    $tempFile = $_FILES['foto']['tmp_name'];
+    $extension = pathinfo($fileName, PATHINFO_EXTENSION);
+    $extension = strtolower($extension);
+    $newName = uniqid('foto_') . '.' . $extension;
+    $path = __DIR__ . '/../../assets/images/uploads/'; //ATENÇÃO AO PATH
+    $file = $path . $newName;
+
+    if (move_uploaded_file($tempFile, $file)) {
+        $data['foto'] = $newName;
+        if (isset($data['user']) && ($data['user'] == 'update') || ($data['user'] == 'profile')) {
+            unlink($path . $oldImage['foto']);
+        }
+    }
+    return $data;
+}
+
 function update($req)
 {
     $data = validatedUser($req);
@@ -102,6 +121,11 @@ function updateProfile($req)
         $user = user(); 
         $data['id'] = $user['id'];
         $data['administrator'] = $user['administrator'];
+        if (!empty($_FILES['foto']['name'])) {
+            $data = saveFile($data, $req);
+        }else{
+            $data['foto'] = $data['foto'];
+        }
 
         $success = updateUser($data);
 

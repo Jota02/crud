@@ -4,6 +4,7 @@ require_once __DIR__ . '../../../../infra/middlewares/middleware-user.php';
 
 $title = ' - Profile';
 $user = user();
+$userPhotoPath =  "../../../assets/images/uploads/" . $user['foto'];
 ?>
 
 <!DOCTYPE html>
@@ -42,14 +43,16 @@ $user = user();
           }
         ?>
         <div class="row">
+          <!-- Foto User -->
           <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
             <?php if (!empty($user['foto'])): ?>
-              <img src="data:image/jpeg;base64,<?= base64_encode($user['foto']) ?>" class="foto_perfil" alt="Foto_Perfil">
+              <img src="<?= $userPhotoPath ?>" class="foto_perfil" alt="Foto_Perfil">
             <?php else: ?>
               <!-- Exibição padrão caso não haja imagem -->
               <img src="../../../assets/images/uploads/foto_default.png" class="foto_perfil" alt="Foto_Perfil">
             <?php endif; ?>
           </div>
+          <!-- Info User -->
           <div class="col-lg-8 col-md-6 col-sm-12">
             <form enctype="multipart/form-data" action="../../../controllers/admin/user.php" method="post" class="mt-3 py-3">
 
@@ -74,8 +77,8 @@ $user = user();
                   value="<?= isset($_REQUEST['email']) ? $_REQUEST['email'] : $user['email'] ?>" required>
               </div>
               <div class="input-group mb-3">
-                <label class="input-group-text text-white" style="background-color: rgba(1,1,1,1)" for="inputGroupFile01">Picture</label>
-                <input accept="image/*" type="file" class="form-control text-white" style="background-color: rgba(1,1,1,1)"id="inputGroupFile01" name="foto" />
+                <label class="input-group-text text-white" style="background-color: rgba(1,1,1,1)" for="foto">Picture</label>
+                <input accept="image/*" type="file" class="form-control text-white" style="background-color: rgba(1,1,1,1)" id="foto" name="foto" />
               </div>
               <div class="container" style="margin-top: 2rem; margin-bottom: 0%">
                 <div class="row">
@@ -94,7 +97,7 @@ $user = user();
                     }
                   ?>
                   <div class="d-grid col-4 mx-auto">
-                    <button class="w-100 btn btn-success mb-2 text-white" style="font-weight: bold" type="submit" name="user" value="profile">Edit Profile</button>
+                    <button class="w-100 btn btn-success mb-2 text-white" type="submit" name="user" value="profile">Edit Profile</button>
                   </div>
                 </div>
               </div>

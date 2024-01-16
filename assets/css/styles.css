@@ -343,7 +343,7 @@ hr.divider{
 /* Foto Perfil */
 
 .foto_perfil{
-    border: 5px solid white;
+    border: 0.25rem solid var(--main-color);
     border-radius: 2rem;
     height: 20rem;
 }
