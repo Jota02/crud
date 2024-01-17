@@ -53,7 +53,7 @@ $searchResults = json_decode($searchResultsJsonDecoded, true);
                                 <button type="submit" name="getShowDetails" class="button-transparent p-0 w-100">     
                                     <div class="list-group-item list-group-item-action list-group-item-dark search-results">
                                         <div class="d-flex flex-row align-items-center text-white">
-                                            <img src="\crud\<?= $show['poster_path'] ?>" class="rounded border"  alt="movie_poster"/>
+                                            <img src="../../../<?= $show['poster_path'] ?>" class="rounded border"  alt="movie_poster"/>
                                             <div class="d-flex flex-column ms-3 align-items-start">                                           
                                                 <h4 class="text-white"><?= $show['title'] ?></h4>
                                                 <p class="m-0 fs-5"><?= $show['release_year'] ?></p>

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../../infra/middlewares/middleware-user.php';
+//require_once __DIR__ . '/../../../infra/middlewares/middleware-user.php';
 @require_once __DIR__ . '/../../../helpers/session.php';
 require_once __DIR__  . '/../../../infra/repositories/showRepository.php';
 
@@ -32,6 +32,23 @@ $title = '- App';
         <?php include_once __DIR__ . '/../../../templates/navbar.php'; ?>
         <!--content start-->
         <div class="d-flex flex-column align-items-center main-margin">
+            <?php
+            if (isset($_SESSION['success'])) {
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
+                echo $_SESSION['success'] . '<br>';
+                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                unset($_SESSION['success']);
+            }
+            if (isset($_SESSION['errors'])) {
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                foreach ($_SESSION['errors'] as $error) {
+                echo $error . '<br>';
+                }
+                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                unset($_SESSION['errors']);
+            }
+            ?>
+
             <!--carousel start-->
             <div id="coverCarousel" class="carousel">
                 <div class="carousel-inner">   
@@ -149,7 +166,7 @@ $title = '- App';
                                                             <button type="submit" name="<?= $showInLibrary ? 'removeMyShow' : 'addShow' ?>" class="outlines button-transparent p-0">
                                                                 <i class="<?= $showInLibrary ? 'bi bi-dash-circle-fill' : 'bi bi-plus-circle-fill bi-cover-size' ?> bi-cover-size"></i>
                                                             </button>
-                                                        </form>
+                                                        </form> 
                                                         <form action="../../../controllers/shows/shows.php" method="get" class="m-0">
                                                             <input type="hidden" name="id" value="<?= $moviespage1[$j]['id'] ?>">                                        
                                                             <button type="submit" name="getShowDetails" class="outlines button-transparent p-0">

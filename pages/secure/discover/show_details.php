@@ -112,10 +112,14 @@ foreach ($myShows as $myShow) {
             </div>
             <div class="d-flex flex-row">
                 <div class="d-flex flex-column">
-                    <img src="\crud\<?= $poster_path ?>" class="img-fluid rounded" alt="movie_poster"/>     
+                    <img src="../../../<?= $poster_path ?>" class="img-fluid rounded" alt="movie_poster"/>     
                     <div class="d-flex align-items-center justify-content-center mt-5">
                         <i class="bi bi-star-fill rating-icon"></i>
                         <h3 class="text-white"><span class="<?= $ratingColorClass ?>"><?= $rating ?></span>/10</h3>
+                    </div>
+                    <div class="d-flex flex-row align-items-center justify-content-center">
+                        <a href="../share_list/index.php?show_id=<?= $id ?>" class="text-info fs-5">Share</a>
+                        <i class="bi bi-share-fill text-white ms-2"></i>
                     </div>
                 </div>
                 <div class="d-flex flex-column ms-5 w-75 justify-content-around">
@@ -180,18 +184,18 @@ foreach ($myShows as $myShow) {
                     
                     <div class="form-group w-100 mt-2">
                         <label for="comment">Comment:</label>
-                        <input type="text" class="form-control" id="comment" name="comment" maxlength="150" required></textarea>
+                        <input type="text" class="form-control form-input-styles text-white" id="comment" name="comment" maxlength="150" placeholder="What did you think of the show?" required></textarea>
                     </div>
                     
                     <div class="d-flex flex-row w-100">
                         <div class="form-group w-75 me-5">
                             <label for="rating">Rating:</label>
-                            <input type="number" step="0.1" class="form-control" id="rating" name="rating" min="1" max="10" required>
+                            <input type="number" step="0.1" class="form-control form-input-styles text-white" id="rating" name="rating" min="1" max="10" placeholder="Rate the show ?/10" required>
                         </div>
                         
                         <div class="form-group w-75 ms-5">
                             <label for="attachments">Attachments:</label>
-                            <input type="file" class="form-control" id="attachments" name="attachments">
+                            <input type="file" class="form-control form-input-styles" id="attachments" name="attachments">
                         </div>
                     </div>
                     

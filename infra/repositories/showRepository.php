@@ -86,6 +86,33 @@ function insertUserReview($review){
     return $success;
 }
 
+function insertSharedContent($shared){
+    $sqlCreate = "INSERT INTO 
+    shared_content (
+        sender_id, 
+        destination_id, 
+        show_id
+        ) 
+    VALUES (
+        :sender_id, 
+        :destination_id, 
+        :show_id
+    )";
+
+    $PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
+
+    $success = $PDOStatement->execute([
+        ':sender_id' => $shared['sender_id'],
+        ':destination_id' => $shared['destination_id'],
+        ':show_id' => $shared['show_id']
+    ]);
+
+    if ($success) {
+        $shared['id'] = $GLOBALS['pdo']->lastInsertId();
+    }
+    return $success;
+}
+
 function insertUserShow($show){
 
     if (userShowExist($show['user_id'], $show['show_id'])) {
@@ -115,6 +142,8 @@ function insertUserShow($show){
     return $success;
 }
 
+
+
 function getShowById($id)
 {
     $stmt = $GLOBALS['pdo']->prepare('SELECT * FROM shows WHERE id = ?');
@@ -130,6 +159,22 @@ function getSearchedShows($searchInput)
     $stmt = $GLOBALS['pdo']->prepare($sql);
     $searchTermWithWildcards = '%' . $searchInput . '%';
     $stmt->bindParam(':searchInput', $searchTermWithWildcards, PDO::PARAM_STR);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $result;
+}
+
+function getShared($id)
+{
+    $sql = 'SELECT sc.show_id, s.title, s.poster_path 
+            FROM shared_content sc 
+            JOIN shows s ON sc.show_id = s.id 
+            WHERE sc.destination_id = ?
+            ORDER BY sc.shared_date DESC';
+
+    $stmt = $GLOBALS['pdo']->prepare($sql);
+    $stmt->bindValue(1, $id, PDO::PARAM_INT);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -270,9 +315,8 @@ function updateShow($show)
 
 function deleteMyShow($id)
 {
-    $stmt = $GLOBALS['pdo']->prepare('DELETE FROM user_shows WHERE show_id = ?;');
+    $stmt = $GLOBALS['pdo']->prepare('DELETE FROM user_shows WHERE show_id= ?');
     $stmt->bindValue(1, $id, PDO::PARAM_INT);
     return $stmt->execute();
 }
 
-?>

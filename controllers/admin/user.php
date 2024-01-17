@@ -161,7 +161,7 @@ function updateProfile($req) {
             $_SESSION['success'] = 'User successfully changed!';
             $_SESSION['action'] = 'update';
             $params = '?' . http_build_query($data);
-            header('location: ../../pages/secure/user/profile.php' . $params);
+            header('location: ../../pages/secure/discover/index.php' . $params);
         }
     }
 }

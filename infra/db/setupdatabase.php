@@ -81,26 +81,18 @@ require __DIR__ . '/connection.php';
 
 // $pdo->exec(
 //     'CREATE TABLE shared_content (
-//         id INTEGER PRIMARY KEY AUTO_INCREMENT,
-//         shared_id INTEGER,
-//         show_id INTEGER,
-//         FOREIGN KEY (shared_id) REFERENCES users(id),
+//         id INTEGER NOT NULL,
+//         sender_id INTEGER NOT NULL,
+//         destination_id INTEGER NOT NULL,
+//         show_id INTEGER NOT NULL,
+//         shared_date datetime DEFAULT current_timestamp(),
+//         FOREIGN KEY (sender_id) REFERENCES users(id),
+//         FOREIGN KEY (destination_id) REFERENCES users(id),
 //         FOREIGN KEY (show_id) REFERENCES shows(id)
 //     );
 //     '
 // );
 
-// $pdo->exec(
-//     'CREATE TABLE share_list (
-//         id INTEGER PRIMARY KEY AUTO_INCREMENT,
-//         sender_id INTEGER,
-//         destination_id INTEGER,
-//         shared_date date,
-//         FOREIGN KEY (sender_id) REFERENCES users(id),
-//         FOREIGN KEY (destination_id) REFERENCES users(id)
-//     );
-//     '
-// );
 
 // $pdo->exec(
 //     'CREATE TABLE user_shows (

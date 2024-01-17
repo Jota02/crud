@@ -19,31 +19,31 @@ function is_active($url) {
 
         <ul class="nav d-flex align-items-center justify-content-center my-2 my-md-0">
             <li class="d-none d-sm-none d-md-block">
-                <a href="../home/" class="nav-link d-flex flex-column align-items-center <?php echo is_active('../home/'); ?>">
+                <a href="../home/" class="nav-link d-flex flex-column align-items-center <?php echo is_active('/pages/secure/home/'); ?>">
                     <i class="bi bi-house-door-fill"></i>
                     <span>Home</span>
                 </a>
             </li>
             <li class="d-none d-sm-none d-md-block">
-                <a href="../discover/" class="nav-link d-flex flex-column align-items-center <?php echo is_active('../discover/'); ?>">
+                <a href="../discover/" class="nav-link d-flex flex-column align-items-center <?php echo is_active('/pages/secure/discover/'); ?>">
                     <i class="bi bi-search"></i>
                     <span>Discover</span>
                 </a>
             </li>
             <li class="d-none d-sm-none d-md-block">
-                <a href="../my_shows/" class="nav-link d-flex flex-column align-items-center <?php echo is_active('../my_shows/'); ?>">
+                <a href="../my_shows/" class="nav-link d-flex flex-column align-items-center <?php echo is_active('/pages/secure/my_shows/'); ?>">
                     <i class="bi bi-tv-fill"></i>
                     <span>My Shows</span>
                 </a>
             </li>
             <li class="d-none d-sm-none d-md-block">
-                <a href="../user/profile.php" class="nav-link d-flex flex-column align-items-center <?php echo is_active('../user/profile.php'); ?>">
+                <a href="../user/profile.php" class="nav-link d-flex flex-column align-items-center <?php echo is_active('/pages/secure/user/profile.php'); ?>">
                     <i class="bi bi-person-circle"></i>
                     <span>Account</span>
                 </a>
             </li>
             <li class="d-none d-sm-none d-md-block">
-                <form action="../../../controllers/auth/signin.php" method="post">
+                <form action="../../../controllers/auth/signin.php" method="post" class="m-0">
                     <button class="nav-link d-flex flex-column align-items-center text-white" type="submit" name="user" value="logout">
                         <i class="bi bi-power"></i>
                         <span>Logout</span>
@@ -57,25 +57,25 @@ function is_active($url) {
             </button>
             <ul class="dropdown-menu bg-dark" >
                     <li>
-                        <a href="../home/" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('../home/'); ?>">
+                        <a href="../home/" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('/pages/secure/home/'); ?>">
                             <i class="bi bi-house-door-fill"></i>
                             <span>Home</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../discover/" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('../discover/'); ?>">
+                        <a href="../discover/" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('/pages/secure/discover/'); ?>">
                             <i class="bi bi-search"></i>
                             <span>Discover</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../my_shows/" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('../my_shows/'); ?>">
+                        <a href="../my_shows/" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('/pages/secure/my_shows/'); ?>">
                             <i class="bi bi-tv-fill"></i>
                             <span>My Shows</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../user/profile.php" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('../user/profile.php'); ?>">
+                        <a href="../user/profile.php" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('/pages/secure/user/profile.php'); ?>">
                             <i class="bi bi-person-circle"></i>
                             <span>Account</span>
                         </a>

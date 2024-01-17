@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../../infra/repositories/showRepository.php';
-
+@require_once __DIR__ . '/../../helpers/session.php';
 
 if (isset($_GET['getShowDetails'])) {
     if (isset($_GET['id'])) {
@@ -35,6 +35,18 @@ if (isset($_POST['submitReview'])) {
             header('Location: ../../pages/secure/my_shows/index.php');
         }
 }
+if (isset($_POST['shareContent'])) {
+    $shared = array(
+        'sender_id' => $_POST['sender_id'],
+        'destination_id' => $_POST['destination_id'],
+        'show_id' => $_POST['show_id']
+    );
+        if (!empty($shared)) {
+            createSharedContent($shared); 
+        }else{
+            header('Location: ../../pages/secure/my_shows/index.php');
+        }
+}
 if (isset($_POST['addShow'])) {
     $show = array(
         'user_id' => $_POST['user_id'],
@@ -47,9 +59,13 @@ if (isset($_POST['addShow'])) {
         }
 }
 if (isset($_POST['removeMyShow'])) {
-    if (isset($_POST['id'])){
-        $id = $_POST['id'];
-        removeMyShow($id);
+    if (isset($_POST['show_id'])){
+        $id = $_POST['show_id'];
+        if (!empty($id)) {
+            removeMyShow($id);
+        }else{
+            header('Location: ../../pages/secure/home/index.php');
+        }
     }     
 }
 if (isset($_POST['scheduleShow'])) {
@@ -63,6 +79,7 @@ if (isset($_POST['scheduleShow'])) {
         header('Location: ../../pages/secure/home/index.php');
     }
 }
+
 function createReview($review){
     $success = insertUserReview($review);
 
@@ -70,8 +87,22 @@ function createReview($review){
         $_SESSION['success'] = 'Review created successfully!';
         getDetails($review['id_show']);
     }else {
-        $_SESSION['errors'] = ['Error creating the review!'];
+        $_SESSION['errors'] = 'Error creating the review!';
         getDetails($review['id_show']);
+        exit;
+    }
+
+}
+
+function createSharedContent($shared){
+    $success = insertSharedContent($shared);
+
+    if ($success) {
+        $_SESSION['success'] = 'Content shared successfully!';
+        header('Location: ../../pages/secure/discover/index.php');
+    }else {
+        $_SESSION['errors'] = 'Error sharing the content!';
+        header('Location: ../../pages/secure/discover/index.php');
         exit;
     }
 
@@ -82,10 +113,10 @@ function createUserShow($show){
 
     if ($success) {
         $_SESSION['success'] = 'Show added to your library successfully!';
-        header('Location: ../../pages/secure/discover/index.php');
+        header('location: ../../pages/secure/discover/index.php');
     }else {
-        $_SESSION['errors'] = ['Error adding the show!'];
-        header('Location: ../../pages/secure/home/index.php');
+        $_SESSION['errors'] = 'Error adding the show!';
+        header('location: ../../pages/secure/home/index.php');
         exit;
     }
 }
@@ -105,7 +136,7 @@ function getDetails($id)
         exit;
 
     } else {
-        $_SESSION['errors'] = ['Show not found!'];
+        $_SESSION['errors'] = 'Show not found!';
         header('Location: ../../pages/secure/discover/index.php');
         exit;
     }
@@ -123,7 +154,7 @@ function getShows($searchInput)
         header('Location: ../../pages/secure/discover/search_results.php' . $params);
         exit;
     } else {
-        $_SESSION['errors'] = ['No shows found for the search query!'];
+        $_SESSION['errors'] = 'No shows found for the search query!';
         header('Location: ../../pages/secure/home/index.php');
         exit;
     }
@@ -134,9 +165,9 @@ function removeMyShow($id){
 
     if ($success) {
         $_SESSION['success'] = 'Show removed from your library successfully!';
-        header('Location: ../../pages/secure/my_shows/index.php');
+        header('Location: ../../pages/secure/discover/index.php');
     }else {
-        $_SESSION['errors'] = ['Error adding the show!'];
+        $_SESSION['errors'] = 'Error adding the show!';
         header('Location: ../../pages/secure/my_shows/index.php');
         exit;
     }

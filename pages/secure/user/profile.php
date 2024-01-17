@@ -20,10 +20,10 @@ $userPhotoPath =  "../../../assets/images/uploads/" . $user['foto'];
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     </head>
-    <body style="height: 100vh; overflow-y: hidden;">
+    <body>
       <?php include_once __DIR__ . '/../../../templates/navbar.php'; ?>
       <!--content-->
-      <div class="container main-margin" style="min-height: 100vh; height: 100%; overflow-y: auto;">
+      <div class="container d-flex align-items-center justify-content-center flex-column main-margin" style="min-height: 100vh;">
         <div class="row mb-3">
           <h1 class="m-3 fw-normal text-center text-white">Profile</h1>
         </div>
@@ -45,11 +45,12 @@ $userPhotoPath =  "../../../assets/images/uploads/" . $user['foto'];
         ?>
         <div class="row">
           <!-- Foto User -->
-          <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center foto-container" style="position: relative;">
+          <div class="col-lg-4 col-md-6 col-sm-12 d-flex flex-column justify-content-center align-items-center foto-container" style="position: relative;">
             <?php if (!empty($user['foto'])): ?>
                 <img src="<?= $userPhotoPath ?>" class="foto_perfil" alt="Foto_Perfil">
-                <!-- Botão de exclusão -->
-                <button type="button" class="delete-photo-button" id="deletePhotoButton">Delete</button>
+                <div class="col-4 mx-auto">
+                  <button type="button" class="btn btn-danger w-100 mt-2 text-white" id="deletePhotoButton">Delete</button>
+                </div>
             <?php else: ?>
                 <img src="../../../assets/images/uploads/foto_default.png" class="foto_perfil" alt="Foto_Perfil">
             <?php endif; ?>
@@ -104,12 +105,10 @@ $userPhotoPath =  "../../../assets/images/uploads/" . $user['foto'];
             </form>
           </div>
         </div>
-        <div class="fixed-bottom">
-          <?php include_once __DIR__ . '../../../../templates/footer.php' ?>
-        </div>
-        
       </div>
-    
+      
+      <?php include_once __DIR__ . '../../../../templates/footer.php'; ?>
+
       <script>
         document.addEventListener('DOMContentLoaded', function () {
             var deletePhotoButton = document.getElementById('deletePhotoButton');
