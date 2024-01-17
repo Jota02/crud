@@ -99,10 +99,10 @@ function createSharedContent($shared){
 
     if ($success) {
         $_SESSION['success'] = 'Content shared successfully!';
-        header('Location: ../../pages/secure/discover/index.php');
+        header('Location: ../../pages/secure/my_shows/index.php');
     }else {
         $_SESSION['errors'] = 'Error sharing the content!';
-        header('Location: ../../pages/secure/discover/index.php');
+        header('Location: ../../pages/secure/my_shows/index.php');
         exit;
     }
 

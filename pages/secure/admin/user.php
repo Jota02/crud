@@ -18,12 +18,12 @@ $user = user();
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     </head>
-    <body  style="height: 100vh; overflow-y: hidden;">
+    <body>
       <?php include_once __DIR__ . '/../../../templates/navbar.php'; ?>
       <!--content-->
-      <div class="container main-margin" style="min-height: 100vh; height: 100%; overflow-y: auto;">
+      <div class="container d-flex align-items-center justify-content-center flex-column" style="min-height: 100vh; margin-top:2rem">
         <div class="row mb-3">
-          <h1 class="m-3 fw-normal text-center text-white text-center">Update User</h1>
+          <h1 class="m-3 fw-normal text-center text-white text-center">Create User</h1>
         </div>
         <?php
           if (isset($_SESSION['success'])) {
@@ -88,15 +88,14 @@ $user = user();
                 <a href="./"><button type="button" class="w-100 btn btn-secondary btn-lg mb-2">Back</button></a>
               </div>
               <div class="d-grid col-4 mx-auto">
-                <button type="submit" class="btn btn-success w-100 btn-lg mb-2" name="user" <?= isset($_REQUEST['action']) && $_REQUEST['action'] == 'update' ? 'value="update"' : 'value="create"' ?>>Update</button>
+                <button type="submit" class="btn btn-success w-100 btn-lg mb-2" name="user" <?= isset($_REQUEST['action']) && $_REQUEST['action'] == 'update' ? 'value="update"' : 'value="create"' ?>>Create</button>
               </div>
             </div>
           </form>
         </div>
-        
-        <div class="fixed-bottom">
-          <?php require_once __DIR__ . '/../../../templates/footer.php'; ?>
-        </div>
 
       </div>
+
+      <?php require_once __DIR__ . '/../../../templates/footer.php'; ?>
+
       

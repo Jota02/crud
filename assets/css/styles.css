@@ -175,7 +175,7 @@ hr.divider{
     color: var(--text-color);
     background-color: var(--container-color);
     border-radius: 5rem;
-    border: .25rem solid #0d6efd; 
+    border: .25rem solid var(--main-color); 
 }
 
 /*Discover Page*/

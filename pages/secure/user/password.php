@@ -25,7 +25,7 @@ $user = user();
       <!--Content-->
       <div class="container d-flex align-items-center justify-content-center flex-column" style="min-height: 100vh;">
         <div class="row mb-3">
-          <h1 class="m-3 fw-normal text-center text-white">Profile</h1>
+          <h1 class="m-3 fw-normal text-center text-white">Change Password</h1>
         </div>
         <?php
           if (isset($_SESSION['success'])) {

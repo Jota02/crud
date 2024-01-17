@@ -23,7 +23,8 @@ $userPhotoPath =  "../../../assets/images/uploads/" . $user['foto'];
     <body>
       <?php include_once __DIR__ . '/../../../templates/navbar.php'; ?>
       <!--content-->
-      <div class="container d-flex align-items-center justify-content-center flex-column main-margin" style="min-height: 100vh;">
+      
+      <div class="container d-flex align-items-center justify-content-center flex-column" style="min-height: 100vh;">
         <div class="row mb-3">
           <h1 class="m-3 fw-normal text-center text-white">Profile</h1>
         </div>
@@ -116,22 +117,17 @@ $userPhotoPath =  "../../../assets/images/uploads/" . $user['foto'];
             var fotoPerfil = document.querySelector('.foto_perfil');
 
             deletePhotoButton.addEventListener('click', function () {
-                // Enviar uma requisição AJAX para deletar a foto
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', '../../../controllers/admin/user.php', true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == 4 && xhr.status == 200) {
-                        // Redirecionar para a página de perfil após a exclusão
                         window.location.href = '../../../pages/secure/user/profile.php';
                     }
                 };
                 xhr.send('user=deletePhoto');
             });
 
-            // Exibir ou ocultar o botão de exclusão com base na presença de uma foto
-            fotoInput.addEventListener('input', function () {
-                deletePhotoButton.style.display = (this.value !== '') ? 'block' : 'none';
-            });
+            
         });
       </script>

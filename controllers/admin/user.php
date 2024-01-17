@@ -141,17 +141,15 @@ function updateProfile($req) {
         $user = user(); 
         $data['id'] = $user['id'];
 
-        if (isset($data['administrator']) && $data['administrator'] === '1') {
+        if (isset($user['administrator']) && $user['administrator'] === 1) {
             $data['administrator'] = 1;
         } else {
             unset($data['administrator']); 
         }
 
         if (!empty($_FILES['foto']['name'])) {
-            // Passando true como terceiro parâmetro para remover a foto antiga
             $data = saveFile($data, $req, true);
         } else {
-            // Se não houver nova foto, manter a foto existente no banco de dados
             $data['foto'] = $user['foto'];
         }
 
@@ -161,7 +159,7 @@ function updateProfile($req) {
             $_SESSION['success'] = 'User successfully changed!';
             $_SESSION['action'] = 'update';
             $params = '?' . http_build_query($data);
-            header('location: ../../pages/secure/discover/index.php' . $params);
+            header('location: ../../pages/secure/user/profile.php' . $params);
         }
     }
 }
@@ -180,7 +178,7 @@ function changePassword($req)
         $success = updatePassword($data);
         if ($success) {
             $_SESSION['success'] = 'Password successfully changed!';
-            header('location: ../../pages/secure/user/password.php');
+            header('location: ../../pages/secure/user/profile.php');
         }
     }
 }
