@@ -18,6 +18,10 @@ if (isset($_POST['user'])) {
         updateProfile($_POST);
     }
 
+    if ($_POST['user'] == 'deletePhoto') {
+        deletePhoto($_POST);
+    }
+
     if ($_POST['user'] == 'password') {
         changePassword($_POST);
     }
@@ -67,27 +71,40 @@ function create($req)
     }
 }
 
-function saveFile($data, $oldImage = null){
-
+function saveFile($data, $oldImage = null, $removeOldImage = false) {
     $fileName = $_FILES['foto']['name'];
     $tempFile = $_FILES['foto']['tmp_name'];
     $extension = pathinfo($fileName, PATHINFO_EXTENSION);
     $extension = strtolower($extension);
     $newName = uniqid('foto_') . '.' . $extension;
-    $path = __DIR__ . '/../../assets/images/uploads/'; //ATENÇÃO AO PATH
+    $path = __DIR__ . '/../../assets/images/uploads/';
     $file = $path . $newName;
 
     if (move_uploaded_file($tempFile, $file)) {
         $data['foto'] = $newName;
-        if (isset($data['user']) && ($data['user'] == 'update') || ($data['user'] == 'profile')) {
+        if ($removeOldImage && isset($oldImage['foto'])) {
             unlink($path . $oldImage['foto']);
         }
     }
     return $data;
 }
 
-function update($req)
+function deletePhoto($req)
 {
+    $user = user();
+
+    if (!empty($user['foto'])) {
+        $photoPath = __DIR__ . '/../../assets/images/uploads/' . $user['foto'];
+        if (file_exists($photoPath)) {
+            unlink($photoPath);
+        }
+        $user['foto'] = null;
+        updateUser($user);
+        header('location: ../../pages/secure/user/profile.php');
+    }
+}
+
+function update($req) {
     $data = validatedUser($req);
 
     if (isset($data['invalid'])) {
@@ -95,8 +112,11 @@ function update($req)
         $_SESSION['action'] = 'update';
         $params = '?' . http_build_query($req);
         header('location: ../../pages/secure/admin/update.php' . $params);
-
         return false;
+    } else {
+        if (!empty($_FILES['foto']['name'])) {
+            $data = saveFile($data, $req, true);
+        }
     }
 
     $success = updateUser($data);
@@ -109,22 +129,30 @@ function update($req)
     }
 }
 
-function updateProfile($req)
-{
+
+function updateProfile($req) {
     $data = validatedUser($req);
 
     if (isset($data['invalid'])) {
         $_SESSION['errors'] = $data['invalid'];
         $params = '?' . http_build_query($req);
         header('location: ../../pages/secure/user/profile.php' . $params);
-        } else {
+    } else {
         $user = user(); 
         $data['id'] = $user['id'];
-        $data['administrator'] = $user['administrator'];
+
+        if (isset($data['administrator']) && $data['administrator'] === '1') {
+            $data['administrator'] = 1;
+        } else {
+            unset($data['administrator']); 
+        }
+
         if (!empty($_FILES['foto']['name'])) {
-            $data = saveFile($data, $req);
-        }else{
-            $data['foto'] = $data['foto'];
+            // Passando true como terceiro parâmetro para remover a foto antiga
+            $data = saveFile($data, $req, true);
+        } else {
+            // Se não houver nova foto, manter a foto existente no banco de dados
+            $data['foto'] = $user['foto'];
         }
 
         $success = updateUser($data);
@@ -137,6 +165,8 @@ function updateProfile($req)
         }
     }
 }
+
+
 
 function changePassword($req)
 {

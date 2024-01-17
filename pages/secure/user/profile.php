@@ -1,3 +1,4 @@
+
 <?php
 require_once __DIR__ . '../../../../infra/middlewares/middleware-user.php';
 @require_once __DIR__ . '/../../../helpers/session.php';
@@ -44,62 +45,61 @@ $userPhotoPath =  "../../../assets/images/uploads/" . $user['foto'];
         ?>
         <div class="row">
           <!-- Foto User -->
-          <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
+          <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center foto-container" style="position: relative;">
             <?php if (!empty($user['foto'])): ?>
-              <img src="<?= $userPhotoPath ?>" class="foto_perfil" alt="Foto_Perfil">
+                <img src="<?= $userPhotoPath ?>" class="foto_perfil" alt="Foto_Perfil">
+                <!-- Botão de exclusão -->
+                <button type="button" class="delete-photo-button" id="deletePhotoButton">Delete</button>
             <?php else: ?>
-              <!-- Exibição padrão caso não haja imagem -->
-              <img src="../../../assets/images/uploads/foto_default.png" class="foto_perfil" alt="Foto_Perfil">
+                <img src="../../../assets/images/uploads/foto_default.png" class="foto_perfil" alt="Foto_Perfil">
             <?php endif; ?>
           </div>
           <!-- Info User -->
           <div class="col-lg-8 col-md-6 col-sm-12">
             <form enctype="multipart/form-data" action="../../../controllers/admin/user.php" method="post" class="mt-3 py-3">
-
               <div class="input-group mb-3">
-                <span class="input-group-text text-white" style="background-color: rgba(1,1,1,1)" >Name</span>
-                <input type="text" class="form-control text-white" style="background-color: rgba(1,1,1,1)" name="name" placeholder="name" maxlength="100" size="100"
+                <span class="input-group-text text-white" style="background-color: rgba(1,1,1,1); border: 0.1rem solid var(--main-color);" >Name</span>
+                <input type="text" class="form-control text-white" style="background-color: rgba(1,1,1,1); border: 0.1rem solid var(--main-color);" name="name" placeholder="name" maxlength="100" size="100"
                   value="<?= isset($_REQUEST['name']) ? $_REQUEST['name'] : $user['name'] ?>" required>
               </div>
               <div class="input-group mb-3">
-                <span class="input-group-text text-white" style="background-color: rgba(1,1,1,1)">Lastname</span>
-                <input type="text" class="form-control text-white" style="background-color: rgba(1,1,1,1)" name="lastname" placeholder="lastname" maxlength="100" size="100"
+                <span class="input-group-text text-white" style="background-color: rgba(1,1,1,1); border: 0.1rem solid var(--main-color)">Lastname</span>
+                <input type="text" class="form-control text-white" style="background-color: rgba(1,1,1,1); border: 0.1rem solid var(--main-color)" name="lastname" placeholder="lastname" maxlength="100" size="100"
                   value="<?= isset($_REQUEST['lastname']) ? $_REQUEST['lastname'] : $user['lastname'] ?>" required>
               </div>
               <div class="input-group mb-3">
-                <span class="input-group-text text-white" style="background-color: rgba(1,1,1,1)">Phone Number</span>
-                <input type="tel" class="form-control text-white" style="background-color: rgba(1,1,1,1)" name="phoneNumber" maxlength="9"
+                <span class="input-group-text text-white" style="background-color: rgba(1,1,1,1); border: 0.1rem solid var(--main-color)">Phone Number</span>
+                <input type="tel" class="form-control text-white" style="background-color: rgba(1,1,1,1); border: 0.1rem solid var(--main-color)" name="phoneNumber" maxlength="9"
                   value="<?= isset($_REQUEST['phoneNumber']) ? $_REQUEST['phoneNumber'] : $user['phoneNumber'] ?>" required>
               </div>
               <div class="input-group mb-3">
-                <span class="input-group-text text-white" style="background-color: rgba(1,1,1,1)">Email</span>
-                <input type="email" class="form-control text-white" style="background-color: rgba(1,1,1,1)" name="email" maxlength="255"
+                <span class="input-group-text text-white" style="background-color: rgba(1,1,1,1); border: 0.1rem solid var(--main-color)">Email</span>
+                <input type="email" class="form-control text-white" style="background-color: rgba(1,1,1,1); border: 0.1rem solid var(--main-color)" name="email" maxlength="255"
                   value="<?= isset($_REQUEST['email']) ? $_REQUEST['email'] : $user['email'] ?>" required>
               </div>
               <div class="input-group mb-3">
-                <label class="input-group-text text-white" style="background-color: rgba(1,1,1,1)" for="foto">Picture</label>
-                <input accept="image/*" type="file" class="form-control text-white" style="background-color: rgba(1,1,1,1)" id="foto" name="foto" />
+                <label class="input-group-text text-white" style="background-color: rgba(1,1,1,1); border: 0.1rem solid var(--main-color)" for="foto">Picture</label>
+                <input accept="image/*" type="file" class="form-control text-white" style="background-color: rgba(1,1,1,1); border: 0.1rem solid var(--main-color)" id="foto" name="foto" />
               </div>
-              <div class="container" style="margin-top: 2rem; margin-bottom: 0%">
-                <div class="row">
-                  <div class="d-grid col-4 mx-auto" >
-                    <a href="./password.php">
-                      <button type="button" class="w-100 btn btn-warning mb-2 text-white">Change Password</button>
-                    </a>
-                  </div>
-                  <?php
-                    if (isAuthenticated() && $user['administrator']) {
-                        echo '<div class="d-grid col-4 mx-auto">
-                                <a href="../admin/">
-                                  <button type="button" class="w-100 btn btn-info mb-2 text-white">Admin</button>
-                                </a>
-                              </div>';
-                    }
-                  ?>
-                  <div class="d-grid col-4 mx-auto">
-                    <button class="w-100 btn btn-success mb-2 text-white" type="submit" name="user" value="profile">Edit Profile</button>
-                  </div>
+
+              <div class="row" style="margin-top: 1.5rem; margin-bottom: 0%">
+                <div class="col-4 mx-auto" >
+                  <a href="./password.php">
+                    <button type="button" class="w-100 btn btn-warning mb-2 text-white d-flex align-items-center justify-content-center"><h5 class="m-0">Change Password</h5></button>
+                  </a>
                 </div>
+                <?php
+                  if (isAuthenticated() && $user['administrator']) {
+                      echo '<div class="col-4 mx-auto">
+                              <a href="../admin/">
+                                <button type="button" class="w-100 btn btn-info mb-2 text-white d-flex align-items-center justify-content-center"><h5 class="m-0">Admin</h5></button>
+                              </a>
+                            </div>';
+                  }
+                ?>
+                <div class="col-4 mx-auto">
+                    <button class="w-100 btn btn-success mb-2 text-white" type="submit" name="user" value="profile"><h5 class="m-0">Edit Profile</h5></button>
+                  </div>
               </div>
             </form>
           </div>
@@ -109,5 +109,30 @@ $userPhotoPath =  "../../../assets/images/uploads/" . $user['foto'];
         </div>
         
       </div>
+    
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var deletePhotoButton = document.getElementById('deletePhotoButton');
+            var fotoInput = document.getElementById('foto');
+            var fotoPerfil = document.querySelector('.foto_perfil');
 
+            deletePhotoButton.addEventListener('click', function () {
+                // Enviar uma requisição AJAX para deletar a foto
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '../../../controllers/admin/user.php', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        // Redirecionar para a página de perfil após a exclusão
+                        window.location.href = '../../../pages/secure/user/profile.php';
+                    }
+                };
+                xhr.send('user=deletePhoto');
+            });
 
+            // Exibir ou ocultar o botão de exclusão com base na presença de uma foto
+            fotoInput.addEventListener('input', function () {
+                deletePhotoButton.style.display = (this.value !== '') ? 'block' : 'none';
+            });
+        });
+      </script>

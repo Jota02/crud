@@ -21,12 +21,13 @@ function validatedUser($req)
     if (!filter_var($req['email'], FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = 'The Email field cannot be empty and must have the email format, for example: nome@example.com.';
     }
-
-
-    $userByEmail = getByEmail($req['email']);
-    if ($userByEmail && $userByEmail['id'] != $_SESSION['id']) {
-        $errors['email'] = 'Email already registered in our system.';
-        return ['invalid' => $errors];
+    
+    if ($userByEmail) {
+        if ($userByEmail['id'] != $_SESSION['id'] || $_SESSION['administrator']) {
+            error_log("Condition is true when it shouldn't be.");
+            $errors['email'] = 'Email already registered in our system.';
+            return ['invalid' => $errors];
+        }
     }
 
     if (!empty($req['password']) && strlen($req['password']) < 6) {
