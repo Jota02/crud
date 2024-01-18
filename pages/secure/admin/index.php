@@ -1,11 +1,16 @@
 
 <?php
 require_once __DIR__ . '/../../../infra/repositories/userRepository.php';
+require_once __DIR__ . '/../../../infra/repositories/showRepository.php';
 require_once __DIR__ . '/../../../infra/middlewares/middleware-administrator.php';
 
 $users = getAll();
 $title = ' - Admin management';
 $user = user();
+$user_count = countUsers();
+$shows_count = countShows();
+$shows_users_library = countMyShows();
+$review_count = countUsersReviews();
 
 
 ?>
@@ -41,7 +46,7 @@ $user = user();
           }
       ?>
     </div>
-    <div class="container" style="min-height: 100vh;">
+    <div class="container d-flex flex-column" style="min-height: 100vh;">
       <div class="row mb-3">
         <h1 class="m-3 fw-normal text-center text-white text-center">Users</h1>
       </div>
@@ -123,10 +128,14 @@ $user = user();
               </button>
           </a>
         </div>
-
       </div>
-            
+      <div class="my-5"></div>
+      <div class="d-flex flex-column align-items-center shows-placeholder">
+        <h1 class="text-white ">Registered users: <?= $user_count['row_count'] ?></h1>
+        <h1 class="text-white ">Registered shows: <?= $shows_count['row_count'] ?></h1>
+        <h1 class="text-white ">Shows added to users libraries: <?= $shows_users_library['row_count'] ?></h1>
+        <h1 class="text-white ">User reviews created: <?= $review_count['row_count'] ?></h1>
+      </div>    
     </div>  
-    <div class="fixed-bottom">
-      <?php include_once __DIR__ . '/../../../templates/footer.php'; ?>
-    </div>
+    
+    <?php include_once __DIR__ . '/../../../templates/footer.php'; ?>

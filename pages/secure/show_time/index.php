@@ -54,7 +54,7 @@ $events = getEvents($user['id']);
                             <?php foreach ($events as $event): ?>
                                 <div class="list-group-item list-group-item-dark search-results">
                                     <div class="d-flex flex-row align-items-center justify-content-between text-white">
-                                        <img src="../../../<?= $event['poster_path'] ?>" class="rounded border"  alt="movie_poster"/>                                 
+                                        <img src="../../../<?= $event['poster_path'] ?>" class="rounded border search-results-img"  alt="movie_poster"/>                                 
                                         <h4 class="text-white"><?= $event['title'] ?></h4>
                                         <p class="m-0 fs-5"><?= $event['calendar_date'] ?></p>
                                     </div>

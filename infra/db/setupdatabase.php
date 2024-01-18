@@ -10,7 +10,7 @@ require __DIR__ . '/connection.php';
 //     lastname varchar(50)	, 
 //     phoneNumber varchar(50)	, 
 //     email varchar(50)	 NOT NULL, 
-//     foto blob	 NULL, 
+//     foto varchar(50)	 NULL, 
 //     administrator bit, 
 //     password varchar(200)	
 //     );
@@ -69,7 +69,7 @@ require __DIR__ . '/connection.php';
 //         id_show INTEGER,
 //         comment varchar(250),
 //         rating float,
-//         attachments blob,
+//         attachments varchar(250),
 //         review_date date,
 //         FOREIGN KEY (id_user) REFERENCES users(id),
 //         FOREIGN KEY (id_show) REFERENCES shows(id)

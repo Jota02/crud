@@ -22,7 +22,7 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
     <!-- Barra de navegação -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container text-uppercase"> 
-            <a class="navbar-brand d-flex align-items-center" style="font-weight: bold;" href="#"> HomeCinema <img src="./assets/images/uploads/logo.png" height="30rem" class="ms-3"></a>
+            <a class="navbar-brand d-flex align-items-center" style="font-weight: bold;" href="#"> <span class="text-danger">Home</span><span class="text-primary">CINEMA</span> <img src="./assets/images/uploads/logo.png" height="30rem" class="ms-3"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -53,12 +53,6 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
         <div class="overlay"></div>
         <div class="container text-center align-content-center content">
             <img src="./assets/images/uploads/logo.png" class="img-fluid" alt="homecinema">
-            <div class="d-flex justify-content-center align-items-center flex-column content">
-                <div class="input-group bar-size">
-                    <input type="text" class="form-control " placeholder="Search for a movie or serie..." aria-describedby="basic-addon2">
-                    <span class="input-group-text bi-search" id="basic-addon2"></span>
-                </div> 
-            </div>
             <hr>    
             <div class="text-white" style="padding-bottom: 10rem;">
                 <h1>We have what you need!</h1>
@@ -231,7 +225,7 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
                 </div>
                 <div class="col-lg-6">
                     <div class="team-member">
-                        <img class="mx-auto rounded-5" src="./assets/images/uploads/pinto.png" alt="Pinto">
+                        <img class="mx-auto rounded-5" src="./assets/images/uploads/pinto.jpg" alt="Pinto">
                         <h4>Guilherme De Sá Pinto</h4>
                     </div>
                 </div>

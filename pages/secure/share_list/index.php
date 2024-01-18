@@ -40,7 +40,7 @@ $users = getAll();
                                     <div class="list-group-item list-group-item-action list-group-item-dark search-results">
                                         <div class="d-flex flex-row align-items-center text-white">
                                             <?php if (!empty($destination['foto'])): ?>
-                                                <img src="<?= $destinationPhotoPath ?>" class="rounded border" alt="Foto_Perfil">
+                                                <img src="<?= $destinationPhotoPath ?>" class="rounded border search-results-img" alt="Foto_Perfil">
                                             <?php else: ?>
                                                 <img src="../../../assets/images/uploads/foto_default.png" class="rounded border" alt="Foto_Perfil">
                                             <?php endif; ?>

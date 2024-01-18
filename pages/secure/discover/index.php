@@ -111,7 +111,7 @@ $title = '- App';
                     <div class="input-group search-bar-size w-100">
                         <input type="text" name="searchInput" class="form-control" placeholder="Search for shows..." maxlength="255">
                         <button type="submit" name="submitSearch" class="btn btn-default">
-                            <i class="bi bi-search search-icon"></i>
+                            <i class="bi bi-search search-icon search-bar-bi"></i>
                         </button>
                     </div>
                 </form>
@@ -122,7 +122,7 @@ $title = '- App';
             <div class="heading mt-5 w-75">
                 <h3 class="text-white">Trending Movies</h3>
                 <button class="btn btn-link" onclick="showMovieCarousel()">
-                    <i class="bi bi-plus-circle outlines"></i> 
+                    <i class="bi bi-plus-circle outlines heading-bi"></i> 
                 </button>
             </div>
             <!--movies header end-->
@@ -148,7 +148,7 @@ $title = '- App';
                                             <div class="image-container d-flex">
                                                 <img src="../../../<?= $moviespage1[$j]['poster_path'] ?>" alt="<?= $moviespage1[$j]['title'] ?>" class="img-fluid">
                                                 <div class="show-details">
-                                                    <h6><?= $moviespage1[$j]['title'] ?></h6>
+                                                    <h6 class="show-details-h6"><?= $moviespage1[$j]['title'] ?></h6>
                                                     <div class="button-container">
                                                         <?php $showInLibrary = false; 
                                                             foreach ($myShows as $show): 
@@ -163,13 +163,13 @@ $title = '- App';
                                                             <?php endif; ?>
                                                             <input type="hidden" name="show_id" value="<?= $moviespage1[$j]['id'] ?>">
                                                             <button type="submit" name="<?= $showInLibrary ? 'removeMyShow' : 'addShow' ?>" class="outlines button-transparent p-0">
-                                                                <i class="<?= $showInLibrary ? 'bi bi-dash-circle-fill' : 'bi bi-plus-circle-fill bi-cover-size' ?> bi-cover-size"></i>
+                                                                <i class="<?= $showInLibrary ? 'bi bi-dash-circle-fill' : 'bi bi-plus-circle-fill' ?> button-container-bi"></i>
                                                             </button>
                                                         </form> 
                                                         <form action="../../../controllers/shows/shows.php" method="get" class="m-0">
                                                             <input type="hidden" name="id" value="<?= $moviespage1[$j]['id'] ?>">                                        
                                                             <button type="submit" name="getShowDetails" class="outlines button-transparent p-0">
-                                                                <i class="bi bi-info-circle-fill"></i>
+                                                                <i class="bi bi-info-circle-fill button-container-bi"></i>
                                                             </button>
                                                         </form> 
                                                     </div>  
@@ -195,7 +195,7 @@ $title = '- App';
                                             <div class="image-container d-flex">
                                                 <img src="../../../<?= $moviespage2[$j]['poster_path'] ?>" alt="<?= $moviespage2[$j]['title'] ?>" class="img-fluid">
                                                 <div class="show-details">
-                                                    <h6><?= $moviespage2[$j]['title'] ?></h6>
+                                                    <h6 class="show-details-h6"><?= $moviespage2[$j]['title'] ?></h6>
                                                     <div class="button-container">
                                                         <?php $showInLibrary = false; 
                                                             foreach ($myShows as $show): 
@@ -210,13 +210,13 @@ $title = '- App';
                                                             <?php endif; ?>
                                                             <input type="hidden" name="show_id" value="<?= $moviespage2[$j]['id'] ?>">
                                                             <button type="submit" name="<?= $showInLibrary ? 'removeMyShow' : 'addShow' ?>" class="outlines button-transparent p-0">
-                                                                <i class="<?= $showInLibrary ? 'bi bi-dash-circle-fill' : 'bi bi-plus-circle-fill bi-cover-size' ?> bi-cover-size"></i>
+                                                                <i class="<?= $showInLibrary ? 'bi bi-dash-circle-fill' : 'bi bi-plus-circle-fill' ?> button-container-bi"></i>
                                                             </button>
                                                         </form>
                                                         <form action="../../../controllers/shows/shows.php" method="get" class="m-0">
                                                             <input type="hidden" name="id" value="<?= $moviespage2[$j]['id'] ?>">                                        
                                                             <button type="submit" name="getShowDetails" class="outlines button-transparent p-0">
-                                                                <i class="bi bi-info-circle-fill"></i>
+                                                                <i class="bi bi-info-circle-fill button-container-bi"></i>
                                                             </button>
                                                         </form> 
                                                     </div>
@@ -236,7 +236,7 @@ $title = '- App';
             <div class="heading mt-5 w-75">
                 <h3 class="text-white">Trending Series</h3>
                 <button class="btn btn-link" onclick="showSerieCarousel()">
-                    <i class="bi bi-plus-circle outlines"></i> 
+                    <i class="bi bi-plus-circle outlines heading-bi"></i> 
                 </button>
             </div>
             <!--series header end-->
@@ -261,7 +261,7 @@ $title = '- App';
                                             <div class="image-container d-flex">
                                                 <img src="../../../<?= $seriespage1[$j]['poster_path'] ?>" alt="<?= $seriespage1[$j]['title'] ?>" class="img-fluid">
                                                 <div class="show-details">
-                                                    <h6><?= $seriespage1[$j]['title'] ?></h6>
+                                                    <h6 class="show-details-h6"><?= $seriespage1[$j]['title'] ?></h6>
                                                     <div class="button-container">
                                                         <?php $showInLibrary = false; 
                                                             foreach ($myShows as $show): 
@@ -276,13 +276,13 @@ $title = '- App';
                                                             <?php endif; ?>
                                                             <input type="hidden" name="show_id" value="<?= $seriespage1[$j]['id'] ?>">
                                                             <button type="submit" name="<?= $showInLibrary ? 'removeMyShow' : 'addShow' ?>" class="outlines button-transparent p-0">
-                                                                <i class="<?= $showInLibrary ? 'bi bi-dash-circle-fill' : 'bi bi-plus-circle-fill bi-cover-size' ?> bi-cover-size"></i>
+                                                                <i class="<?= $showInLibrary ? 'bi bi-dash-circle-fill' : 'bi bi-plus-circle-fill' ?> button-container-bi"></i>
                                                             </button>
                                                         </form>
                                                         <form action="../../../controllers/shows/shows.php" method="get" class="m-0">
                                                             <input type="hidden" name="id" value="<?= $seriespage1[$j]['id'] ?>">                                        
                                                             <button type="submit" name="getShowDetails" class="outlines button-transparent p-0">
-                                                                <i class="bi bi-info-circle-fill"></i>
+                                                                <i class="bi bi-info-circle-fill button-container-bi"></i>
                                                             </button>
                                                         </form> 
                                                     </div>
@@ -308,7 +308,7 @@ $title = '- App';
                                             <div class="image-container d-flex">
                                                 <img src="../../../<?= $seriespage2[$j]['poster_path'] ?>" alt="<?= $seriespage2[$j]['title'] ?>" class="img-fluid">
                                                 <div class="show-details">
-                                                    <h6><?= $seriespage2[$j]['title'] ?></h6>
+                                                    <h6 class="show-details-h6"><?= $seriespage2[$j]['title'] ?></h6>
                                                     <div class="button-container">
                                                         <?php $showInLibrary = false; 
                                                             foreach ($myShows as $show): 
@@ -323,13 +323,13 @@ $title = '- App';
                                                             <?php endif; ?>
                                                             <input type="hidden" name="show_id" value="<?= $seriespage2[$j]['id'] ?>">
                                                             <button type="submit" name="<?= $showInLibrary ? 'removeMyShow' : 'addShow' ?>" class="outlines button-transparent p-0">
-                                                                <i class="<?= $showInLibrary ? 'bi bi-dash-circle-fill' : 'bi bi-plus-circle-fill bi-cover-size' ?> bi-cover-size"></i>
+                                                                <i class="<?= $showInLibrary ? 'bi bi-dash-circle-fill' : 'bi bi-plus-circle-fill' ?> button-container-bi"></i>
                                                             </button>
                                                         </form>
                                                         <form action="../../../controllers/shows/shows.php" method="get" class="m-0">
                                                             <input type="hidden" name="id" value="<?= $seriespage2[$j]['id'] ?>">                                        
                                                             <button type="submit" name="getShowDetails" class="outlines button-transparent p-0">
-                                                                <i class="bi bi-info-circle-fill"></i>
+                                                                <i class="bi bi-info-circle-fill button-container-bi"></i>
                                                             </button>
                                                         </form> 
                                                     </div>

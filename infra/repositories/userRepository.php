@@ -67,6 +67,12 @@ function getAll()
     return $users;
 }
 
+function countUsers(){
+    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT COUNT(*) AS row_count FROM users;');
+    $PDOStatement->execute();
+    return $PDOStatement->fetch();
+}
+
 function updateUser($user)
 {
     if (isset($user['password']) && !empty($user['password'])) {

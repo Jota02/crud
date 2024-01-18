@@ -175,7 +175,7 @@ foreach ($myShows as $myShow) {
                                 </div>
                                 <div class="d-flex flex-row align-items-center">
                                     <?php if (isset($review['attachments']) && !empty($review['attachments'])): ?>
-                                        <img src="../../../assets/images/uploads/review_attachment/<?= $review['attachments'] ?>" class="rounded border" alt="attatchemnt">      
+                                        <img src="../../../assets/images/uploads/review_attachment/<?= $review['attachments'] ?>" class="rounded border search-results-img" alt="attatchemnt">      
                                     <?php endif; ?>
                                     <?php if($user['administrator'] == 1 || $user['id'] == $review['id_user']): ?>
                                         <div class="ms-4">

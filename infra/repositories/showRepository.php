@@ -278,17 +278,6 @@ function getShowsTitlePoster($limit, $offset, $show_type) {
     return $stmt->fetchAll();
 }
 
-function getShowPoster($id) {
-    $sql = 'SELECT id, title, poster_path FROM shows WHERE id= ?';
-
-    $stmt = $GLOBALS['pdo']->prepare($sql);
-    $stmt->bindValue(1, $id, PDO::PARAM_INT);
-    $stmt->execute();
-    $result = $stmt->fetch();
-
-    return $result;
-}
-
 function getShowsTitleCovers() {
     
     $sql = 'SELECT id, title, cover_path FROM shows WHERE cover_path IS NOT NULL';
@@ -297,6 +286,24 @@ function getShowsTitleCovers() {
     $stmt->execute();
     
     return $stmt->fetchAll();
+}
+
+function countMyShows() {
+    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT COUNT(*) AS row_count FROM user_shows;');
+    $PDOStatement->execute();
+    return $PDOStatement->fetch();
+}
+
+function countUsersReviews() {
+    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT COUNT(*) AS row_count FROM user_reviews;');
+    $PDOStatement->execute();
+    return $PDOStatement->fetch();
+}
+
+function countShows() {
+    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT COUNT(*) AS row_count FROM shows;');
+    $PDOStatement->execute();
+    return $PDOStatement->fetch();
 }
 
 function updateShow($show)

@@ -60,12 +60,12 @@ $userPhotoPath =  "../../../assets/images/uploads/user_photo/" . $user['foto'];
             <form enctype="multipart/form-data" action="../../../controllers/admin/user.php" method="post" class="mt-3 py-3">
               <div class="input-group mb-3">
                 <span class="input-group-text text-white" style="background-color: rgba(1,1,1,1); border: 0.1rem solid var(--main-color);" >Name</span>
-                <input type="text" class="form-control text-white" style="background-color: rgba(1,1,1,1); border: 0.1rem solid var(--main-color);" name="name" placeholder="name" maxlength="100" size="100"
+                <input type="text" class="form-control text-white" style="background-color: rgba(1,1,1,1); border: 0.1rem solid var(--main-color);" name="name" maxlength="100" size="100"
                   value="<?= isset($_REQUEST['name']) ? $_REQUEST['name'] : $user['name'] ?>" required>
               </div>
               <div class="input-group mb-3">
                 <span class="input-group-text text-white" style="background-color: rgba(1,1,1,1); border: 0.1rem solid var(--main-color)">Lastname</span>
-                <input type="text" class="form-control text-white" style="background-color: rgba(1,1,1,1); border: 0.1rem solid var(--main-color)" name="lastname" placeholder="lastname" maxlength="100" size="100"
+                <input type="text" class="form-control text-white" style="background-color: rgba(1,1,1,1); border: 0.1rem solid var(--main-color)" name="lastname" maxlength="100" size="100"
                   value="<?= isset($_REQUEST['lastname']) ? $_REQUEST['lastname'] : $user['lastname'] ?>" required>
               </div>
               <div class="input-group mb-3">

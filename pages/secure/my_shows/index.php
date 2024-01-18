@@ -69,18 +69,18 @@ for ($i=0; $i < count($myShows) ; $i++) {
                                     <div class="image-container d-flex">
                                         <img src="../../../<?= $myMovies[$j]['poster_path'] ?>" alt="<?= $myMovies[$j]['title'] ?>" class="img-fluid">
                                         <div class="show-details">
-                                            <h6><?= $myMovies[$j]['title'] ?></h6>
+                                            <h6 class="show-details-h6"><?= $myMovies[$j]['title'] ?></h6>
                                             <div class="button-container">
                                                 <form action="../../../controllers/shows/shows.php" method="post" enctype="multipart/form-data">
                                                     <input type="hidden" name="show_id" value="<?= $myMovies[$j]['show_id'] ?>">                                        
                                                     <button type="submit" name="removeMyShow" class="outlines button-transparent p-0">
-                                                        <i class="bi bi-dash-circle-fill"></i>
+                                                        <i class="bi bi-dash-circle-fill button-container-bi"></i>
                                                     </button>
                                                 </form> 
                                                 <form action="../../../controllers/shows/shows.php" method="get">
                                                     <input type="hidden" name="id" value="<?= $myMovies[$j]['show_id'] ?>">                                        
                                                     <button type="submit" name="getShowDetails" class="outlines button-transparent p-0">
-                                                        <i class="bi bi-info-circle-fill"></i>
+                                                        <i class="bi bi-info-circle-fill button-container-bi"></i>
                                                     </button>
                                                 </form> 
                                             </div>  
@@ -114,18 +114,18 @@ for ($i=0; $i < count($myShows) ; $i++) {
                                     <div class="image-container d-flex">
                                         <img src="..\..\..\<?= $mySeries[$j]['poster_path'] ?>" alt="<?= $mySeries[$j]['title'] ?>" class="img-fluid">
                                         <div class="show-details">
-                                            <h6><?= $mySeries[$j]['title'] ?></h6>
+                                            <h6 class="show-details-h6"><?= $mySeries[$j]['title'] ?></h6>
                                             <div class="button-container">
                                                 <form action="../../../controllers/shows/shows.php" method="post" enctype="multipart/form-data">
                                                     <input type="hidden" name="show_id" value="<?= $mySeries[$j]['show_id'] ?>">                                        
                                                     <button type="submit" name="removeMyShow" class="outlines button-transparent p-0">
-                                                        <i class="bi bi-dash-circle-fill"></i>
+                                                        <i class="bi bi-dash-circle-fill button-container-bi"></i>
                                                     </button>
                                                 </form>
                                                 <form action="../../../controllers/shows/shows.php" method="get">
                                                     <input type="hidden" name="id" value="<?= $mySeries[$j]['show_id'] ?>">                                        
                                                     <button type="submit" name="getShowDetails" class="outlines button-transparent p-0">
-                                                        <i class="bi bi-info-circle-fill"></i>
+                                                        <i class="bi bi-info-circle-fill button-container-bi"></i>
                                                     </button>
                                                 </form> 
                                             </div>  
@@ -157,7 +157,7 @@ for ($i=0; $i < count($myShows) ; $i++) {
                                     <div class="image-container d-flex">
                                         <img src="..\..\..\<?= $shared[$j]['poster_path'] ?>" alt="<?= $shared[$j]['title'] ?>" class="img-fluid">
                                         <div class="show-details">
-                                            <h6><?= $shared[$j]['title'] ?></h6>
+                                            <h6 class="show-details-h6"><?= $shared[$j]['title'] ?></h6>
                                             <div class="button-container">
                                                 <?php 
                                                     $showInLibrary = false; 
@@ -174,19 +174,19 @@ for ($i=0; $i < count($myShows) ; $i++) {
                                                     <?php endif; ?>
                                                     <input type="hidden" name="show_id" value="<?= $shared[$j]['show_id'] ?>">
                                                     <button type="submit" name="<?= $showInLibrary ? 'removeMyShow' : 'addShow' ?>" class="outlines button-transparent p-0">
-                                                        <i class="<?= $showInLibrary ? 'bi bi-dash-circle-fill' : 'bi bi-plus-circle-fill' ?>"></i>
+                                                        <i class="<?= $showInLibrary ? 'bi bi-dash-circle-fill' : 'bi bi-plus-circle-fill' ?> button-container-bi"></i>
                                                     </button>
                                                 </form>
                                                 <form action="../../../controllers/shows/shows.php" method="get">
                                                     <input type="hidden" name="id" value="<?= $shared[$j]['show_id'] ?>">                                        
                                                     <button type="submit" name="getShowDetails" class="outlines button-transparent p-0">
-                                                        <i class="bi bi-info-circle-fill"></i>
+                                                        <i class="bi bi-info-circle-fill button-container-bi"></i>
                                                     </button>
                                                 </form> 
                                                 <form action="../../../controllers/shows/shows.php" method="post">
                                                     <input type="hidden" name="id" value="<?= $shared[$j]['id'] ?>">                                        
                                                     <button type="submit" name="removeShared" class="outlines button-transparent p-0">
-                                                    <i class="bi bi-x-circle-fill"></i>
+                                                    <i class="bi bi-x-circle-fill button-container-bi"></i>
                                                     </button>
                                                 </form> 
                                             </div>  
