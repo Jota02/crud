@@ -39,7 +39,7 @@ $userPhotoPath =  "../../../assets/images/uploads/user_photo/" . $user['foto'];
                 }
             ?>
         </div>
-      <div class="container d-flex align-items-center justify-content-center flex-column" style="min-height: 100vh;">
+      <div class="container d-flex flex-column" style="min-height: 100vh;">
         <div class="row mb-3">
           <h1 class="m-3 fw-normal text-center text-white">Profile</h1>
         </div>

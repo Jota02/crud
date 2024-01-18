@@ -22,6 +22,8 @@ function validatedUser($req)
         $errors['email'] = 'The Email field cannot be empty and must have the email format, for example: nome@example.com.';
     }
     
+    $userByEmail = getByEmail($req['email']);
+
     if ($userByEmail) {
         if ($userByEmail['id'] != $_SESSION['id'] || $_SESSION['administrator']) {
             error_log("Condition is true when it shouldn't be.");
