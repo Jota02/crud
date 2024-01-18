@@ -5,7 +5,7 @@ require_once __DIR__ . '../../../../infra/middlewares/middleware-user.php';
 
 $title = ' - Profile';
 $user = user();
-$userPhotoPath =  "../../../assets/images/uploads/" . $user['foto'];
+$userPhotoPath =  "../../../assets/images/uploads/user_photo/" . $user['foto'];
 ?>
 
 <!DOCTYPE html>

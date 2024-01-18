@@ -77,7 +77,7 @@ function saveFile($data, $oldImage = null, $removeOldImage = false) {
     $extension = pathinfo($fileName, PATHINFO_EXTENSION);
     $extension = strtolower($extension);
     $newName = uniqid('foto_') . '.' . $extension;
-    $path = __DIR__ . '/../../assets/images/uploads/';
+    $path = __DIR__ . '/../../assets/images/uploads/user_photo/';
     $file = $path . $newName;
 
     if (move_uploaded_file($tempFile, $file)) {
@@ -94,7 +94,7 @@ function deletePhoto($req)
     $user = user();
 
     if (!empty($user['foto'])) {
-        $photoPath = __DIR__ . '/../../assets/images/uploads/' . $user['foto'];
+        $photoPath = __DIR__ . '/../../assets/images/uploads/user_photo/' . $user['foto'];
         if (file_exists($photoPath)) {
             unlink($photoPath);
         }

@@ -57,19 +57,19 @@ function is_active($url) {
             </button>
             <ul class="dropdown-menu bg-dark" >
                     <li>
-                        <a href="../home/" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('/pages/secure/home/'); ?>">
+                        <a href="../home/" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('/pages/secure/home/index.php'); ?>">
                             <i class="bi bi-house-door-fill"></i>
                             <span>Home</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../discover/" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('/pages/secure/discover/'); ?>">
+                        <a href="../discover/" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('/pages/secure/discover/index.php'); ?>">
                             <i class="bi bi-search"></i>
                             <span>Discover</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../my_shows/" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('/pages/secure/my_shows/'); ?>">
+                        <a href="../my_shows/" class="nav-link d-flex flex-column align-items-center dropdown-item <?php echo is_active('/pages/secure/my_shows/index.php'); ?>">
                             <i class="bi bi-tv-fill"></i>
                             <span>My Shows</span>
                         </a>

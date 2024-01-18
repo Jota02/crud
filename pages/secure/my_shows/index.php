@@ -183,6 +183,12 @@ for ($i=0; $i < count($myShows) ; $i++) {
                                                         <i class="bi bi-info-circle-fill"></i>
                                                     </button>
                                                 </form> 
+                                                <form action="../../../controllers/shows/shows.php" method="post">
+                                                    <input type="hidden" name="id" value="<?= $shared[$j]['id'] ?>">                                        
+                                                    <button type="submit" name="removeShared" class="outlines button-transparent p-0">
+                                                    <i class="bi bi-x-circle-fill"></i>
+                                                    </button>
+                                                </form> 
                                             </div>  
                                         </div>
                                     </div>

@@ -167,7 +167,7 @@ function getSearchedShows($searchInput)
 
 function getShared($id)
 {
-    $sql = 'SELECT sc.show_id, s.title, s.poster_path 
+    $sql = 'SELECT sc.id, sc.show_id, s.title, s.poster_path 
             FROM shared_content sc 
             JOIN shows s ON sc.show_id = s.id 
             WHERE sc.destination_id = ?
@@ -316,6 +316,20 @@ function updateShow($show)
 function deleteMyShow($id)
 {
     $stmt = $GLOBALS['pdo']->prepare('DELETE FROM user_shows WHERE show_id= ?');
+    $stmt->bindValue(1, $id, PDO::PARAM_INT);
+    return $stmt->execute();
+}
+
+function deleteReview($id)
+{
+    $stmt = $GLOBALS['pdo']->prepare('DELETE FROM user_reviews WHERE id= ?');
+    $stmt->bindValue(1, $id, PDO::PARAM_INT);
+    return $stmt->execute();
+}
+
+function deleteMyShared($id)
+{
+    $stmt = $GLOBALS['pdo']->prepare('DELETE FROM shared_content WHERE id= ?');
     $stmt->bindValue(1, $id, PDO::PARAM_INT);
     return $stmt->execute();
 }

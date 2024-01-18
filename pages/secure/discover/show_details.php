@@ -161,15 +161,34 @@ foreach ($myShows as $myShow) {
                             $ratingColorClass = 'text-danger';
                         } else {
                             $ratingColorClass = 'text-warning';
-                        }    
+                        }
                     ?>  
                         <div class="list-group-item list-group-item-dark search-results text-white">
-                            <h5 class="m-0">Username: <?= $review['userName'] ?></h5>                                       
-                            <p class="m-0 fs-6">><?= $review['comment'] ?></p>
-                            <div class="d-flex flex-row align-items-center">
-                                <i class="bi bi-star-fill" style="color: yellow;"></i>
-                                <p class="m-0 fs-6"><span class="<?= $ratingColorClass ?>"><?= $review['rating'] ?></span>/10</p> 
-                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex flex-column" style="max-width: 500px;">
+                                    <h5 class="m-0">Username: <?= $review['userName'] ?></h5>                                       
+                                    <p class="m-0 fs-6 w-50" style="word-wrap: break-word;">><?= $review['comment'] ?></p>
+                                    <div class="d-flex flex-row align-items-center">
+                                        <i class="bi bi-star-fill" style="color: yellow;"></i>
+                                        <p class="m-0 fs-6><span class="<?= $ratingColorClass ?>><?= $review['rating'] ?></span>/10</p> 
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row align-items-center">
+                                    <?php if (isset($review['attachments']) && !empty($review['attachments'])): ?>
+                                        <img src="../../../assets/images/uploads/review_attachment/<?= $review['attachments'] ?>" class="rounded border" alt="attatchemnt">      
+                                    <?php endif; ?>
+                                    <?php if($user['administrator'] == 1 || $user['id'] == $review['id_user']): ?>
+                                        <div class="ms-4">
+                                            <form action="../../../controllers/shows/shows.php" method="post">
+                                                <input type="hidden" name="id" value="<?= $review['id'] ?>">                                        
+                                                <button type="submit" name="removeReview" class="btn btn-danger">
+                                                    <i class="bi bi-trash-fill"></i>
+                                                </button>
+                                            </form> 
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>                                   
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -184,18 +203,18 @@ foreach ($myShows as $myShow) {
                     
                     <div class="form-group w-100 mt-2">
                         <label for="comment">Comment:</label>
-                        <input type="text" class="form-control form-input-styles text-white" id="comment" name="comment" maxlength="150" placeholder="What did you think of the show?" required></textarea>
+                        <input type="text" class="form-control form-input-styles" name="comment" maxlength="150" placeholder="What did you think of the show?" required></textarea>
                     </div>
                     
                     <div class="d-flex flex-row w-100">
                         <div class="form-group w-75 me-5">
                             <label for="rating">Rating:</label>
-                            <input type="number" step="0.1" class="form-control form-input-styles text-white" id="rating" name="rating" min="1" max="10" placeholder="Rate the show ?/10" required>
+                            <input type="number" step="0.1" class="form-control form-input-styles" name="rating" min="1" max="10" placeholder="Rate the show ?/10" required>
                         </div>
                         
                         <div class="form-group w-75 ms-5">
                             <label for="attachments">Attachments:</label>
-                            <input type="file" class="form-control form-input-styles" id="attachments" name="attachments">
+                            <input type="file" class="form-control form-input-styles" name="attachments">
                         </div>
                     </div>
                     

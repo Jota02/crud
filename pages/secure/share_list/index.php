@@ -30,7 +30,7 @@ $users = getAll();
                 <div class="mt-3 mb-5">
                     <div class="list-group">
                         <?php foreach ($users as $destination): 
-                            $destinationPhotoPath =  "../../../assets/images/uploads/" . $destination['foto'];    
+                            $destinationPhotoPath =  "../../../assets/images/uploads/user_photo/" . $destination['foto'];    
                         ?>
                             <form action="../../../controllers/shows/shows.php" method="post">
                                 <input type="hidden" name="sender_id" value="<?= $user['id'] ?>">

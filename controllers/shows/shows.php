@@ -26,14 +26,16 @@ if (isset($_POST['submitReview'])) {
         'id_user' => $_POST['id_user'],
         'id_show' => $_POST['id_show'],
         'comment' => $_POST['comment'],
-        'rating' => $_POST['rating'],
-        'attachments' => $_FILES['attachments']
+        'rating' => $_POST['rating']
     );
-        if (!empty($review)) {
-            createReview($review); 
-        }else{
-            header('Location: ../../pages/secure/my_shows/index.php');
-        }
+
+    $review['attachments'] = saveAttachment();
+
+    if (!empty($review)) {
+        createReview($review); 
+    }else{
+        header('Location: ../../pages/secure/my_shows/index.php');
+    }
 }
 if (isset($_POST['shareContent'])) {
     $shared = array(
@@ -46,6 +48,26 @@ if (isset($_POST['shareContent'])) {
         }else{
             header('Location: ../../pages/secure/my_shows/index.php');
         }
+}
+if (isset($_POST['removeShared'])) {
+    if (isset($_POST['id'])){
+        $id = $_POST['id'];
+        if (!empty($id)) {
+            removeShared($id);
+        }else{
+            header('Location: ../../pages/secure/home/index.php');
+        }
+    }     
+}
+if (isset($_POST['removeReview'])) {
+    if (isset($_POST['id'])){
+        $id = $_POST['id'];
+        if (!empty($id)) {
+            removeReview($id);
+        }else{
+            header('Location: ../../pages/secure/home/index.php');
+        }
+    }     
 }
 if (isset($_POST['addShow'])) {
     $show = array(
@@ -80,7 +102,24 @@ if (isset($_POST['scheduleShow'])) {
     }
 }
 
+function saveAttachment() {
+    $fileName = $_FILES['attachments']['name'];
+    $extension = pathinfo($fileName, PATHINFO_EXTENSION);
+    $extension = strtolower($extension);
+    $newName = uniqid('attachments_') . '.' . $extension;
+    $path = __DIR__ . '/../../assets/images/uploads/review_attachment/';
+    $file = $path . $newName;
+
+    // Move the uploaded file to the specified directory
+    if (move_uploaded_file($_FILES['attachments']['tmp_name'], $file)) {
+        return $newName;
+    }
+}
+
+
+
 function createReview($review){
+
     $success = insertUserReview($review);
 
     if ($success) {
@@ -116,7 +155,7 @@ function createUserShow($show){
         header('location: ../../pages/secure/discover/index.php');
     }else {
         $_SESSION['errors'] = 'Error adding the show!';
-        header('location: ../../pages/secure/home/index.php');
+        header('location: ../../pages/secure/discover/index.php');
         exit;
     }
 }
@@ -164,7 +203,7 @@ function removeMyShow($id){
     $success = deleteMyShow($id);
 
     if ($success) {
-        $_SESSION['success'] = 'Show removed from your library successfully!';
+        $_SESSION['success'] = 'Show successfully removed from your library!';
         header('Location: ../../pages/secure/discover/index.php');
     }else {
         $_SESSION['errors'] = 'Error adding the show!';
@@ -173,15 +212,41 @@ function removeMyShow($id){
     }
 }
 
+function removeShared($id){
+    $success = deleteMyShared($id);
+
+    if ($success) {
+        $_SESSION['success'] = 'Shared show successfully removed from your library!';
+        header('Location: ../../pages/secure/my_shows/index.php');
+    }else {
+        $_SESSION['errors'] = 'Error removing the shared show!';
+        header('Location: ../../pages/secure/my_shows/index.php');
+        exit;
+    }
+}
+
+function removeReview($id){
+    $success = deleteReview($id);
+
+    if ($success) {
+        $_SESSION['success'] = 'Review successfully deleted!';
+        header('Location: ../../pages/secure/discover/index.php');
+    }else {
+        $_SESSION['errors'] = 'Error removing the shared show!';
+        header('Location: ../../pages/secure/discover/index.php');
+        exit;
+    }
+}
+
 function scheduleShow($show){
     $success = updateShow($show);
 
     if ($success) {
-        $_SESSION['success'] = 'Show scheduled successfully!';
+        $_SESSION['success'] = 'Show successfully scheduled!';
         header('Location: ../../pages/secure/show_time/index.php');
     }else {
         $_SESSION['errors'] = ['Error schedulling the show!'];
-        header('Location: ../../pages/secure/my_shows/index.php');
+        header('Location: ../../pages/secure/show_time/index.php');
         exit;
     }
 }

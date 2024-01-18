@@ -23,6 +23,22 @@ $events = getEvents($user['id']);
         <?php include_once __DIR__ . '/../../../templates/navbar.php'; ?>
         <!-- Content -->
         <div class="d-flex flex-column align-items-center main-margin" style="min-height: 100vh">
+            <?php
+                if (isset($_SESSION['success']))  {
+                    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
+                    echo $_SESSION['success'] . '<br>';
+                    echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                    unset($_SESSION['success']);
+                }
+                if (isset($_SESSION['errors'])) {
+                    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                    foreach ($_SESSION['errors'] as $error) {
+                    echo $error . '<br>';
+                    }
+                    echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                    unset($_SESSION['errors']);
+                }
+            ?>
             <div class="container w-75">
                 <div class="heading">
                     <h3 class=" ms-3 text-white text-center">What's Next?</h3>
