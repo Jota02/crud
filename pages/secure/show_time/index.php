@@ -22,7 +22,7 @@ $events = getEvents($user['id']);
     <body>
         <?php include_once __DIR__ . '/../../../templates/navbar.php'; ?>
         <!-- Content -->
-        <div class="d-flex flex-column align-items-center main-margin" style="min-height: 100vh">
+        <div class="main-margin">
             <?php
                 if (isset($_SESSION['success']))  {
                     echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
@@ -39,6 +39,8 @@ $events = getEvents($user['id']);
                     unset($_SESSION['errors']);
                 }
             ?>
+        </div>
+        <div class="d-flex flex-column align-items-center" style="min-height: 100vh">
             <div class="container w-75">
                 <div class="heading">
                     <h3 class=" ms-3 text-white text-center">What's Next?</h3>

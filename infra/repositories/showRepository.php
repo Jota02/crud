@@ -301,16 +301,21 @@ function getShowsTitleCovers() {
 
 function updateShow($show)
 {
-    $sql ='UPDATE user_shows SET calendar_date= :calendar_date WHERE show_id= :id';
+    $currentTimestamp = date('Y-m-d H:i:s');
 
-    $stmt = $GLOBALS['pdo']->prepare($sql);
-    $stmt->bindParam(':calendar_date', $show['calendar_date'], PDO::PARAM_STR);
-    $stmt->bindParam(':id', $show['show_id'], PDO::PARAM_INT);
-    
-    $stmt->execute();
-    
-    return $stmt->fetch();
-    
+    if ($show['calendar_date'] >= $currentTimestamp) {
+        $sql ='UPDATE user_shows SET calendar_date= :calendar_date WHERE show_id= :id';
+
+        $stmt = $GLOBALS['pdo']->prepare($sql);
+        $stmt->bindParam(':calendar_date', $show['calendar_date'], PDO::PARAM_STR);
+        $stmt->bindParam(':id', $show['show_id'], PDO::PARAM_INT);
+        
+        $stmt->execute();
+        
+        return $stmt->fetch();
+    } else {
+        return false;
+    }
 }
 
 function deleteMyShow($id)
