@@ -32,16 +32,14 @@ $events = getEvents($user['id']);
                 }
                 if (isset($_SESSION['errors'])) {
                     echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-                    foreach ($_SESSION['errors'] as $error) {
-                    echo $error . '<br>';
-                    }
-                    echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                    echo $_SESSION['errors'] . '<br>';
+                    echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
                     unset($_SESSION['errors']);
                 }
             ?>
         </div>
         <div class="d-flex flex-column align-items-center" style="min-height: 100vh">
-            <div class="container w-75">
+            <div class="container">
                 <div class="heading">
                     <h3 class=" ms-3 text-white text-center">What's Next?</h3>
                 </div>

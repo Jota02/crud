@@ -31,24 +31,23 @@ $title = '- App';
     <body>
         <?php include_once __DIR__ . '/../../../templates/navbar.php'; ?>
         <!--content start-->
-        <div class="d-flex flex-column align-items-center main-margin">
+        <div class="main-margin">
             <?php
-            if (isset($_SESSION['success'])) {
-                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
-                echo $_SESSION['success'] . '<br>';
-                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-                unset($_SESSION['success']);
-            }
-            if (isset($_SESSION['errors'])) {
-                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-                foreach ($_SESSION['errors'] as $error) {
-                echo $error . '<br>';
+                if (isset($_SESSION['success']))  {
+                    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
+                    echo $_SESSION['success'] . '<br>';
+                    echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                    unset($_SESSION['success']);
                 }
-                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-                unset($_SESSION['errors']);
-            }
+                if (isset($_SESSION['errors'])) {
+                    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                    echo $_SESSION['errors'] . '<br>';
+                    echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                    unset($_SESSION['errors']);
+                }
             ?>
-
+        </div>
+        <div class="d-flex flex-column align-items-center">
             <!--carousel start-->
             <div id="coverCarousel" class="carousel">
                 <div class="carousel-inner">   

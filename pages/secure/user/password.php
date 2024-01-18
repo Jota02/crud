@@ -21,28 +21,28 @@ $user = user();
     </head>
     <body>
       <?php include_once __DIR__ . '/../../../templates/navbar.php'; ?>
+      <div class="main-margin">
+        <?php
+            if (isset($_SESSION['success']))  {
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
+                echo $_SESSION['success'] . '<br>';
+                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                unset($_SESSION['success']);
+            }
+            if (isset($_SESSION['errors'])) {
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                echo $_SESSION['errors'] . '<br>';
+                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                unset($_SESSION['errors']);
+            }
+        ?>
+      </div>
 
       <!--Content-->
       <div class="container d-flex align-items-center justify-content-center flex-column" style="min-height: 100vh;">
         <div class="row mb-3">
           <h1 class="m-3 fw-normal text-center text-white">Change Password</h1>
         </div>
-        <?php
-          if (isset($_SESSION['success'])) {
-            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
-            echo $_SESSION['success'] . '<br>';
-            echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-            unset($_SESSION['success']);
-          }
-          if (isset($_SESSION['errors'])) {
-            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-            foreach ($_SESSION['errors'] as $error) {
-              echo $error . '<br>';
-            }
-            echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-            unset($_SESSION['errors']);
-          }
-        ?>
         <div class="row">
           <form action="../../../controllers/admin/user.php" method="post" class="py-3">
             <div class="input-group mb-3">

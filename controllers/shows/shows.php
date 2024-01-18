@@ -194,7 +194,7 @@ function getShows($searchInput)
         exit;
     } else {
         $_SESSION['errors'] = 'No shows found for the search query!';
-        header('Location: ../../pages/secure/home/index.php');
+        header('Location: ../../pages/secure/discover/index.php');
         exit;
     }
 }

@@ -32,7 +32,7 @@ for ($i=0; $i < count($myShows) ; $i++) {
     </head>
     <body>
         <?php include_once __DIR__ . '/../../../templates/navbar.php'; ?>
-        <div class="d-flex flex-column align-items-center main-margin">
+        <div class="main-margin">
             <?php
                 if (isset($_SESSION['success']))  {
                     echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
@@ -42,13 +42,13 @@ for ($i=0; $i < count($myShows) ; $i++) {
                 }
                 if (isset($_SESSION['errors'])) {
                     echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-                    foreach ($_SESSION['errors'] as $error) {
-                    echo $error . '<br>';
-                    }
-                    echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                    echo $_SESSION['errors'] . '<br>';
+                    echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
                     unset($_SESSION['errors']);
                 }
             ?>
+        </div>
+        <div class="d-flex flex-column align-items-center">
             <!--movies header start-->
             <div class="heading mt-5 w-75">
                 <h3 class="text-white">My Movies</h3>

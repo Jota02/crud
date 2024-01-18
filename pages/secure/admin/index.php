@@ -25,26 +25,26 @@ $user = user();
     <body>
       <?php include_once __DIR__ . '/../../../templates/navbar.php'; ?>
     <!--content-->
-    <div class="container main-margin" style="min-height: 100vh;">
+    <div class="main-margin">
+      <?php
+          if (isset($_SESSION['success']))  {
+              echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
+              echo $_SESSION['success'] . '<br>';
+              echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+              unset($_SESSION['success']);
+          }
+          if (isset($_SESSION['errors'])) {
+              echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+              echo $_SESSION['errors'] . '<br>';
+              echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+              unset($_SESSION['errors']);
+          }
+      ?>
+    </div>
+    <div class="container" style="min-height: 100vh;">
       <div class="row mb-3">
         <h1 class="m-3 fw-normal text-center text-white text-center">Users</h1>
       </div>
-      <?php
-        if (isset($_SESSION['success'])) {
-          echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
-          echo $_SESSION['success'] . '<br>';
-          echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-          unset($_SESSION['success']);
-        }
-        if (isset($_SESSION['errors'])) {
-          echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-          foreach ($_SESSION['errors'] as $error) {
-            echo $error . '<br>';
-          }
-          echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-          unset($_SESSION['errors']);
-        }
-      ?>
       <div class="row">
         <table class="table" style="border: 0.15rem solid var(--main-color);">
           <thead class="table-secondary">
